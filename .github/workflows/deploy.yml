@@ -9,12 +9,12 @@ jobs:
     strategy:
       matrix:
         path: [ "restaurante2-carta.llevoxti.com" ]
-      env:
-        SSH_AUTH_SOCK: /tmp/ssh_agent.sock
     steps:
       - uses: actions/checkout@v3
 
       - name: Configure ssh
+        env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
@@ -24,6 +24,8 @@ jobs:
           ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
 
       - name: deploy web app
+        env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
           command -v rsync >/dev/null || ( apt-get update -y && apt-get install rsync -y )
           rsync -az ${{ github.workspace }}/app/* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/${{ matrix.path }}
