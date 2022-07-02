@@ -27,4 +27,4 @@ jobs:
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
-          rsync app/* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/${{ matrix.path }}
+          rsync -rz app/* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/${{ matrix.path }}
