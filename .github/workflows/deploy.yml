@@ -26,4 +26,6 @@ jobs:
       - name: deploy web app
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
-        run: rsync ${{ github.workspace }}/app/* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/${{ matrix.path }}
+        run: |
+          apt install rsync
+          rsync ${{ github.workspace }}/app/* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/${{ matrix.path }}
