@@ -27,5 +27,5 @@ jobs:
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
-          sudo apt-get rsync -y
+          sudo apt-get install rsync -y
           rsync ${{ github.workspace }}/app/* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/${{ matrix.path }}
