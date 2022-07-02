@@ -12,16 +12,16 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Configure ssh
-        env:
-          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
-        run: |
-          mkdir -p ~/.ssh
-          chmod 700 ~/.ssh
-          ssh-keyscan "${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts
-          chmod 644 ~/.ssh/known_hosts
-          ssh-agent -a $SSH_AUTH_SOCK > /dev/null
-          ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
+        #- name: Configure ssh
+        #env:
+          #SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+            #run: |
+          #mkdir -p ~/.ssh
+          #chmod 700 ~/.ssh
+          #ssh-keyscan "${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts
+          #chmod 644 ~/.ssh/known_hosts
+          #ssh-agent -a $SSH_AUTH_SOCK > /dev/null
+          #ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
 
       - name: deploy web app
         env:
