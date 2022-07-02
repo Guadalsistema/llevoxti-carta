@@ -5,7 +5,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     strategy:
       matrix:
         path: [ "restaurante2-carta.llevoxti.com" ]
