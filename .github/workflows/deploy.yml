@@ -5,6 +5,7 @@ on:
 
 jobs:
   deploy:
+
     runs-on: self-hosted
     strategy:
       matrix:
@@ -26,5 +27,4 @@ jobs:
       - name: deploy web app
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
-        run: |
-          rsync -rz app/* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/${{ matrix.path }}
+        run: rsync -rz app/* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/${{ matrix.path }}
