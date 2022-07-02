@@ -5,13 +5,26 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+
+    runs-on: self-hosted
+    strategy:
+      matrix:
+        path: [ "restaurante2-carta.llevoxti.com" ]
     steps:
-      - name: Configure ssh
-        run: |
-          eval $(ssh-agent -s)
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" | tr -d '\r' | ssh-add -
-          mkdir -p ~/.ssh
-          chmod 700 ~/.ssh
-          ssh-keyscan ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
-          chmod 644 ~/.ssh/known_hosts
+      - uses: actions/checkout@v3
+
+        #- name: Configure ssh
+        #env:
+          #SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+            #run: |
+          #mkdir -p ~/.ssh
+          #chmod 700 ~/.ssh
+          #ssh-keyscan "${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts
+          #chmod 644 ~/.ssh/known_hosts
+          #ssh-agent -a $SSH_AUTH_SOCK > /dev/null
+          #ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
+
+      - name: deploy web app
+        env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+        run: rsync -rz app/* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/${{ matrix.path }}
