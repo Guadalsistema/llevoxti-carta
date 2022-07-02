@@ -9,19 +9,19 @@ jobs:
     strategy:
       matrix:
         path: [ "restaurante2-carta.llevoxti.com" ]
+      env:
+        SSH_AUTH_SOCK: /tmp/ssh_agent.sock
     steps:
       - uses: actions/checkout@v3
 
       - name: Configure ssh
-        env:
-          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
           ssh-keyscan "${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
           ssh-agent -a $SSH_AUTH_SOCK > /dev/null
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" | tr -d '\r' | ssh-add -
+          ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
 
       - name: deploy web app
         run: |
