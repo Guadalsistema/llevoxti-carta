@@ -4,7 +4,7 @@ function getCategories() {
 	var url = config["url"];
 
 	fetch(url, {
-	  method: 'GET', // or 'PUT'
+	  method: 'GET',
 	  headers:{
 	    'Content-Type': 'application/json'
 	  }
