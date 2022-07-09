@@ -2,3 +2,5 @@
 *.log
 *.conf
 *.ini
+
+**/config.js
