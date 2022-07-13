@@ -1,5 +1,7 @@
-const var config = {
+
+const config = {
 	"url": "https://example.com"
 }
 
 export {config};
+
