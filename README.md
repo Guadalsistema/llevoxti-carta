@@ -1,4 +1,5 @@
 # llevoxti-carta
 
 ## TODO list
-- Move the imges a web formats
+- Move the images to web formats
+- Move the fetch calls to cache
