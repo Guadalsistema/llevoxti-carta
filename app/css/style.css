@@ -16,7 +16,13 @@ a,a:active, a:visited {;text-decoration: none;}
     --blanco: #FFFFFF;
 }
 
-/*------Categories--------*/
+body {
+    font-family: 'Arima Madurai', cursive;
+    color: var(--negro);
+}
+
+
+    /*------Categories--------*/
 .header {
     width: 100%;
     height: 180px;
@@ -71,4 +77,67 @@ main {
     font-weight: 400;
     color: var(--negro);
     font-size: 32px;
+}
+
+/*-------Product page----------*/
+
+.container {
+    display: flex;
+}
+.menu {
+    flex: 100px;
+}
+.menu__arrow {
+    width: 100px;
+    height: 100px;
+    background-color: var(--rojo);
+}
+.menu__categories {
+    background-color: var(--blanco);
+    height: calc(100vh - 200px);
+}
+.product {
+    flex: 1;
+    background-color: var(--negro);
+    height: calc(100vh - 100px);
+    padding: 0 5px;
+}
+.product__tittle {
+    height: 100px;
+    padding: 20px;
+    font-size: 36px;
+    color: var(--blanco);
+}
+.product__box {
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.product__tittle {
+    flex: 100%;
+    font-weight: 400;
+    font-size: 18px;
+
+}
+.product__button {
+    width: 25px;
+    height: 25px;
+    border: 2px solid var(--rojo);
+    border-radius: 100%;
+    position: relative;
+}
+.product__button > div {
+    height: 3px;
+    width: 12px;
+    background-color: var(--rojo);
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
+.product__button > div:last-child {
+    transform: rotate(90deg);
 }
