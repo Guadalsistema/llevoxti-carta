@@ -4,9 +4,11 @@ class CategoryCard extends HTMLElement {
 		var shadow = this.attachShadow({mode: 'open'});
 
 		var icon = document.createElement('span');
-		var name = document.createElement('span');
+		var link = document.createElement('a');
 		var text = this.getAttribute('name');
-		name.textContent = text;
+		link.textContent = text;
+		var cat_id = this.getAttribute("category-id");
+		link.setAttribute("href", "products.html?category-id=" + cat_id);
 
 		var style = document.createElement('style');
 		style.textContent = ``; // TODO if not long text put style here
@@ -15,8 +17,8 @@ class CategoryCard extends HTMLElement {
 
 		shadow.appendChild(style);
 		shadow.appendChild(icon);
-		shadow.appendChild(name);
+		shadow.appendChild(link);
 	}
 }
 
-customElements.define('category-card', CategoryCard);
+export { CategoryCard };
