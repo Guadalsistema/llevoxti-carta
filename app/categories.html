@@ -2,26 +2,26 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Llevoxti</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@200;400;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <script type="module" src="js/categories.js"></script>
-    <!-- script src="script.js"></script -->
+	<script type="module" src="js/categories.js" defer></script>
   </head>
   <body>
     <!-- page content -->
 	<header class="header">
+		<!-- Load dinamically the title -->
         <div><h1 class="header__title">Nombre de tienda</h1></div>
     </header>
     <main>
-        <div class="categories">
-            <div class="categories__icon">
-                <div></div>
-            </div>
-            <div class="categories__title">Comida</div>
-        </div>
+        <div class="categories" id="category-list">
+			<template id="category-row-list">
+			    <category-card/>
+			</template>
+		</div>
     </main>
   </body>
 </html>
