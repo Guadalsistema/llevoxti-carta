@@ -86,7 +86,7 @@ main {
     display: flex;
 }
 .menu {
-    flex: 100px;
+    width: 100px;
 }
 .menu__arrow {
     width: 100px;
@@ -101,45 +101,69 @@ main {
     flex: 1;
     background-color: var(--negro);
     height: calc(100vh - 100px);
-    padding: 0 5px;
+    padding: 0 10px;
 }
-.product__tittle {
+.product__title {
     height: 100px;
     padding: 20px;
     font-size: 36px;
     color: var(--blanco);
 }
 .product__box {
-    height: 80px;
+    background-color: var(--blanco);
+    padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
 }
-.product__tittle {
+.product__name {
     flex: 100%;
     font-weight: 400;
     font-size: 18px;
+    padding: 10px 0;
 
 }
+.product__amount {
+    flex: 50%;
+}
+.product__prize {
+    flex:30%;
+    text-align: end;
+    font-size: 20px;
+}
+
+.product__number, .product__button {
+    display: inline-block;
+}
+.product__number {
+    position: relative;
+    height: 30px;
+    width: 40px;
+    font-size: 20px;
+}
+.product__number > p {
+    position: absolute;
+    top: 0; right: 0; left: 0; bottom: 0;
+    margin: auto;
+    text-align: center;
+}
 .product__button {
-    width: 25px;
-    height: 25px;
-    border: 2px solid var(--rojo);
+    width: 30px;
+    height: 30px;
+    border: 3px solid var(--rojo);
     border-radius: 100%;
     position: relative;
 }
 .product__button > div {
-    height: 3px;
+    height: 4px;
     width: 12px;
     background-color: var(--rojo);
     position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
+    top: 0; right: 0; left: 0; bottom: 0;
+    margin: auto;
 }
-.product__button > div:last-child {
+.product__button > div:nth-last-of-type(2) {
     transform: rotate(90deg);
 }
 
