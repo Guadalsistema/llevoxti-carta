@@ -1,6 +1,6 @@
 import { config } from './config.js';
 
-function displayCategories(products) {
+function displayProducts(products) {
 	let pTemplate = document.getElementById("product-row-tmpl");
 	let placeholder = document.querySelector('div.product');
 	for (const product of products) {
@@ -16,12 +16,30 @@ function displayCategories(products) {
 	}
 }
 
+function displayCategories(categories) {
+	let pTemplate = document.getElementById("li-category-tmpl");
+	let placeholder = document.querySelector('ul');
+	for (const category of categories) {
+		let container = pTemplate.content.querySelector('.menu__categories-item');
+		container.textContent = category.name;
+		container.setAttribute('category-id', category.id);
+		var clone = document.importNode(pTemplate.content, true);
+		placeholder.appendChild(clone);
+	}
+}
+
 function workProducts() {
-	var url = config["url"] + "/menu";
-	fetch(url, {
+	var url_products = config["url"] + "/menu";
+	fetch(url_products, {
 	  method: 'GET',
 	}).then(res => res.json())
-	.then(products => displayCategories(products))
+	.then(products => displayProducts(products))
+	.catch(error => console.error('Error:', error));
+	var url_categories = config["url"] + "/menu/category";
+	fetch(url_categories, {
+	  method: 'GET',
+	}).then(res => res.json())
+	.then(categories => displayCategories(categories))
 	.catch(error => console.error('Error:', error));
 }
 
