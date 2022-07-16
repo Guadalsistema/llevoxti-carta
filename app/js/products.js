@@ -1,6 +1,6 @@
 import { config } from './config.js';
 import { roundTo } from './utils.js';
-import { ProductCategoryLi } from  './product-element.js';
+import { ProductCategoryLi, ProductCard } from  './product-element.js';
 
 function displayProducts(products) {
 	let pTemplate = document.getElementById("product-row-tmpl");

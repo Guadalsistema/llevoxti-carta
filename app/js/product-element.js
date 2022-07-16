@@ -14,8 +14,5 @@ class ProductCategoryLi extends HTMLLIElement {
   
 	}
 }
-  
-
-
 
 export { ProductCategoryLi, ProductCard };
