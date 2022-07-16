@@ -6,7 +6,7 @@ function displayProducts(products) {
 	let pTemplate = document.getElementById("product-row-tmpl");
 	let placeholder = document.querySelector('div.product');
 	for (const product of products) {
-		let container = pTemplate.content.querySelector('.product__box');
+		let container = pTemplate.content.querySelector('product-card');
 		let name = pTemplate.content.querySelector('h2');
 		let price = pTemplate.content.querySelector('h3');
 		name.textContent = product.name;

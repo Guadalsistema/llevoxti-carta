@@ -1,7 +1,7 @@
 class ProductCard extends HTMLElement {
 	constructor(){
 		super();
-		this.attachShadow({mode: 'open'});
+		let shadow = this.attachShadow({mode: 'open'});
 		const style = document.createElement('style');
 		style.textContent = `product-card {
 			background-color: var(--blanco);
@@ -11,7 +11,7 @@ class ProductCard extends HTMLElement {
 			align-items: center;
 			flex-wrap: wrap;
 		}`
-		this.shadowRoot.append(style);
+		shadow.appendChild(style);
 		// write element functionality in here
 	}
 }
