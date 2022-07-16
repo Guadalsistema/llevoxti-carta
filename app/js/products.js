@@ -8,7 +8,7 @@ function displayProducts(products) {
 		let name = pTemplate.content.querySelector('h2');
 		let price = pTemplate.content.querySelector('h3');
 		name.textContent = product.name;
-		price.textContent = product.price + '€';
+		price.textContent = product.lst_price + '€';
 		container.setAttribute('product-id', product.id);
 		container.setAttribute('category-id', product.pos_categ_id);
 		var clone = document.importNode(pTemplate.content, true);
