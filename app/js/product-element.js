@@ -18,4 +18,4 @@ class ProductCategoryLi extends HTMLLIElement {
 
 
 
-export { ProductCategoryLi };
+export { ProductCategoryLi, ProductCard };
