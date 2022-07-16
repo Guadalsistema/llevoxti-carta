@@ -25,6 +25,4 @@ function workProducts() {
 	.catch(error => console.error('Error:', error));
 }
 
-customElements.define('product-card', ProductCard);
-
 workProducts();
