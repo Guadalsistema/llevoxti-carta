@@ -1,14 +1,16 @@
 import { config } from './config.js';
+import { roundTo } from './js/utils.js';
+import { ProductCategoryLi } from  './js/product-element.js';
 
 function displayProducts(products) {
 	let pTemplate = document.getElementById("product-row-tmpl");
 	let placeholder = document.querySelector('div.product');
 	for (const product of products) {
-		let container = pTemplate.content.querySelector('.product__box');
+		let container = pTemplate.content.querySelector('product-card');
 		let name = pTemplate.content.querySelector('h2');
 		let price = pTemplate.content.querySelector('h3');
 		name.textContent = product.name;
-		price.textContent = product.lst_price + '€';
+		price.textContent = roundTo(product.lst_price,2) + '€';
 		container.setAttribute('product-id', product.id);
 		container.setAttribute('category-id', product.pos_categ_id);
 		var clone = document.importNode(pTemplate.content, true);
@@ -42,5 +44,8 @@ function workProducts() {
 	.then(categories => displayCategories(categories))
 	.catch(error => console.error('Error:', error));
 }
+
+customElements.define('product-category', ProductCategoryLi, { extends: "li" });
+customElements.define('product-card', ProductCard);
 
 workProducts();
