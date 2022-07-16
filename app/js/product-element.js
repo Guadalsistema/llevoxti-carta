@@ -1,7 +1,9 @@
 class ProductCard extends HTMLElement {
 	constructor(){
 		super();
+
 		// write element functionality in here
+
 	}
 }
 
