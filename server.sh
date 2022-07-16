@@ -1,5 +1,12 @@
 #!/bin/sh
 
+CONTAINER_ENGINE=""
+if command -v podman; then
+	CONTAINER_ENGINE="podman"
+else
+	CONTAINER_ENGINE="docker"
+fi
+
 function menu () {
 	echo "usage $(basename $0) [-h] (stop|start|delete)"
 }
@@ -18,14 +25,14 @@ done
 PODNAME="llevoxti-carta"
 
 if  [[ $1 =~ ^stop$ ]]; then
-	podman stop ${PODNAME}
+	${CONTAINER_ENGINE} stop ${PODNAME}
 	exit 0
 fi
 
 if  [[ $1 =~ ^start$ ]]; then
-	podman run --rm -dit \
+	${CONTAINER_ENGINE} run --rm -d \
 		--name ${PODNAME} -p 8080:80 \
-		-v "$PWD/app":/usr/local/apache2/htdocs/ \
+		-v "app:/usr/local/apache2/htdocs/" \
 		docker.io/library/httpd:2.4
 	exit 0
 fi

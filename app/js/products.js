@@ -1,14 +1,16 @@
 import { config } from './config.js';
-import { ProductCard } from './product-element.js'
 
 function displayCategories(products) {
-	let placeholder = document.getElementById("product-list");
-	let pTemplate = document.getElementById('product-row-list');
+	let pTemplate = document.getElementById("product-row-tmpl");
+	let placeholder = document.querySelector('div.product');
 	for (const product of products) {
-		let card = pTemplate.content.querySelector('product-card');
-		card.setAttribute("product-id", product.id);
-		card.setAttribute("category-id", product.pos_categ_id);
-		card.setAttribute("name", product.name);
+		let container = pTemplate.content.querySelector('.product__box');
+		let name = pTemplate.content.querySelector('h2');
+		let price = pTemplate.content.querySelector('h3');
+		name.textContent = product.name;
+		price.textContent = product.price + '€';
+		container.setAttribute('product-id', product.id);
+		container.setAttribute('category-id', product.pos_categ_id);
 		var clone = document.importNode(pTemplate.content, true);
 		placeholder.appendChild(clone);
 	}

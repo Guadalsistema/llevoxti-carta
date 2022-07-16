@@ -7,8 +7,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@200;400;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <!--<script type="module" src="#"></script>-->
-    <!-- script src="script.js"></script -->
+    <script type="module" src="js/products.js"></script>
   </head>
   <body>
     <!-- page content -->
@@ -44,8 +43,27 @@
             <div class="product__prize">
                 <h3>4,00€</h3>
             </div>
-            
         </div>
+        <template id="product-row-tmpl">
+            <div class="product__box">
+                <div class="product__name">
+                    <h2>name</h2>
+                </div>
+                <div class="product__amount">
+                    <div class="product__button">
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <div class="product__number"><p>1</p></div>
+                    <div class="product__button">
+                        <div></div>
+                    </div>
+                </div>
+                <div class="product__prize">
+                    <h3>price</h3>
+                </div>
+            </div>
+        </template>
         <div class="product__order"><p>Pedido</p></div>
     </div>
 
