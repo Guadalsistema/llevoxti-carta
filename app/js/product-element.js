@@ -1,7 +1,17 @@
 class ProductCard extends HTMLElement {
 	constructor(){
 		super();
-		var shadow = this.attachShadow({mode: 'open'});
+		this.attachShadow({mode: 'open'});
+		const style = document.createElement('style');
+		style.textContent = `product-card {
+			background-color: var(--blanco);
+			padding: 20px;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			flex-wrap: wrap;
+		}`
+		this.shadowRoot.append(style);
 		// write element functionality in here
 	}
 }
