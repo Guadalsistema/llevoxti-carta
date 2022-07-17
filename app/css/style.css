@@ -97,15 +97,3 @@ main {
     background-color: var(--blanco);
     height: calc(100vh - 200px);
 }
-.product {
-    flex: 1;
-    background-color: var(--negro);
-    height: calc(100vh - 100px);
-    padding: 0 10px;
-}
-.product__title {
-    height: 100px;
-    padding: 20px;
-    font-size: 36px;
-    color: var(--blanco);
-}
