@@ -36,7 +36,7 @@ class ProductCard extends HTMLElement {
 	}
 
 	formObject(obj) {
-		for(const key in #FIELDS) {
+		for(const key in this.#FIELDS) {
 			if(!obj[key]) {
 				throw InvalidArgumentException;
 			}
@@ -46,7 +46,7 @@ class ProductCard extends HTMLElement {
 
 	toObject() {	
 		obj = {}
-		for(const key in #FIELDS) {
+		for(const key in this.#FIELDS) {
 			obj[key] = this.getAttribute(this.#FIELDS[key]);
 		}
 		return obj;
@@ -54,12 +54,6 @@ class ProductCard extends HTMLElement {
 
 	constructor(){
 		super();
-		this.#FIELDS = {
-			'id': 'product-id',
-			'pos_categ_id': 'category-id',
-			'name': 'name',
-			'lst_price': 'price',
-		};
 		let shadow = this.attachShadow({mode: 'open'});
 		let productbox = document.createElement('div');
 		productbox.setAttribute('class', 'product__box');
