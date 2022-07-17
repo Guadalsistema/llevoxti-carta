@@ -1,6 +1,16 @@
 import { roundTo } from './utils.js';
 
 class ProductCard extends HTMLElement {
+	add1OnClick() {
+		let p = this.productAmount.querySelector('p');
+		p.textContent = parseInt(p.textContent) + 1;
+	}
+
+	minus1OnClick() {
+		let p = this.productAmount.querySelector('p');
+		p.textContent = Math.max(parseInt(p.textContent) - 1, 0);
+	}
+
 	constructor(){
 		super();
 		let shadow = this.attachShadow({mode: 'open'});
@@ -47,16 +57,6 @@ class ProductCard extends HTMLElement {
 
 		shadow.appendChild(linkElem);
 		shadow.appendChild(productbox);
-	}
-
-	add1OnClick() {
-		let p = this.productAmount.querySelector('p');
-		p.textContent = parseInt(p.textContent) + 1;
-	}
-
-	minus1OnClick() {
-		let p = this.productAmount.querySelector('p');
-		p.textContent = Math.max(parseInt(p.textContent) - 1, 0);
 	}
 }
 
