@@ -4,12 +4,12 @@ class ProductCard extends HTMLElement {
 	productAmount = null;
 
 	add1OnClick() {
-		let p = this.productAmount.querySelector('p');
+		let p = productAmount.querySelector('p');
 		p.textContent = parseInt(p.textContent) + 1;
 	}
 
 	minus1OnClick() {
-		let p = this.productAmount.querySelector('p');
+		let p = productAmount.querySelector('p');
 		p.textContent = Math.max(parseInt(p.textContent) - 1, 0);
 	}
 
@@ -26,18 +26,18 @@ class ProductCard extends HTMLElement {
 			hdos.textContent = this.getAttribute('name');
 			productName.appendChild(hdos);
 
-			this.productAmount = document.createElement('div');
-			this.productAmount.setAttribute('class', 'product__amount');
-			productbox.appendChild(this.productAmount);
+			productAmount = document.createElement('div');
+			productAmount.setAttribute('class', 'product__amount');
+			productbox.appendChild(productAmount);
 				let productButtonAdd = document.createElement('div');
 				productButtonAdd.setAttribute('class', 'product__button sum');
 				productButtonAdd.appendChild(document.createElement('div'));
 				productButtonAdd.appendChild(document.createElement('div'));
 				productButtonAdd.onclick = this.add1OnClick;
-				this.productAmount.appendChild(productButtonAdd);
+				productAmount.appendChild(productButtonAdd);
 				let productNumber = document.createElement('div');
 				productNumber.setAttribute('class', 'product__number');
-				this.productAmount.appendChild(productNumber);
+				productAmount.appendChild(productNumber);
 					let p = document.createElement('p');
 					p.textContent = 1;
 					productNumber.appendChild(p);
@@ -45,7 +45,7 @@ class ProductCard extends HTMLElement {
 				productButtonMinus.setAttribute('class', 'product__button minus');
 				productButtonMinus.appendChild(document.createElement('div'));
 				productButtonMinus.onclick = this.minus1OnClick;
-				this.productAmount.appendChild(productButtonMinus);
+				productAmount.appendChild(productButtonMinus);
 			let productPrize = document.createElement('div');
 			productPrize.setAttribute('class', 'product__prize');
 			productbox.appendChild(productPrize);
