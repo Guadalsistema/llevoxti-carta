@@ -7,7 +7,7 @@ else
 	CONTAINER_ENGINE="docker"
 fi
 
-function menu () {
+menu () {
 	echo "usage $(basename $0) [-h] (stop|start|delete)"
 }
 

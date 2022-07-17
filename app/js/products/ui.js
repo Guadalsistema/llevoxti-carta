@@ -1,4 +1,4 @@
-import { roundTo } from './utils.js';
+import { roundTo } from '../utils.js';
 
 class ProductCard extends HTMLElement {
 	add1OnClick() {
@@ -9,6 +9,20 @@ class ProductCard extends HTMLElement {
 	minus1OnClick() {
 		let p = this.productAmount.querySelector('p');
 		p.textContent = Math.max(parseInt(p.textContent) - 1, 1);
+	}
+
+	formObject() {
+		// TODO load from generic object
+	}
+
+	connectedCallback() {
+		console.log('Custom square element added to page.');
+		updateStyle(this);
+	}
+
+	attributeChangedCallback(name, oldValue, newValue) {
+		console.log('Custom square element attributes changed.');
+		updateStyle(this);
 	}
 
 	constructor(){
@@ -60,6 +74,28 @@ class ProductCard extends HTMLElement {
 	}
 }
 
+class ProductList extends HTMLElement {
+	// todo name setter
+
+	constructor(){
+		super();
+		let shadow = this.attachShadow({mode: 'open'});
+
+		let container = document.createElement('div');
+		container.setAttribute('class', 'product');
+			let h1 = document.createElement('h1');
+			h1.setAttribute('class', 'product__title');
+			h1.textContent = "TODO";
+			container.appendChild(h1);
+
+		const linkElem = document.createElement('link');
+		linkElem.setAttribute('rel', 'stylesheet');
+		linkElem.setAttribute('href', 'css/product-card.css');
+		shadow.appendChild(linkElem);
+		shadow.appendChild(container);
+	}
+}
+
 class ProductCategoryLi extends HTMLLIElement {
 	constructor() {
 	  super();
@@ -69,4 +105,4 @@ class ProductCategoryLi extends HTMLLIElement {
 	}
 }
 
-export { ProductCategoryLi, ProductCard };
+export { ProductCategoryLi, ProductCard, ProductList };
