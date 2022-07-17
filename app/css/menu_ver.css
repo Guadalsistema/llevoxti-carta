@@ -1,6 +1,7 @@
 .nav{
     border: 0px;
     overflow-y: auto;
+    scrollbar-width:none;
     background-color: azure;
     position: fixed;
     top: 100px;
@@ -10,12 +11,12 @@
 }
 @media screen and (max-width: 600px) {
     .nav {
-      background-color: aqua;
+      background-color: azure;
     }
   }
   @media screen and (max-width: 992px) {
     .nav {
-      background-color: cornflowerblue;
+      background-color: azure;
     }
   }
   .main-menu{
@@ -30,8 +31,18 @@
     align-items:center;
     height:auto;
     margin-bottom: 5px;
-    font-size:4vw;
+    font-size:5vw;
   } 
+  @media screen and (min-width: 200px) {
+    .menu__categories-item {
+        font-size:5vw;
+    }
+  }
+  @media screen and (min-width: 400px) {
+    .menu__categories-item {
+        font-size:4vw;
+    }
+  }
   @media screen and (min-width: 600px) {
     .menu__categories-item {
         font-size:3vw;
@@ -45,6 +56,8 @@
   .main{
     top: 100px;
     margin-left: 20vw;
+    position: fixed;
+    overflow-y: auto;
     background-color: white;
     text-align: left;
     min-height: 100vh;
