@@ -20,8 +20,12 @@ class ProductCard extends HTMLElement {
 				let productButton = document.createElement('div');
 				productButton.setAttribute('class', 'product__button');
 				productAmount.appendChild(productButton);
-				productButton.appendChild(document.createElement('div'));
-				productButton.appendChild(document.createElement('div'));
+				let plus = document.createElement('div');
+				plus.onclick = this.add1OnClick;
+				productButton.appendChild(plus);
+				let minus = document.createElement('div');
+				minus.onclick = this.minus1OnClick;
+				productButton.appendChild(minus);
 				let productNumber = document.createElement('div');
 				productNumber.setAttribute('class', 'product__number');
 				productAmount.appendChild(productNumber);
@@ -45,6 +49,16 @@ class ProductCard extends HTMLElement {
 
 		shadow.appendChild(linkElem);
 		shadow.appendChild(productbox);
+	}
+
+	add1OnClick() {
+		let p = this.shadowRoot.querySelector('p');
+		p.textContent = parseInt(p.textContent) + 1;
+	}
+
+	minus1OnClick() {
+		let p = this.shadowRoot.querySelector('p');
+		p.textContent = Math.max(parseInt(p.textContent) - 1, 0);
 	}
 }
 
