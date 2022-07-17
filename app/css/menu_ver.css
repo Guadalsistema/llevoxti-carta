@@ -31,11 +31,11 @@
     align-items:center;
     height:auto;
     margin-bottom: 5px;
-    font-size:5vw;
+    font-size:6vw;
   } 
   @media screen and (min-width: 200px) {
     .menu__categories-item {
-        font-size:5vw;
+        font-size:6vw;
     }
   }
   @media screen and (min-width: 400px) {
