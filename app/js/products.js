@@ -48,14 +48,12 @@ function workProducts() {
 	fetch(url_products, {
 	  method: 'GET',
 	}).then(res => res.json())
-	.then(products => displayProducts(products))
-	.catch(error => console.error('Error:', error));
+	.then(products => displayProducts(products));
 	var url_categories = config["url"] + "/menu/category";
 	fetch(url_categories, {
 	  method: 'GET',
 	}).then(res => res.json())
-	.then(categories => displayCategories(categories))
-	.catch(error => console.error('Error:', error));
+	.then(categories => displayCategories(categories));
 }
 
 customElements.define('product-category', ProductCategoryLi, { extends: "li" });
