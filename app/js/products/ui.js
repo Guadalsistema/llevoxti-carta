@@ -15,6 +15,16 @@ class ProductCard extends HTMLElement {
 		// TODO load from generic object
 	}
 
+	connectedCallback() {
+		console.log('Custom square element added to page.');
+		updateStyle(this);
+	}
+
+	attributeChangedCallback(name, oldValue, newValue) {
+		console.log('Custom square element attributes changed.');
+		updateStyle(this);
+	}
+
 	constructor(){
 		super();
 		let shadow = this.attachShadow({mode: 'open'});
