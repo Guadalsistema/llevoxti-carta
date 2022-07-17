@@ -5,7 +5,7 @@ img {max-width: 100%; height: auto; display: block;}
 figure, picture {display: block;}
 input, textarea {outline: none; width: 100%;}
 ul, ol {margin:0;padding:0;list-style: none;}
-a,a:active, a:visited {;text-decoration: none;}
+a,a:active, a:visited {text-decoration: none;}
 
 /* VARIABLES */
 
