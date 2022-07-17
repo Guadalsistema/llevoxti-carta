@@ -31,7 +31,7 @@ class ProductCard extends HTMLElement {
 				productButtonAdd.setAttribute('class', 'product__button sum');
 				productButtonAdd.appendChild(document.createElement('div'));
 				productButtonAdd.appendChild(document.createElement('div'));
-				productButtonAdd.onclick = this.add1OnClick;
+				productButtonAdd.onclick = this.add1OnClick.bind(this);
 				this.productAmount.appendChild(productButtonAdd);
 				let productNumber = document.createElement('div');
 				productNumber.setAttribute('class', 'product__number');
@@ -42,7 +42,7 @@ class ProductCard extends HTMLElement {
 				let productButtonMinus = document.createElement('div');
 				productButtonMinus.setAttribute('class', 'product__button minus');
 				productButtonMinus.appendChild(document.createElement('div'));
-				productButtonMinus.onclick = this.minus1OnClick;
+				productButtonMinus.onclick = this.minus1OnClick.bind(this);
 				this.productAmount.appendChild(productButtonMinus);
 			let productPrize = document.createElement('div');
 			productPrize.setAttribute('class', 'product__prize');
