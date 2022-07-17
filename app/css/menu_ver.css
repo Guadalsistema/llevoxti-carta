@@ -1,0 +1,39 @@
+.nav{
+    border: 0px;
+    background-color: azure;
+    position: fixed;
+    top: 100px;
+    width: 20vw;
+    height: 100vh;
+    transition: transform 0.3s;
+}
+@media screen and (max-width: 600px) {
+    .nav {
+      background-color: aqua;
+    }
+  }
+  @media screen and (max-width: 992px) {
+    .nav {
+      background-color: cornflowerblue;
+    }
+  }
+  .main-menu{
+    padding-left: 0px;
+  }   
+  .menu__categories-item{
+    display: flex;
+    border-radius: 0px 10px 10px 0px;
+    background-color: royalblue;
+    color: azure;
+    align-items:center;
+    height:auto;
+    margin-bottom: 5px;
+    font-size:medium;
+  } 
+  .main{
+    top: 100px;
+    margin-left: 20vw;
+    background-color: white;
+    text-align: left;
+    min-height: 100vh;
+}  
