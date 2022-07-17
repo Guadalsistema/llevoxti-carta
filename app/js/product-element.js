@@ -35,6 +35,11 @@ class ProductCard extends HTMLElement {
 				let htres = document.createElement('h3');
 				productPrize.appendChild(htres);
 
+		const linkElem = document.createElement('link');
+		linkElem.setAttribute('rel', 'stylesheet');
+		linkElem.setAttribute('href', 'product-card.css');
+
+		shadow.appendChild(linkElem);
 		shadow.appendChild(productbox);
 	}
 }
