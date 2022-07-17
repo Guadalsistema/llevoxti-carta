@@ -8,7 +8,7 @@ class ProductCard extends HTMLElement {
 
 	minus1OnClick() {
 		let p = this.productAmount.querySelector('p');
-		p.textContent = Math.max(parseInt(p.textContent) - 1, 0);
+		p.textContent = Math.max(parseInt(p.textContent) - 1, 1);
 	}
 
 	constructor(){
