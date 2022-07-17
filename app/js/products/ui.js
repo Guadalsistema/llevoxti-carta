@@ -11,6 +11,10 @@ class ProductCard extends HTMLElement {
 		p.textContent = Math.max(parseInt(p.textContent) - 1, 1);
 	}
 
+	formObject() {
+		// TODO load from generic object
+	}
+
 	constructor(){
 		super();
 		let shadow = this.attachShadow({mode: 'open'});

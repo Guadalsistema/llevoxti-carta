@@ -21,7 +21,7 @@ function displayProducts(products) {
 		pCard.setAttribute('category-id', product.pos_categ_id);
 		pCard.setAttribute('name', product.name);
 		pCard.setAttribute('price', product.lst_price);
-		placeholder.appendChild(pCard);
+		placeholder.shadowRoot.appendChild(pCard);
 	}
 }
 
