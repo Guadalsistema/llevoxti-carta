@@ -38,18 +38,18 @@ class ProductCard extends HTMLElement {
 	}
 
 	fromObject(obj) {
-		for(const key in ProductCard.fields()) {
+		for(const key in ProductCard.fields) {
 			if(!obj[key]) {
 				throw InvalidArgumentException;
 			}
-			this.setAttribute(ProductCard.fields()[key], obj[key]);
+			this.setAttribute(ProductCard.fields[key], obj[key]);
 		}
 	}
 
 	toObject() {	
 		obj = {}
-		for(const key in ProductCard.fields()) {
-			obj[key] = this.getAttribute(ProductCard.fields()[key]);
+		for(const key in ProductCard.fields) {
+			obj[key] = this.getAttribute(ProductCard.fields[key]);
 		}
 		return obj;
 	}
