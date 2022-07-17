@@ -1,5 +1,5 @@
 import { config } from './config.js';
-import { ProductCategoryLi, ProductCard } from  './product-element.js';
+import { ProductCategoryLi, ProductCard } from  './products/ui.js';
 
 function displayProducts(products) {
 	var placeholder = document.querySelector('div.product');
@@ -41,6 +41,7 @@ function workProducts() {
 }
 
 customElements.define('product-category', ProductCategoryLi, { extends: "li" });
+customElements.define('product-list', ProductList);
 customElements.define('product-card', ProductCard);
 
 workProducts();

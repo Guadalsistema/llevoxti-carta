@@ -1,4 +1,4 @@
-import { roundTo } from './utils.js';
+import { roundTo } from '../utils.js';
 
 class ProductCard extends HTMLElement {
 	add1OnClick() {
@@ -60,6 +60,13 @@ class ProductCard extends HTMLElement {
 	}
 }
 
+class ProductList extends HTMLElement {
+	constructor(){
+		super();
+		
+	}
+}
+
 class ProductCategoryLi extends HTMLLIElement {
 	constructor() {
 	  super();
@@ -69,4 +76,4 @@ class ProductCategoryLi extends HTMLLIElement {
 	}
 }
 
-export { ProductCategoryLi, ProductCard };
+export { ProductCategoryLi, ProductCard, ProductList };
