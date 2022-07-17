@@ -1,7 +1,7 @@
 import { roundTo } from './utils.js';
 
 class ProductCard extends HTMLElement {
-	productAmount = None;
+	productAmount = null;
 
 	add1OnClick() {
 		let p = this.productAmount.querySelector('p');
