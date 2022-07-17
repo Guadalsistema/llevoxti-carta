@@ -5,10 +5,7 @@ function displayProducts(products) {
 	var placeholder = document.querySelector('product-list');
 	for (const product of products) {
 		let pCard = document.createElement('product-card');
-		pCard.setAttribute('product-id', product.id);
-		pCard.setAttribute('category-id', product.pos_categ_id);
-		pCard.setAttribute('name', product.name);
-		pCard.setAttribute('price', product.lst_price);
+		pCard.fromObject(product);
 		placeholder.shadowRoot.appendChild(pCard);
 	}
 }

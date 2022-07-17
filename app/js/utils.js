@@ -16,4 +16,11 @@ function roundTo(n, digits) {
     return n;
 }
 
-export { roundTo };
+class InvalidArgumentException extends Error {
+    constructor(message) {
+      super(message);
+      this.name = 'InvalidArgumentException';
+    }
+  }
+
+export { roundTo, InvalidArgumentException };

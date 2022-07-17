@@ -1,6 +1,6 @@
 
 import { config } from './config.js';
-import { CategoryCard } from './category-element.js'
+import { CategoryCard } from './categories/ui.js'
 
 function displayCategories(categories) {
 	let placeholder = document.getElementById("category-list");

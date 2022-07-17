@@ -32,7 +32,7 @@ fi
 if  [[ $1 =~ ^start$ ]]; then
 	${CONTAINER_ENGINE} run --rm -d \
 		--name ${PODNAME} -p 8080:80 \
-		-v "app:/usr/local/apache2/htdocs/" \
+		-v "${PWD}/app:/usr/local/apache2/htdocs/" \
 		docker.io/library/httpd:2.4
 	exit 0
 fi
