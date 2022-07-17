@@ -1,22 +1,8 @@
 import { config } from './config.js';
-import { roundTo } from './utils.js';
 import { ProductCategoryLi, ProductCard } from  './product-element.js';
 
 function displayProducts(products) {
 	var placeholder = document.querySelector('div.product');
-	let pTemplate = document.getElementById("product-row-tmpl");
-	for (const product of products) {
-		let container = pTemplate.content.querySelector('.product__box');
-		let name = pTemplate.content.querySelector('h2');
-		let price = pTemplate.content.querySelector('h3');
-		name.textContent = product.name;
-		price.textContent = roundTo(product.lst_price,2) + '€';
-		container.setAttribute('product-id', product.id);
-		container.setAttribute('category-id', product.pos_categ_id);
-		var clone = document.importNode(pTemplate.content, true);
-		placeholder.appendChild(clone);
-	}
-	// ...
 	let rTemplate = document.getElementById("product-card-tmpl");
 	for (const product of products) {
 		let container = rTemplate.content.querySelector('product-card');
