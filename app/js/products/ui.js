@@ -1,7 +1,7 @@
 import { roundTo, InvalidArgumentException } from '../utils.js';
 
 class ProductCard extends HTMLElement {
-	static #FIELDS = {
+	static FIELDS = {
 		'id': 'product-id',
 		'pos_categ_id': 'category-id',
 		'name': 'name',
@@ -36,7 +36,7 @@ class ProductCard extends HTMLElement {
 	}
 
 	fromObject(obj) {
-		for(const key in this.#FIELDS) {
+		for(const key in this.FIELDS) {
 			if(!obj[key]) {
 				throw InvalidArgumentException;
 			}
@@ -46,8 +46,8 @@ class ProductCard extends HTMLElement {
 
 	toObject() {	
 		obj = {}
-		for(const key in this.#FIELDS) {
-			obj[key] = this.getAttribute(this.#FIELDS[key]);
+		for(const key in this.FIELDS) {
+			obj[key] = this.getAttribute(this.FIELDS[key]);
 		}
 		return obj;
 	}
