@@ -22,10 +22,8 @@ function displayProducts(products) {
 		let container = rTemplate.content.querySelector('product-card');
 		container.setAttribute('product-id', product.id);
 		container.setAttribute('category-id', product.pos_categ_id);
-		let name = rTemplate.content.querySelector('h2');
-		let price = rTemplate.content.querySelector('h3');
-		name.textContent = product.name;
-		price.textContent = roundTo(product.lst_price,2) + '€';
+		container.setAttribute('name', product.name);
+		container.setAttribute('price', product.lst_price);
 		var clone = document.importNode(rTemplate.content, true);
 		placeholder.appendChild(clone);
 	}

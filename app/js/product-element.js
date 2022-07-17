@@ -9,6 +9,7 @@ class ProductCard extends HTMLElement {
 			productName.setAttribute('class', 'product__name');
 			productbox.appendChild(productName);
 			let hdos = document.createElement('h2');
+			hdos.textContent = this.getAttribute('name');
 			productName.appendChild(hdos);
 
 			let productAmount = document.createElement('div');
