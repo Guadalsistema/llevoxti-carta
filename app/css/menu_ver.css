@@ -1,5 +1,6 @@
 .nav{
     border: 0px;
+    overflow-y: auto;
     background-color: azure;
     position: fixed;
     top: 100px;
@@ -31,6 +32,16 @@
     margin-bottom: 5px;
     font-size:4vw;
   } 
+  @media screen and (min-width: 600px) {
+    .menu__categories-item {
+        font-size:3vw;
+    }
+  }
+  @media screen and (min-width: 992px) {
+    .menu__categories-item {
+        font-size:2vw;
+    }
+  }
   .main{
     top: 100px;
     margin-left: 20vw;
