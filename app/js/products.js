@@ -1,5 +1,5 @@
 import { config } from './config.js';
-import { ProductCategoryLi, ProductCard } from  './products/ui.js';
+import { ProductCategoryLi, ProductCard, ProductList } from  './products/ui.js';
 
 function displayProducts(products) {
 	var placeholder = document.querySelector('div.product');
