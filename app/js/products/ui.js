@@ -35,7 +35,7 @@ class ProductCard extends HTMLElement {
 		p.textContent = Math.max(parseInt(p.textContent) - 1, 1);
 	}
 
-	formObject(obj) {
+	fromObject(obj) {
 		for(const key in this.#FIELDS) {
 			if(!obj[key]) {
 				throw InvalidArgumentException;
