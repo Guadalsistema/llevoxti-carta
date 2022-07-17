@@ -14,10 +14,10 @@ class ProductCard extends HTMLElement {
 			hdos.textContent = this.getAttribute('name');
 			productName.appendChild(hdos);
 
-			let productAmount = document.createElement('div');
+			this.productAmount = document.createElement('div');
 			productAmount.setAttribute('class', 'product__amount');
 			productbox.appendChild(productAmount);
-				productButtonAdd = document.createElement('div');
+				let productButtonAdd = document.createElement('div');
 				productButtonAdd.setAttribute('class', 'product__button sum');
 				productButtonAdd.appendChild(document.createElement('div'));
 				productButtonAdd.appendChild(document.createElement('div'));
@@ -29,7 +29,7 @@ class ProductCard extends HTMLElement {
 					let p = document.createElement('p');
 					p.textContent = 1;
 					productNumber.appendChild(p);
-				productButtonMinus = document.createElement('div');
+				let productButtonMinus = document.createElement('div');
 				productButtonMinus.setAttribute('class', 'product__button minus');
 				productButtonMinus.appendChild(document.createElement('div'));
 				productButtonMinus.onclick = this.minus1OnClick;
@@ -50,12 +50,12 @@ class ProductCard extends HTMLElement {
 	}
 
 	add1OnClick() {
-		let p = productButtonAdd.querySelector('p');
+		let p = this.productAmount.querySelector('p');
 		p.textContent = parseInt(p.textContent) + 1;
 	}
 
 	minus1OnClick() {
-		let p = productButtonMinus.querySelector('p');
+		let p = this.productAmount.querySelector('p');
 		p.textContent = Math.max(parseInt(p.textContent) - 1, 0);
 	}
 }
