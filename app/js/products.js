@@ -2,18 +2,6 @@ import { config } from './config.js';
 import { ProductCategoryLi, ProductCard, ProductList } from  './products/ui.js';
 
 function displayProducts(products) {
-	var placeholder = document.querySelector('div.product');
-	let rTemplate = document.getElementById("product-card-tmpl");
-	for (const product of products) {
-		let container = rTemplate.content.querySelector('product-card');
-		container.setAttribute('product-id', product.id);
-		container.setAttribute('category-id', product.pos_categ_id);
-		container.setAttribute('name', product.name);
-		container.setAttribute('price', product.lst_price);
-		var clone = document.importNode(rTemplate.content, true);
-		placeholder.appendChild(clone);
-	}
-
 	var placeholder = document.querySelector('product-list');
 	for (const product of products) {
 		let pCard = document.createElement('product-card');

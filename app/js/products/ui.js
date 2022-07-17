@@ -1,6 +1,24 @@
 import { roundTo } from '../utils.js';
 
 class ProductCard extends HTMLElement {
+
+	static get observedAttributes() {
+		return ['name', 'price'];
+	}
+
+	attributeChangedCallback(attrName, oldVal, newVal) {
+		if(attrName == "name") {
+			let h2 = this.shadowRoot.querySelector('h2');
+			h2.textContent = newVal;
+			return;
+		}
+		if(attrName == "price") {
+			let h3 = this.shadowRoot.querySelector('h3');
+			h3.textContent = roundTo(newVal) + '€';
+			return;
+		}
+	}
+
 	add1OnClick() {
 		let p = this.productAmount.querySelector('p');
 		p.textContent = parseInt(p.textContent) + 1;
@@ -13,16 +31,6 @@ class ProductCard extends HTMLElement {
 
 	formObject() {
 		// TODO load from generic object
-	}
-
-	connectedCallback() {
-		console.log('Custom square element added to page.');
-		updateStyle(this);
-	}
-
-	attributeChangedCallback(name, oldValue, newValue) {
-		console.log('Custom square element attributes changed.');
-		updateStyle(this);
 	}
 
 	constructor(){
@@ -75,7 +83,7 @@ class ProductCard extends HTMLElement {
 }
 
 class ProductList extends HTMLElement {
-	// todo name setter
+	// todo name list setter
 
 	constructor(){
 		super();
