@@ -1,12 +1,14 @@
 import { roundTo, InvalidArgumentException } from '../utils.js';
 
 class ProductCard extends HTMLElement {
-	static FIELDS = {
-		'id': 'product-id',
-		'pos_categ_id': 'category-id',
-		'name': 'name',
-		'lst_price': 'price',
-	};
+	static get fields() {
+		return {
+			'id': 'product-id',
+			'pos_categ_id': 'category-id',
+			'name': 'name',
+			'lst_price': 'price',
+		};
+	}
 
 	static get observedAttributes() {
 		return ['name', 'price'];
@@ -36,18 +38,18 @@ class ProductCard extends HTMLElement {
 	}
 
 	fromObject(obj) {
-		for(const key in this.FIELDS) {
+		for(const key in ProductCard.fields()) {
 			if(!obj[key]) {
 				throw InvalidArgumentException;
 			}
-			this.setAttribute(fields[key], obj[key]);
+			this.setAttribute(ProductCard.fields()[key], obj[key]);
 		}
 	}
 
 	toObject() {	
 		obj = {}
-		for(const key in this.FIELDS) {
-			obj[key] = this.getAttribute(this.FIELDS[key]);
+		for(const key in ProductCard.fields()) {
+			obj[key] = this.getAttribute(ProductCard.fields()[key]);
 		}
 		return obj;
 	}
