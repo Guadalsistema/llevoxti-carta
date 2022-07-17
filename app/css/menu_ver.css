@@ -22,13 +22,14 @@
   }   
   .menu__categories-item{
     display: flex;
+    padding: 0rem 1rem;
     border-radius: 0px 10px 10px 0px;
     background-color: royalblue;
     color: azure;
     align-items:center;
     height:auto;
     margin-bottom: 5px;
-    font-size:3vw;
+    font-size:4vw;
   } 
   .main{
     top: 100px;
