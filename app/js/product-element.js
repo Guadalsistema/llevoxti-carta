@@ -34,6 +34,7 @@ class ProductCard extends HTMLElement {
 			productPrize.setAttribute('class', 'product__prize');
 			productbox.appendChild(productPrize);
 				let htres = document.createElement('h3');
+				htres.textContent = roundTo(this.getAttribute('price')) + '€';
 				productPrize.appendChild(htres);
 
 		const linkElem = document.createElement('link');
