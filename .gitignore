@@ -3,4 +3,7 @@
 *.conf
 *.ini
 
+# vs code
+.vscode
+
 **/config.js
