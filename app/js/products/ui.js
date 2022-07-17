@@ -6,6 +6,19 @@ class ProductCard extends HTMLElement {
 		return ['name', 'price'];
 	}
 
+	attributeChangedCallback(attrName, oldVal, newVal) {
+		if(attrName == "name") {
+			let h2 = this.shadowRoot.querySelector('h2');
+			h2.textContent = newVal;
+			return;
+		}
+		if(attrName == "price") {
+			let h3 = this.shadowRoot.querySelector('h3');
+			h3.textContent = roundTo(newVal) + '€';
+			return;
+		}
+	}
+
 	add1OnClick() {
 		let p = this.productAmount.querySelector('p');
 		p.textContent = parseInt(p.textContent) + 1;
