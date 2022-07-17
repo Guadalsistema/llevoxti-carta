@@ -1,6 +1,14 @@
-import { roundTo } from '../utils.js';
+import { roundTo, InvalidArgumentException } from '../utils.js';
 
 class ProductCard extends HTMLElement {
+	static get fields() {
+		return {
+			'id': 'product-id',
+			'pos_categ_id': 'category-id',
+			'name': 'name',
+			'lst_price': 'price',
+		};
+	}
 
 	static get observedAttributes() {
 		return ['name', 'price'];
@@ -29,8 +37,21 @@ class ProductCard extends HTMLElement {
 		p.textContent = Math.max(parseInt(p.textContent) - 1, 1);
 	}
 
-	formObject() {
-		// TODO load from generic object
+	fromObject(obj) {
+		for(const key in ProductCard.fields) {
+			if(!obj[key]) {
+				throw InvalidArgumentException;
+			}
+			this.setAttribute(ProductCard.fields[key], obj[key]);
+		}
+	}
+
+	toObject() {	
+		obj = {}
+		for(const key in ProductCard.fields) {
+			obj[key] = this.getAttribute(ProductCard.fields[key]);
+		}
+		return obj;
 	}
 
 	constructor(){
