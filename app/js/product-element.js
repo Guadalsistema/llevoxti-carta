@@ -17,23 +17,23 @@ class ProductCard extends HTMLElement {
 			let productAmount = document.createElement('div');
 			productAmount.setAttribute('class', 'product__amount');
 			productbox.appendChild(productAmount);
-				let productButton = document.createElement('div');
-				productButton.setAttribute('class', 'product__button sum');
-				productButton.appendChild(document.createElement('div'));
-				productButton.appendChild(document.createElement('div'));
-				productButton.onclick = this.add1OnClick;
-				productAmount.appendChild(productButton);
+				productButtonAdd = document.createElement('div');
+				productButtonAdd.setAttribute('class', 'product__button sum');
+				productButtonAdd.appendChild(document.createElement('div'));
+				productButtonAdd.appendChild(document.createElement('div'));
+				productButtonAdd.onclick = this.add1OnClick;
+				productAmount.appendChild(productButtonAdd);
 				let productNumber = document.createElement('div');
 				productNumber.setAttribute('class', 'product__number');
 				productAmount.appendChild(productNumber);
 					let p = document.createElement('p');
 					p.textContent = 1;
 					productNumber.appendChild(p);
-				let productButton2 = document.createElement('div');
-				productButton2.setAttribute('class', 'product__button minus');
-				productButton2.appendChild(document.createElement('div'));
-				productButton2.onclick = this.minus1OnClick;
-				productAmount.appendChild(productButton2);
+				productButtonMinus = document.createElement('div');
+				productButtonMinus.setAttribute('class', 'product__button minus');
+				productButtonMinus.appendChild(document.createElement('div'));
+				productButtonMinus.onclick = this.minus1OnClick;
+				productAmount.appendChild(productButtonMinus);
 			let productPrize = document.createElement('div');
 			productPrize.setAttribute('class', 'product__prize');
 			productbox.appendChild(productPrize);
@@ -50,12 +50,12 @@ class ProductCard extends HTMLElement {
 	}
 
 	add1OnClick() {
-		let p = this.shadowRoot.querySelector('p');
+		let p = productButtonAdd.querySelector('p');
 		p.textContent = parseInt(p.textContent) + 1;
 	}
 
 	minus1OnClick() {
-		let p = this.shadowRoot.querySelector('p');
+		let p = productButtonMinus.querySelector('p');
 		p.textContent = Math.max(parseInt(p.textContent) - 1, 0);
 	}
 }
