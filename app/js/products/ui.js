@@ -83,7 +83,7 @@ class ProductCard extends HTMLElement {
 }
 
 class ProductList extends HTMLElement {
-	// todo name setter
+	// todo name list setter
 
 	constructor(){
 		super();
