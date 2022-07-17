@@ -1,3 +1,5 @@
+import { roundTo } from './utils.js';
+
 class ProductCard extends HTMLElement {
 	constructor(){
 		super();
