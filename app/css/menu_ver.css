@@ -33,24 +33,36 @@
     margin-bottom: 5px;
     font-size:6vw;
   } 
-  @media screen and (min-width: 200px) {
+  @media screen and (min-width: 1px) and (max-width: 200px){
     .menu__categories-item {
+        padding: 0rem 0rem;
         font-size:6vw;
     }
   }
-  @media screen and (min-width: 400px) {
+  @media screen and (min-width: 200px) and (max-width: 400px){
+    .menu__categories-item {
+        padding: 0rem 0rem;
+        font-size:5vw;
+    }
+  }
+  @media screen and (min-width: 400px) and (max-width: 600px){
     .menu__categories-item {
         font-size:4vw;
     }
   }
-  @media screen and (min-width: 600px) {
+  @media screen and (min-width: 600px) and (max-width: 900px){
     .menu__categories-item {
         font-size:3vw;
     }
   }
-  @media screen and (min-width: 992px) {
+  @media screen and (min-width: 900px) and (max-width: 1600px){
     .menu__categories-item {
         font-size:2vw;
+    }
+  }
+  @media screen and (min-width: 1600px) and (max-width: 8000px){
+    .menu__categories-item {
+        font-size:1vw;
     }
   }
   .main{
@@ -58,7 +70,41 @@
     margin-left: 20vw;
     position: fixed;
     overflow-y: auto;
-    background-color: white;
+    background-color: azure;
     text-align: left;
     min-height: 100vh;
-}  
+    padding: 0rem 0rem;
+    font-size:6vw;
+} 
+@media screen and (min-width: 1px) and (max-width: 200px){
+  .main {
+      padding: 0rem 0rem;
+      font-size:6vw;
+  }
+}
+@media screen and (min-width: 200px) and (max-width: 400px){
+  .main {
+      padding: 0rem 0rem;
+      font-size:5vw;
+  }
+}
+@media screen and (min-width: 400px) and (max-width: 600px){
+  .main {
+      font-size:4vw;
+  }
+}
+@media screen and (min-width: 600px) and (max-width: 900px){
+  .main {
+      font-size:3vw;
+  }
+}
+@media screen and (min-width: 900px) and (max-width: 1600px){
+  .main {
+      font-size:2vw;
+  }
+}
+@media screen and (min-width: 1600px) and (max-width: 8000px){
+  .main {
+      font-size:1vw;
+  }
+} 

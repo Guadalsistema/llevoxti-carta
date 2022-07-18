@@ -1,20 +1,3 @@
-/* RESET */
-* {box-sizing: border-box;}
-body, h1, h2, h3, h4, h5, h6, p, blockquote, figure { margin:0}
-img {max-width: 20vw; height: auto; display: block;}
-figure, picture {display: block;}
-input, textarea {outline: none; width: 100%;}
-ul, ol {margin:0;padding:0;list-style: none;}
-a,a:active, a:visited {text-decoration: none;}
-
-/* VARIABLES */
-
-:root {
-    --rojo: #E91F27;
-    --amarillo: #FFE455;
-    --negro: #191b1c;
-    --blanco: azure;
-}
 
 body {
     font-family: 'Arima Madurai', cursive;
@@ -26,22 +9,19 @@ body {
 
 .header {
     width: 100%;
-    height: 100px;
-    border: 0;
-    padding: 0;
-    background-color: var(--blanco);
+    height: 180px;
+    background-color: var(--negro);
+    border-bottom: 8px solid var(--rojo);
     display: flex;
-    justify-content: left;
-    align-items: center;
-    position: fixed;
-    transition: transform 0.3s;
+    justify-content: center;
+    align-items: flex-end;
+    position: relative;
 }
 
 .header::before {
     content: "";
     position: absolute;
     top: 0; bottom:0; left: 0; right: 0; 
-    margin-left: 20vw;
     background-image:/* rgba(21, 21, 21, 0.5)*/url('../img/IMAGE-BG-1.jpg');
     background-position: center;
     background-repeat: no-repeat;

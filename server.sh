@@ -24,12 +24,12 @@ done
 
 PODNAME="llevoxti-carta"
 
-if  [[ $1 =~ ^stop$ ]]; then
+if  echo $1 | grep -q "^stop$"; then
 	${CONTAINER_ENGINE} stop ${PODNAME}
 	exit 0
 fi
 
-if  [[ $1 =~ ^start$ ]]; then
+if  echo $1 | grep -q "start$"; then
 	${CONTAINER_ENGINE} run --rm -d \
 		--name ${PODNAME} -p 8080:80 \
 		-v "${PWD}/app:/usr/local/apache2/htdocs/" \

@@ -3,34 +3,90 @@
     padding: 20px;
     display: flex;
     justify-content: space-between;
+    border-style: solid;
+    border-color: red; 
     align-items: center;
     flex-wrap: wrap;
 }
 .product__name {
     flex: 100%;
-    font-weight: 400;
-    font-size: 18px;
-    padding: 10px 0;
-
+    font-size: 4vw;
 }
 .product__amount {
     flex: 50%;
 }
 .product__prize {
     flex:30%;
-    text-align: end;
-    font-size: 20px;
+    color: var(--rojo);
+    text-align:center;
+    font-size: 10vw;
 }
+@media screen and (min-width: 1px) and (max-width: 200px){
+    .product__prize {
+        padding: 0rem 0rem;
+        font-size:10vw;
+    }
+  }
+  @media screen and (min-width: 200px) and (max-width: 400px){
+    .product__prize {
+        padding: 0rem 0rem;
+        font-size:9vw;
+    }
+  }
+  @media screen and (min-width: 400px) and (max-width: 600px){
+    .product__prize {
+        font-size:8vw;
+    }
+  }
+  @media screen and (min-width: 600px) and (max-width: 900px){
+    .product__prize {
+        font-size:7vw;
+    }
+  }
+  @media screen and (min-width: 900px) and (max-width: 1600px){
+    .product__prize {
+        font-size:6vw;
+    }
+  }
+  @media screen and (min-width: 1600px) and (max-width: 8000px){
+    .product__prize {
+        font-size:5vw;
+    }
+  } 
 
 .product__number, .product__button {
     display: inline-block;
 }
 .product__number {
     position: relative;
-    height: 30px;
-    width: 40px;
-    font-size: 20px;
+    height: 10vw;
+    width: 10vw;
+    margin: auto;
+    text-align:justify;
+    color: var(--rojo);
+    font-size: 6vw;
 }
+@media screen and (min-width: 1px) and (max-width: 600px){
+    .product__number {
+        height: 10vw;
+        width: 10vw;
+        font-size:6vw;
+    }
+  }
+   @media screen and (min-width: 600px) and (max-width: 900px){
+    .product__number {
+        height: 8vw;
+        width: 8vw;
+        font-size:5vw;
+    }
+  }
+  @media screen and (min-width: 900px) and (max-width: 8000px){
+    .product__number {
+        height: 6vw;
+        width: 6vw;
+        font-size:4vw;
+    }
+  }
 .product__number > p {
     position: absolute;
     top: 0; right: 0; left: 0; bottom: 0;
@@ -38,8 +94,8 @@
     text-align: center;
 }
 .product__button {
-    width: 30px;
-    height: 30px;
+    width: 50px;
+    height: 50px;
     border: 3px solid var(--rojo);
     border-radius: 100%;
     position: relative;
