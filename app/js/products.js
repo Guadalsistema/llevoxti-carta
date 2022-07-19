@@ -1,3 +1,4 @@
+import { Cart } from './cart/model.js';
 import { config } from './config.js';
 import { ProductCategoryLi, ProductCard, ProductList } from  './products/ui.js';
 
@@ -5,7 +6,13 @@ function displayProducts(products) {
 	var placeholder = document.querySelector('product-list');
 	for (const product of products) {
 		let pCard = document.createElement('product-card');
+		product['product_uom_qty'] = 1;
+		pCard.minQty = 1;
 		pCard.fromObject(product);
+		pCard.addEventListener('click', ev => {
+			Cart.add(pCard.toObject());
+			pCard.setAttribute('product_uom_qty', pCard.minQty);
+		});
 		placeholder.shadowRoot.appendChild(pCard);
 	}
 }
@@ -22,7 +29,7 @@ function displayCategories(categories) {
 	}
 }
 
-function workProducts() {
+function main() {
 	var url_products = config["url"] + "/menu";
 	fetch(url_products, {
 	  method: 'GET',
@@ -39,4 +46,4 @@ customElements.define('product-category', ProductCategoryLi, { extends: "li" });
 customElements.define('product-list', ProductList);
 customElements.define('product-card', ProductCard);
 
-workProducts();
+main();
