@@ -12,22 +12,32 @@
    </head>
    <body>
      <!-- page content -->
-     <header class="header">
-      <a>
-         <img src="/img/llevoxtiapaisado400.png" alt="LLEVOXTI" />
-      </a>
-     </header>
-
-     <nav class="nav">
-        <ul id="main-menu" class="main-menu">
-            <template id="li-category-tmpl">
-                <li class="menu__categories-item" is="product-category">name</li>
-            </template>
-        </ul>
-     </nav>
-     <main class="main">
-        <product-list></product-list>
-     </main>
+       <header class="header">
+       </header>
+       <nav class="nav">
+          <ul id="main-menu" class="main-menu">
+             <template id="li-category-tmpl">
+               <li class="menu__categories-item" is="product-category">name</li>
+             </template>
+          </ul>
+       </nav>
+       <main class="main">
+          <product-list></product-list>
+       </main>
+       <footer class="footer">
+          <div class="logo-pie">
+             <img src="/img/llevoxtiapaisado400.png" alt="LLEVOXTI" />
+          </div>
+          <div class="mi-pedido">
+                <input id="pedido" name="Pedido" type="checkbox" value="" />
+                   <label for="pedido" class="toggle-button">
+                      <span class="abrir" title="Abrir">Enviar Pedido</span>
+                      <span class="cerrar" title="Cerrar">Pedido Enviado</span>
+                   </label>
+          </div>
+          <div class="mi-cuenta">
+          </div>
+       </footer>
    </body>
 </html>
 
