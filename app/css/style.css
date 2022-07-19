@@ -1,0 +1,164 @@
+/* RESET */
+* {box-sizing: border-box;}
+body, h1, h2, h3, h4, h5, h6, p, blockquote, figure { margin:0}
+img {max-width: 20vw; height: auto; display: block;}
+figure, picture {display: block;}
+textarea {outline: none; width: 100%;}
+ul, ol {margin:0;padding:0;list-style: none;}
+a,a:active, a:visited {text-decoration: none;}
+
+/* VARIABLES */
+
+:root {
+    --rojo: #E91F27;
+    --amarillo: #FFE455;
+    --negro: #191b1c;
+    --blanco: azure;
+}
+
+body {
+    font-family: 'Arima Madurai', cursive;
+    color: var(--negro);
+}
+
+
+    /*------Categories--------*/
+
+.header {
+    width: 100%;
+    height: 100px;
+    border: 0;
+    padding: 0;
+    background-color: var(--blanco);
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    position: fixed;
+    transition: transform 0.3s;
+}
+
+.header::before {
+    content: "";
+    position: absolute;
+    top: 0; bottom:0; left: 0; right: 0; 
+    margin-left: 0;
+    background-image:/* rgba(21, 21, 21, 0.5)*/url('../img/IMAGE-BG-1.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: brightness(0.5);
+}
+
+.header__title {
+    padding: 20px;
+    font-family: 'Arima Madurai', cursive;
+    font-weight: 800;
+    font-size: 36px;
+    color: var(--blanco);
+    position: relative;
+}
+main {
+    height: calc(100vh - 180px);
+    background-color: var(--negro);
+    padding: 20px;
+}
+
+.categories {
+    background-color: var(--blanco);
+    border-radius: 5px;
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+    padding: 10px;
+}
+.categories__icon {
+    width: 100px;
+    height: 80px;
+    position: relative;
+}
+.categories__title {
+    font-family: 'Arima Madurai', cursive;
+    font-weight: 400;
+    color: var(--negro);
+    font-size: 32px;
+}
+
+/*-------Product page----------*/
+
+.container {
+    display: flex;
+}
+.menu {
+    width: 100px;
+}
+.menu__arrow {
+    width: 100px;
+    height: 100px;
+    background-color: var(--rojo);
+}
+.menu__categories {
+    background-color: var(--blanco);
+    height: calc(100vh - 200px);
+}
+.footer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    height: 100px;
+    background-color: #FFE455;
+  }
+.logo-pie{
+    width: 20%;
+    text-align: left;
+    justify-content: center;
+    background-color: #FFE455;
+ }  
+ img{
+    max-width: 20vw;
+    object-fit: contain;
+ }
+.mi-pedido{
+    display: inline-block;
+    text-align: center;
+    justify-content: center;
+    width: 40%;
+    height: 100px;
+    font-size: 3vh;
+}
+
+.mi-cuenta{
+    width: 40%;
+    text-align: center;
+    justify-content: center;
+}
+
+.abrir {
+    cursor: pointer;
+    display:inline-block;
+}
+
+.cerrar {
+    cursor: pointer;
+    display:none;
+}
+
+input#pedido:checked + .toggle-button .abrir {
+    display:none;
+}
+
+input#pedido:checked + .toggle-button .cerrar {
+    display:inline-block;
+}
+
+input[type=checkbox]
+{
+  /* Doble-tamaño Checkboxes */
+  -ms-transform: scale(3); /* IE */
+  -moz-transform: scale(3); /* FF */
+  -webkit-transform: scale(3); /* Safari y Chrome */
+  -o-transform: scale(3); /* Opera */
+  padding: 10px;
+}

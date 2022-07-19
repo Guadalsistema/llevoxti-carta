@@ -1,0 +1,110 @@
+.nav{
+    border: 0px;
+    overflow-y: auto;
+    scrollbar-width:none;
+    background-color: azure;
+    position: fixed;
+    top: 100px;
+    width: 20vw;
+    height: 100vh;
+    transition: transform 0.3s;
+}
+@media screen and (max-width: 600px) {
+    .nav {
+      background-color: azure;
+    }
+  }
+  @media screen and (max-width: 992px) {
+    .nav {
+      background-color: azure;
+    }
+  }
+  .main-menu{
+    padding-left: 0px;
+  }   
+  .menu__categories-item{
+    display: flex;
+    padding: 0rem 1rem;
+    border-radius: 0px 10px 10px 0px;
+    background-color: azure;
+    color: black;
+    align-items:center;
+    height:auto;
+    font-size:7vw;
+    padding-bottom: 2vh;
+  } 
+  @media screen and (min-width: 1px) and (max-width: 200px){
+    .menu__categories-item {
+        padding: 0rem 0rem;
+        font-size:7vw;
+    }
+  }
+  @media screen and (min-width: 200px) and (max-width: 400px){
+    .menu__categories-item {
+        padding: 0rem 0rem;
+        font-size:6vw;
+    }
+  }
+  @media screen and (min-width: 400px) and (max-width: 600px){
+    .menu__categories-item {
+        font-size:5vw;
+    }
+  }
+  @media screen and (min-width: 600px) and (max-width: 900px){
+    .menu__categories-item {
+        font-size:4vw;
+    }
+  }
+  @media screen and (min-width: 900px) and (max-width: 1600px){
+    .menu__categories-item {
+        font-size:3vw;
+    }
+  }
+  @media screen and (min-width: 1600px) and (max-width: 8000px){
+    .menu__categories-item {
+        font-size:2vw;
+    }
+  }
+  .main{
+    top: 100px;
+    margin-left: 20vw;
+    position: fixed;
+    overflow-y: auto;
+    background-color: azure;
+    text-align: left;
+    min-height: 100vh;
+    padding: 0rem 0rem;
+    font-size:6vw;
+} 
+@media screen and (min-width: 1px) and (max-width: 200px){
+  .main {
+      padding: 0rem 0rem;
+      font-size:6vw;
+  }
+}
+@media screen and (min-width: 200px) and (max-width: 400px){
+  .main {
+      padding: 0rem 0rem;
+      font-size:5vw;
+  }
+}
+@media screen and (min-width: 400px) and (max-width: 600px){
+  .main {
+      font-size:4vw;
+  }
+}
+@media screen and (min-width: 600px) and (max-width: 900px){
+  .main {
+      font-size:3vw;
+  }
+}
+@media screen and (min-width: 900px) and (max-width: 1600px){
+  .main {
+      font-size:2vw;
+  }
+}
+@media screen and (min-width: 1600px) and (max-width: 8000px){
+  .main {
+      font-size:1vw;
+  }
+} 

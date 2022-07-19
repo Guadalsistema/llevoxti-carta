@@ -1,0 +1,82 @@
+
+body {
+    font-family: 'Arima Madurai', cursive;
+    color: var(--negro);
+}
+
+
+    /*------Categories--------*/
+
+.header {
+    width: 100%;
+    height: 180px;
+    background-color: var(--negro);
+    border-bottom: 8px solid var(--rojo);
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    position: relative;
+}
+
+.header::before {
+    content: "";
+    position: absolute;
+    top: 0; bottom:0; left: 0; right: 0; 
+    background-image:/* rgba(21, 21, 21, 0.5)*/url('../img/IMAGE-BG-1.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: brightness(0.5);
+}
+
+.header__title {
+    padding: 20px;
+    font-family: 'Arima Madurai', cursive;
+    font-weight: 800;
+    font-size: 36px;
+    color: var(--blanco);
+    position: relative;
+}
+main {
+    height: calc(100vh - 180px);
+    background-color: var(--negro);
+    padding: 20px;
+}
+
+.categories {
+    background-color: var(--blanco);
+    border-radius: 5px;
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+    padding: 10px;
+}
+.categories__icon {
+    width: 100px;
+    height: 80px;
+    position: relative;
+}
+.categories__title {
+    font-family: 'Arima Madurai', cursive;
+    font-weight: 400;
+    color: var(--negro);
+    font-size: 32px;
+}
+
+/*-------Product page----------*/
+
+.container {
+    display: flex;
+}
+.menu {
+    width: 100px;
+}
+.menu__arrow {
+    width: 100px;
+    height: 100px;
+    background-color: var(--rojo);
+}
+.menu__categories {
+    background-color: var(--blanco);
+    height: calc(100vh - 200px);
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Llevoxti</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@200;400;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script type="module" src="js/products.js"></script>
+  </head>
+  <body>
+    <!-- page content -->
+<nav class="nav-menu">
+            <ul id="main-menu" class="main-menu">
+                <template id="li-category-tmpl">
+                    <li class="menu__categories-item" is="product-category">
+                       <a>name</a>
+                    </li>
+                </template>
+            </ul>
+<<<<<<< HEAD
+        </div>
+        <div class="menu__dropdown-arrow"></div>
+    </div>
+    <product-list></product-list>
+</div>
+=======
+</nav>
+    <main class="main-products">    
+        <product-list></product-list>
+        <div class="product">
+           <h1 class="product__title">TODO</h1>
+           <template id="product-card-tmpl">
+               <product-card></product-card>
+           </template>
+           <div class="product__order"><p>Pedido</p></div>
+       </div>
+    </main>
+>>>>>>> CCS menu responsive
+  </body>
+</html>
+
