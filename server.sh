@@ -1,7 +1,7 @@
 #!/bin/sh
 
 CONTAINER_ENGINE=""
-if command -v podman; then
+if $(command -v podman >/dev/null 2>&1); then
 	CONTAINER_ENGINE="podman"
 else
 	CONTAINER_ENGINE="docker"
@@ -24,12 +24,12 @@ done
 
 PODNAME="llevoxti-carta"
 
-if  echo $1 | grep -q "^stop$"; then
+if echo $1 | grep -q "^stop$"; then
 	${CONTAINER_ENGINE} stop ${PODNAME}
 	exit 0
 fi
 
-if  echo $1 | grep -q "start$"; then
+if echo $1 | grep -q "^start$"; then
 	${CONTAINER_ENGINE} run --rm -d \
 		--name ${PODNAME} -p 8080:80 \
 		-v "${PWD}/app:/usr/local/apache2/htdocs/" \
