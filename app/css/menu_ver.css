@@ -111,37 +111,36 @@
 } 
 @media screen and (min-width: 1px) and (max-width: 200px){
   .main {
-     margin-left: 40vw;
      font-size:6vw;
   }
 }
 @media screen and (min-width: 200px) and (max-width: 400px){
   .main {
-     margin-left: 40vw;
      font-size:5vw;
   }
 }
 @media screen and (min-width: 400px) and (max-width: 600px){
   .main {
-     margin-left: 20vw;
      font-size:4vw;
   }
 }
 @media screen and (min-width: 600px) and (max-width: 900px){
   .main {
-     margin-left: 20vw;
      font-size:3vw;
   }
 }
 @media screen and (min-width: 900px) and (max-width: 1600px){
   .main {
-      font-size:2vw;
       margin-left: 20vw;
   }
 }
-@media screen and (min-width: 1600px) and (max-width: 8000px){
+@media screen and (min-width: 1600px) and (max-width: 2600px){
   .main {
-     font-size:1vw;
+     margin-left: 20vw;
+  }
+} 
+@media screen and (min-width: 2600x) and (max-width: 8000px){
+  .main {
      margin-left: 20vw;
   }
 } 
