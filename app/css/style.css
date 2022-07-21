@@ -109,18 +109,20 @@ main {
     bottom: 0;
     width: 100vw;
     height: 5vh;
-    background-color: #FFE455;
+    background-color:var(--blanco);
   }
 .logo-pie{
     width: 20vw;
     text-align: left;
     justify-content: center;
-    background-color: #FFE455;
+    background-color: var(--blanco);
  }  
  img{
     max-width: 20vw;
  }
 .mi-pedido{
+    background-color: var(--negro);
+    color:var(--blanco);
     display: flex;
     align-items: center;
     text-align: center;

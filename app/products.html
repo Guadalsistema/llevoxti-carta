@@ -28,13 +28,23 @@
           <div class="logo-pie">
              <img src="/img/llevoxtiapaisado400.png" alt="LLEVOXTI" />
           </div>
-          <div class="mi-pedido">
-                <input id="pedido" name="Pedido" type="checkbox" value="" />
+          <form class="mi-pedido">
+                <input id="pedido" name="pedido" type="checkbox" value="false" />
                    <label for="pedido" class="toggle-button">
                       <span class="abrir" title="Abrir">Enviar Pedido</span>
                       <span class="cerrar" title="Cerrar">Pedido Enviado</span>
                    </label>
-          </div>
+          </form>
+          <script type="text/javascript">
+             var checkbox = document.getElementById('pedido');
+             checkbox.addEventListener("change", validaCheckbox, false);
+             function validaCheckbox(){
+                var checked = checkbox.checked;
+                if(checked){
+                   location.href = "http://restaurante2-carta.llevoxti.com/cart.html?mesa";
+                }
+            }
+          </script>
           <div class="mi-cuenta">
           </div>
        </footer>
