@@ -1,11 +1,12 @@
 .product__box {
-    background-color: var(--blanco);
-    display: flex;
-    display:-webkit-flex; 
-    display: -ms-flexbox; 
-    flex-wrap:wrap;
-    border-bottom: 1px solid gray;
-    border-top: 1px solid gray;
+   display: table-cell;
+   vertical-align: middle;
+   text-align: center;
+   width: 100vw;
+   background-color: var(--blanco);
+   flex-wrap:wrap;
+   border-bottom: 1px solid gray;
+   border-top: 1px solid gray;
 }
 
 .product__name {
@@ -56,15 +57,11 @@
         line-height: 1vh;
     }
   } 
-.product__amount {
-    flex: 50%;
-    display:block;
-}
 .product__prize {
-    flex:30%;
-    color: var(--negro);
-    text-align:left;
-    font-size: 8vw;
+   float: left;
+   text-align:left;
+   color: var(--negro);
+   font-size: 8vw;
 }
 @media screen and (min-width: 1px) and (max-width: 200px){
     .product__prize {
@@ -97,18 +94,19 @@
     }
   } 
 
-.product__number {
-    display: inline-block;
+  .product__amount {
+    display:flex;
+    float: right;
+    width: 50%;
+    }
+  .product__number {
     color: var(--negro);
     font-size: 6vw;
 }
 .product__number >p{
-   display: flex;
-   text-align: center;
-   align-items: center;
-   height: 5vw;
-   width: 5vw;
-   justify-content: center;
+     display: inline;
+     vertical-align: top;
+     width: 4vw;
 }
 @media screen and (min-width: 1px) and (max-width: 300px){
     .product__number {
@@ -153,7 +151,6 @@
     }
   }
 .product__button {
-    display:inline-block;
     width: 3vh;
     height: 3vh;
     border: 0.5vh solid var(--negro);
