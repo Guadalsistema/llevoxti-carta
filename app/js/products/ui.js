@@ -97,12 +97,11 @@ class ProductCard extends ModelHTMLElement {
 					this.addQty(-1)
 				});
 				this.productAmount.appendChild(productButtonMinus);
-				
 			let productPrize = document.createElement('div');
 			productPrize.setAttribute('class', 'product__prize');
 						productbox.appendChild(productPrize);
 				let htres = document.createElement('h3');
-				htres.textContent = roundTo(this.getAttribute('price',2)) + '€';
+				htres.textContent = roundTo(this.getAttribute('price'), 2) + '€';
 				productPrize.appendChild(htres);
 
 		const linkElem = document.createElement('link');
