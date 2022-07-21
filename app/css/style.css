@@ -27,7 +27,7 @@ body {
 
 .header {
     width: 100vw;
-    height: 200px;
+    height: 10vh;
     border: 0;
     padding: 0;
     background-color: var(--blanco);

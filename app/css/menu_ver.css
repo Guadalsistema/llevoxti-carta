@@ -1,13 +1,13 @@
 .nav{
-    border: 0px;
-    bottom: 95vh;
-    background-color: azure;
-    position: fixed;
-    top: 200px;
-    width: 20vw;
-    height: 100vh;
-    line-height: 4vw;
-    list-style: none;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  width: 20vw;
+  top:10vh;
+  background-color: var(--blanco);
+  flex-wrap:wrap;
+  border-bottom: 1px solid gray;
+  border-top: 1px solid gray;
 }
 @media screen and (min-width: 1px) and (max-width: 200px){
   .nav {
@@ -39,28 +39,18 @@
     width: 20vw;
   }
 }
-  .main-menu{
-     position: fixed;
-     top:250px;
+.main-menu{
+     top:10vh;
      line-height: 6vh;
      overflow-y: auto;
-     flex-wrap: wrap;
-     scrollbar-width:none;
   }   
-  @media screen and (min-height: 600px) and (max-height: 800px){
-    .nav {
-      line-height: 8vh;
-  }
-}
-  @media screen and (min-height: 800px) and (max-height: 1200px){
-    .nav {
-      line-height: 10vh;
-  }
-}
+
   .menu__categories-item{
      background-color: lightcyan;
      color: var(--negro);
      font-size:5vw;
+     word-wrap:break-word;
+     border-style: double;
   } 
   @media screen and (min-width: 1px) and (max-width: 200px){
     .menu__categories-item {
@@ -99,7 +89,7 @@
   }
   .main{
     width: 100vw;
-    top: 200px;
+    top: 10vh;
     bottom: 95vh;
     margin-left: 20vw;
     position: fixed;
