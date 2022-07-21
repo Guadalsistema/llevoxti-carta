@@ -35,13 +35,13 @@
   }
   @media screen and (min-width: 600px) and (max-width: 900px){
     .product__name {
-        font-size: 2vh;
+        font-size: 3vh;
         line-height: 3vh;
     }
   }
   @media screen and (min-width: 900px) and (max-width: 1600px){
     .product__name {
-        font-size: 2vh;
+        font-size: 4vh;
         line-height: 3vh;
     }
   }
@@ -131,8 +131,8 @@
   }
   @media screen and (min-width: 900px) and (max-width: 1600px){
     .product__number {
-        height: 7vw;
-        width: 7vw;
+        height: 5vw;
+        width: 5vw;
         font-size:4vw;
     }
   }
