@@ -25,8 +25,8 @@ body {
     /*------Categories--------*/
 
 .header {
-    width: 100%;
-    height: 100px;
+    width: 100vw;
+    height: 10vh;
     border: 0;
     padding: 0;
     background-color: var(--blanco);
@@ -58,9 +58,8 @@ body {
     position: relative;
 }
 main {
-    height: calc(100vh - 180px);
-    background-color: var(--negro);
-    padding: 20px;
+    background-color: var(--blanco);
+    padding: 10px;
 }
 
 .categories {
@@ -107,7 +106,7 @@ main {
     position: fixed;
     bottom: 0;
     width: 100vw;
-    height: 100px;
+    height: 5vh;
     background-color: #FFE455;
   }
 .logo-pie{
