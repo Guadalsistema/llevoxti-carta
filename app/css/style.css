@@ -112,12 +112,13 @@ main {
 .logo-pie{
     width: 20%;
     text-align: left;
+    height: 1vh;
     justify-content: center;
     background-color: #FFE455;
  }  
  img{
-    max-width: 20vw;
     object-fit: contain;
+    height: 5vh;
  }
 .mi-pedido{
     display: inline-block;
