@@ -14,6 +14,7 @@ a,a:active, a:visited {text-decoration: none;}
     --amarillo: #FFE455;
     --negro: #191b1c;
     --blanco: azure;
+    --azul: royalblue;
 }
 
 body {
@@ -58,8 +59,9 @@ body {
     position: relative;
 }
 main {
+    height: calc(100vh - 180px);
     background-color: var(--blanco);
-    padding: 10px;
+    padding: 20px;
 }
 
 .categories {
@@ -98,67 +100,4 @@ main {
 .menu__categories {
     background-color: var(--blanco);
     height: calc(100vh - 200px);
-}
-.footer {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    position: fixed;
-    bottom: 0;
-    width: 100vw;
-    height: 5vh;
-    background-color: #FFE455;
-  }
-.logo-pie{
-    width: 20%;
-    text-align: left;
-    height: 1vh;
-    justify-content: center;
-    background-color: #FFE455;
- }  
- img{
-    object-fit: contain;
-    height: 5vh;
- }
-.mi-pedido{
-    display: inline-block;
-    text-align: center;
-    justify-content: center;
-    width: 40%;
-    height: 100px;
-    font-size: 3vh;
-}
-
-.mi-cuenta{
-    width: 40%;
-    text-align: center;
-    justify-content: center;
-}
-
-.abrir {
-    cursor: pointer;
-    display:inline-block;
-}
-
-.cerrar {
-    cursor: pointer;
-    display:none;
-}
-
-input#pedido:checked + .toggle-button .abrir {
-    display:none;
-}
-
-input#pedido:checked + .toggle-button .cerrar {
-    display:inline-block;
-}
-
-input[type=checkbox]
-{
-  /* Doble-tamaño Checkboxes */
-  -ms-transform: scale(3); /* IE */
-  -moz-transform: scale(3); /* FF */
-  -webkit-transform: scale(3); /* Safari y Chrome */
-  -o-transform: scale(3); /* Opera */
-  padding: 10px;
 }

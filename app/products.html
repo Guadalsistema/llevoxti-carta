@@ -7,6 +7,7 @@
      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
      <link href="https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@200;400;800&display=swap" rel="stylesheet">
      <link rel="stylesheet" href="css/style.css">
+     <link rel="stylesheet" href="css/menu_ver.css" />
      <script type="module" src="js/products.js"></script>
    </head>
    <body>
@@ -23,18 +24,28 @@
        <main class="main">
           <product-list></product-list>
        </main>
-	   <div>
-          <form class="mi-pedido">
-                <input id="pedido" name="pedido" type="checkbox" value="false" />
-                   <label for="pedido" class="toggle-button">
-                      <span class="abrir" title="Abrir">Enviar Pedido</span>
-                      <span class="cerrar" title="Cerrar">Pedido Enviado</span>
-                   </label>
-          </form>
-		</div>
        <footer class="footer">
           <div class="logo-pie">
-             <img src="/img/llevoxtiapaisado400.png" alt="llevoxti" />
+             <img src="/img/llevoxtiapaisado400.png" alt="LLEVOXTI" />
+          </div>
+          <form class="mi-pedido">
+            <input id="pedido" name="pedido" type="checkbox" value="false" />
+               <label for="pedido" class="toggle-button">
+                  <span class="abrir" title="Abrir">Enviar Pedido</span>
+                  <span class="cerrar" title="Cerrar">Pedido Enviado</span>
+               </label>
+      </form>
+      <script type="text/javascript">
+         var checkbox = document.getElementById('pedido');
+         checkbox.addEventListener("change", validaCheckbox, false);
+         function validaCheckbox(){
+            var checked = checkbox.checked;
+            if(checked){
+               location.href = "http://restaurante2-carta.llevoxti.com/cart.html?mesa";
+            }
+        }
+      </script>
+          <div class="mi-cuenta">
           </div>
        </footer>
    </body>

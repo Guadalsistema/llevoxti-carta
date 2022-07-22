@@ -1,6 +1,6 @@
 .product {
     flex: 1;
-    background-color: var(--negro);
+    background-color: var(--blanco);
     height: calc(100vh - 100px);
     padding: 0 10px;
 }
