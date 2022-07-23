@@ -1,3 +1,4 @@
+import { config } from '../config.js'
 import { roundTo } from '../utils.js';
 import { ModelHTMLElement } from '../model.js';
 import { Product } from './model.js';
@@ -28,13 +29,18 @@ class ProductCard extends ModelHTMLElement {
 	}
 
 	static get observedAttributes() {
-		return ['name', 'price', "product_uom_qty"];
+		return ['name', 'price', "product_uom_qty", 'product-id'];
 	}
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
 		if(attrName == "name") {
 			let h2 = this.shadowRoot.querySelector('h2');
 			h2.textContent = newVal;
+			return;
+		}
+		if(attrName == "product-id") {
+			let img = this.shadowRoot.querySelector('img');
+			img.setAttribute('src', config['url'] + '/web/image/product.product/' + newVal + '/image_128');
 			return;
 		}
 		if(attrName == "price") {
@@ -70,6 +76,9 @@ class ProductCard extends ModelHTMLElement {
 			let hdos = document.createElement('h2');
 			hdos.textContent = this.getAttribute('name');
 			productName.appendChild(hdos);
+
+			let image = document.createElement('img');
+			productbox.appendChild(image);
 
 			this.productAmount = document.createElement('div');
 			this.productAmount.setAttribute('class', 'product__amount');
