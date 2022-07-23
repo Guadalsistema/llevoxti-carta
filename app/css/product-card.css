@@ -6,7 +6,6 @@
     background-color: var(--blanco);
     flex-wrap:wrap;
     border-bottom: 1px solid gray;
-    border-top: 1px solid gray;
  }
  
  .product__name {
@@ -153,11 +152,23 @@
  .product__button {
      width: 3vh;
      height: 3vh;
-     border: 0.5vh solid var(--negro);
+     border: 0.2vh solid var(--oro);
      border-radius: 100%;
      position: relative;
-     background-color: azure;
+     background-color: var(--blanco);
  }
+   .product__button > div {
+     height: 1vh;
+     width: 3vh;
+     background-color: var(--oro);
+     position: absolute;
+     top: 0; right: 0; left: 0; bottom: 0;
+     margin: auto;
+}
+
+.product__button > div:nth-last-of-type(2) {
+  transform: rotate(90deg);
+}
  @media screen and (min-width: 1px) and (max-width: 200px){
      .product__button {
          height: 8vw;
@@ -203,15 +214,3 @@
          width: 3vw;
      }
    }
- .product__button > div {
-     height: 1vh;
-     width: 3vh;
-     background-color: var(--negro);
-     position: absolute;
-     top: 0; right: 0; left: 0; bottom: 0;
-     margin: auto;
- }
- 
- .product__button > div:nth-last-of-type(2) {
-     transform: rotate(90deg);
- }

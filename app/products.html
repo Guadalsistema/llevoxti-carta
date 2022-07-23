@@ -13,8 +13,9 @@
    <body>
      <!-- page content -->
        <header class="header">
+          <div><h1 class="header__title">Menu</h1></div>
        </header>
-       <nav class="nav">
+       <nav id="nav" class="nav">
           <ul id="main-menu" class="main-menu">
              <template id="li-category-tmpl">
                <li class="menu__categories-item" is="product-category">name</li>
@@ -24,16 +25,18 @@
        <main>
           <product-list></product-list>
        </main>
-       <footer>
-	   <!-- ESTO NO VA EN EL FOOTER -->
-	   <!-- TODOTOSDOTODO QUITAR ESTO DEL FOOTER -->
+       <nav id="pie-app" class="pie-app">
           <div class="logo-pie">
              <img src="/img/llevoxtiapaisado400.png" alt="LLEVOXTI" />
           </div>
-		  <!-- UN BOTON NO ES UN FORM, UN FORM HACE UNAS COSAS Y UN BOTON OTRAS -->
-		  <button type="button" class="products-cart-button" id="products-cart-button">Enviar pedido<span>0</span></button>
-		  <button type="button" class="products-cart-button" id="products-see-cart-button">Ver pedido</button>
-          <div class="mi-cuenta"></div>
+          <div class="mi-pedido">
+             <button type="button" class="products-cart-button" id="products-cart-button">Enviar pedido<span>0</span></button>                  <label for="pedido" class="toggle-button">
+          </div>
+          <div class="mi-cuenta">
+             <button type="button" class="products-cart-button" id="products-see-cart-button">Ver pedido</button>
+          </div>
+       </nav>
+       <footer>
        </footer>
    </body>
 </html>

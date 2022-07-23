@@ -36,6 +36,8 @@ class ProductCard extends ModelHTMLElement {
 		if(attrName == "name") {
 			let h2 = this.shadowRoot.querySelector('h2');
 			h2.textContent = newVal;
+			let img = this.shadowRoot.querySelector('img');
+			img.setAttribute('alt', newVal);
 			return;
 		}
 		if(attrName == "product-id") {
