@@ -7,8 +7,7 @@ function displayProducts(products) {
 	let cartCounter = document.querySelector('.products-cart-button > span');
 	for (const product of products) {
 		let pCard = document.createElement('product-card');
-		product['product_uom_qty'] = 1;
-		pCard.minQty = 1;
+		product['product_uom_qty'] = 0;
 		pCard.fromObject(product);
 		pCard.addEventListener('click', ev => {
 			Cart.add(pCard.toObject());
