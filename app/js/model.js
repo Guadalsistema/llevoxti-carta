@@ -86,7 +86,7 @@ class ModelHTMLElement extends HTMLElement {
 
 	fromObject(obj) {
 		for(const key in this.fields) {
-			if(!obj[key]) {
+			if(!key in obj) {
 				throw InvalidArgumentException;
 			}
 			this.setAttribute(this.fields[key], obj[key]);
