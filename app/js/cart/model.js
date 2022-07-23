@@ -52,6 +52,15 @@ class Cart {
         return cart.length;
     }
 
+	static number_of_products() {
+        let cartJSON = sessionStorage.getItem('order');
+        if(cartJSON == null) {
+            return 0;
+        }
+        let cart = JSON.parse(cartJSON);
+        return cart.reduce((accumulated, arrayItem) => accumulated + parseInt(arrayItem["product_uom_qty"]), 0);
+	}
+
 	static products() {
         let cartJSON = sessionStorage.getItem('order');
         if(cartJSON == null) {
