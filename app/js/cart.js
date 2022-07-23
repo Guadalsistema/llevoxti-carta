@@ -32,7 +32,7 @@ function main() {
 				pList.clear();
 				window.location.replace(window.location.origin + "/products.html" + window.location.search);
 			}
-		)
+		);
 	});
 	loadProducts();
 }
