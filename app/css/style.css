@@ -142,38 +142,41 @@ main {
 /* -- menu_ver.css -- */
 @media screen and (min-width: 1px) and (max-width: 200px){
   .nav {
-    width: 40vw;
+    width: 25vw;
   }
   .menu__categories-item {
         font-size:7vw;
     }
   main {
-     margin-left: 20vw;
+     margin-left: 25vw;
   }
 }
 @media screen and (min-width: 200px) and (max-width: 400px){
   .nav {
-    width: 40vw;
+    width: 25vw;
   }
+  .main-menu{
+    line-height: 4vh;  
+ }
   .menu__categories-item {
-        font-size:6vw;
+        font-size:5vw;
     }
   main {
-     margin-left: 20vw;
+     margin-left: 25vw;
   }
 }
 @media screen and (min-width: 400px) and (max-width: 600px){
   .nav {
-    width: 20vw;
+    width: 25vw;
   }
   .main-menu{
      line-height: 4vh;  
   }
   .menu__categories-item {
-        font-size:5vw;
+        font-size:4vw;
     }
   main {
-     margin-left: 20vw;
+     margin-left: 25vw;
   }
 }
 @media screen and (min-width: 600px) and (max-width: 900px){
@@ -184,7 +187,7 @@ main {
     line-height: 4vh;  
  }
    .menu__categories-item {
-     font-size:4vw;
+     font-size:3vw;
     }
   main {
     margin-left: 20vw;

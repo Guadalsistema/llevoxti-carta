@@ -58,10 +58,13 @@ class ProductCard extends ModelHTMLElement {
 			let p = this.shadowRoot.querySelector('p');
 			p.textContent = newVal;
 			let minus = this.shadowRoot.querySelector('.minus');
+			let qty = this.shadowRoot.querySelector('.product__number');
 			if(parseInt(newVal) <= 0) {
 				minus.style.display = 'none';
+				qty.style.display = 'none';
 			} else {
 				minus.style.display = 'block';
+				qty.style.display = 'block';
 			}
 			return;
 		}
