@@ -20,32 +20,18 @@
              </template>
           </ul>
        </nav>
-       <main class="main">
+       <main>
           <product-list></product-list>
        </main>
-       <footer class="footer">
+       <footer>
+	   <!-- ESTO NO VA EN EL FOOTER -->
+	   <!-- TODOTOSDOTODO QUITAR ESTO DEL FOOTER -->
           <div class="logo-pie">
              <img src="/img/llevoxtiapaisado400.png" alt="LLEVOXTI" />
           </div>
-          <form class="mi-pedido">
-            <input id="pedido" name="pedido" type="checkbox" value="false" />
-               <label for="pedido" class="toggle-button">
-                  <span class="abrir" title="Abrir">Enviar Pedido</span>
-                  <span class="cerrar" title="Cerrar">Pedido Enviado</span>
-               </label>
-      </form>
-      <script type="text/javascript">
-         var checkbox = document.getElementById('pedido');
-         checkbox.addEventListener("change", validaCheckbox, false);
-         function validaCheckbox(){
-            var checked = checkbox.checked;
-            if(checked){
-               location.href = "http://restaurante2-carta.llevoxti.com/cart.html?mesa";
-            }
-        }
-      </script>
-          <div class="mi-cuenta">
-          </div>
+		  <button type="button" class="products-cart-button">Enviar pedido</button>
+		  <!-- UN BOTON NO ES UN FORM, UN FORM HACE UNAS COSAS Y UN BOTON OTRAS -->
+          <div class="mi-cuenta"></div>
        </footer>
    </body>
 </html>

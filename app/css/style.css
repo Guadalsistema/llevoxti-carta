@@ -43,7 +43,7 @@ body {
     position: absolute;
     top: 0; bottom:0; left: 0; right: 0; 
     margin-left: 0;
-    background-image:/* rgba(21, 21, 21, 0.5)*/url('../img/IMAGE-BG-1.webp');
+    background-image: url('../img/IMAGE-BG-1.webp');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -60,9 +60,18 @@ body {
 }
 main {
     height: calc(100vh - 180px);
-    background-color: var(--blanco);
     padding: 20px;
-}
+    width: 100vw;
+    top: 10vh;
+    bottom: 95vh;
+    margin-left: 20vw;
+    position: fixed;
+    overflow-y: auto;
+    background-color: azure;
+    text-align: left;
+    padding: 0rem 0rem;
+    font-size:6vw;
+} 
 
 .categories {
     background-color: var(--blanco);
@@ -121,32 +130,76 @@ main {
   .nav {
     width: 40vw;
   }
+    .menu__categories-item {
+        font-size:7vw;
+    }
+  main {
+     font-size:6vw;
+  }
 }
 @media screen and (min-width: 200px) and (max-width: 400px){
   .nav {
     width: 40vw;
+  }
+    .menu__categories-item {
+        font-size:6vw;
+    }
+  main {
+     font-size:5vw;
   }
 }
 @media screen and (min-width: 400px) and (max-width: 600px){
   .nav {
     width: 20vw;
   }
+    .menu__categories-item {
+        font-size:5vw;
+    }
+  main {
+     font-size:3vw;
+  }
 }
 @media screen and (min-width: 600px) and (max-width: 900px){
   .nav {
     width: 20vw;
+  }
+    .menu__categories-item {
+       font-size:4vw;
+    }
+  main {
+     font-size:4vw;
   }
 }
 @media screen and (min-width: 900px) and (max-width: 1600px){
   .nav {
     width: 20vw;
   }
+    .menu__categories-item {
+       font-size:3vw;
+    }
+  main {
+      margin-left: 20vw;
+  }
 }
 @media screen and (min-width: 1600px) and (max-width: 8000px){
   .nav {
     width: 20vw;
   }
+    .menu__categories-item {
+       font-size: 3vw;
+    }
+  main {
+     margin-left: 20vw;
+  }
 }
+  @media screen and (min-width: 2600px) and (max-width: 8000px){
+    .menu__categories-item {
+       font-size:2vw;
+    }
+  main {
+     margin-left: 20vw;
+  }
+  }
 .main-menu{
      top:10vh;
      line-height: 6vh;
@@ -160,89 +213,7 @@ main {
      word-wrap:break-word;
      border-style: double;
   } 
-  @media screen and (min-width: 1px) and (max-width: 200px){
-    .menu__categories-item {
-        font-size:7vw;
-    }
-  }
-  @media screen and (min-width: 200px) and (max-width: 400px){
-    .menu__categories-item {
-        font-size:6vw;
-    }
-  }
-  @media screen and (min-width: 400px) and (max-width: 600px){
-    .menu__categories-item {
-        font-size:5vw;
-    }
-  }
-  @media screen and (min-width: 600px) and (max-width: 900px){
-    .menu__categories-item {
-       font-size:4vw;
-    }
-  }
-  @media screen and (min-width: 900px) and (max-width: 1600px){
-    .menu__categories-item {
-       font-size:3vw;
-    }
-  }
-  @media screen and (min-width: 1600px) and (max-width: 2600px){
-    .menu__categories-item {
-       font-size: 3vw;
-    }
-  }
-  @media screen and (min-width: 2600px) and (max-width: 8000px){
-    .menu__categories-item {
-       font-size:2vw;
-    }
-  }
-  .main{
-    width: 100vw;
-    top: 10vh;
-    bottom: 95vh;
-    margin-left: 20vw;
-    position: fixed;
-    overflow-y: auto;
-    background-color: azure;
-    text-align: left;
-    padding: 0rem 0rem;
-    font-size:6vw;
-} 
-@media screen and (min-width: 1px) and (max-width: 200px){
-  .main {
-     font-size:6vw;
-  }
-}
-@media screen and (min-width: 200px) and (max-width: 400px){
-  .main {
-     font-size:5vw;
-  }
-}
-@media screen and (min-width: 400px) and (max-width: 600px){
-  .main {
-     font-size:4vw;
-  }
-}
-@media screen and (min-width: 600px) and (max-width: 900px){
-  .main {
-     font-size:3vw;
-  }
-}
-@media screen and (min-width: 900px) and (max-width: 1600px){
-  .main {
-      margin-left: 20vw;
-  }
-}
-@media screen and (min-width: 1600px) and (max-width: 2600px){
-  .main {
-     margin-left: 20vw;
-  }
-} 
-@media screen and (min-width: 2600x) and (max-width: 8000px){
-  .main {
-     margin-left: 20vw;
-  }
-} 
-.footer {
+footer {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -261,7 +232,7 @@ main {
  img{
     max-width: 20vw;
  }
-.mi-pedido{
+.products-cart-button{
     background-color: var(--negro);
     color:var(--blanco);
     display: flex;

@@ -29,7 +29,19 @@ function displayCategories(categories) {
 	}
 }
 
-function main() {
+function setBehaviour() {
+	let cartButton = document.querySelector(".products-cart-button");
+	cartButton.addEventListener('click',() => {
+		var url_order = config["url"] + "/restaurant/order" + window.location.search;
+		fetch(url_order, {
+			method: 'POST',
+			cache: 'no-cache',
+			body: JSON.stringify(Cart.products()),
+		}).then(() => { Cart.clear(); });
+	});
+}
+
+function fetchContent() {
 	var url_products = config["url"] + "/menu";
 	fetch(url_products, {
 	  method: 'GET',
@@ -40,6 +52,11 @@ function main() {
 	  method: 'GET',
 	}).then(res => res.json())
 	.then(categories => displayCategories(categories));
+}
+
+function main() {
+	fetchContent();
+	setBehaviour();
 }
 
 customElements.define('product-category', ProductCategoryLi, { extends: "li" });
