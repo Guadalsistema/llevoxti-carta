@@ -15,12 +15,6 @@ function displayProducts(products) {
 		pCard.style.display = 'none';
 		placeholder.shadowRoot.appendChild(pCard);
 	}
-
-	placeholder.addEventListener('click', (ev) => {
-		Cart.add(ev.target.toObject());
-		ev.target.setAttribute('product_uom_qty', ev.target.minQty);
-		cartCounter.textContent = Cart.number_of_products();
-	});
 }
 
 function displayCategories(categories) {
