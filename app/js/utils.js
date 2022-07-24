@@ -16,13 +16,6 @@ function roundTo(n, digits) {
     return n;
 }
 
-class InvalidArgumentException extends Error {
-    constructor(message) {
-      super(message);
-      this.name = 'InvalidArgumentException';
-    }
-  }
-
 function waitForElm(elem, selector) {
     return new Promise(resolve => {
         if (elem.querySelector(selector)) {
@@ -44,4 +37,4 @@ function waitForElm(elem, selector) {
 }
 
 
-export { roundTo, InvalidArgumentException, waitForElm };
+export { roundTo, waitForElm };

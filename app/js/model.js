@@ -1,4 +1,4 @@
-import { InvalidArgumentException } from './utils.js';
+import { InvalidArgumentException } from './exception.js';
 
 class FieldModel {
 	#validType = ["int", "string", "float"]

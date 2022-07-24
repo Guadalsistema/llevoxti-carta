@@ -1,7 +1,6 @@
 import { config } from '../config.js'
 import { roundTo } from '../utils.js';
 import { ModelHTMLElement } from '../model.js';
-import { Product } from './model.js';
 
 class ProductCard extends ModelHTMLElement {
 	__minQty = 0;

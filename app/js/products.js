@@ -2,6 +2,7 @@ import { Cart } from './cart/model.js';
 import { config } from './config.js';
 import { ProductCategoryLi, ProductCard, ProductList } from  './products/ui.js';
 import { waitForElm } from './utils.js';
+import { InvalidRequestException } from './exception.js';
 
 function displayProducts(products) {
 	var placeholder = document.querySelector('product-list');
@@ -10,15 +11,16 @@ function displayProducts(products) {
 		let pCard = document.createElement('product-card');
 		product['product_uom_qty'] = 0;
 		pCard.fromObject(product);
-		pCard.style.display = 'none';
+		let buttons = pCard.shadowRoot.querySelector.querySelectorAll('.product__button');
+		// TODO automaticamente meter en el carrito
+		pCard.addEventListener('click', (ev) => {
+			Cart.add(pCard.toObject());
+			pCard.setAttribute('product_uom_qty', pCard.minQty);
+			product__button
+			cartCounter.textContent = Cart.number_of_products();
+		});
 		placeholder.shadowRoot.appendChild(pCard);
 	}
-
-	placeholder.addEventListener('click', (ev) => {
-		Cart.add(ev.target.toObject());
-		ev.target.setAttribute('product_uom_qty', ev.target.minQty);
-		cartCounter.textContent = Cart.number_of_products();
-	});
 }
 
 function displayCategories(categories) {
@@ -33,6 +35,7 @@ function displayCategories(categories) {
 	}
 
 	placeholder.addEventListener('click', (ev) => {
+		// TODO que no filtre que posicione
 		const pList = document.querySelector('product-list');
 		let hidde = pList.shadowRoot.querySelectorAll('product-card[style*="display: block"]');
 		hidde.forEach((item) => { item.style.display = "none"; });
@@ -50,7 +53,14 @@ function setBehaviour() {
 			method: 'POST',
 			cache: 'no-cache',
 			body: JSON.stringify(Cart.products()),
-		}).then(() => {
+		})
+		.then((response) => {
+			if(response.ok) {
+				return;
+			}
+			throw new InvalidRequestException(response.statusText);
+		})
+		.then(() => {
 			Cart.clear();
 			let cartCounter = document.querySelector('.products-cart-button > span');
 			cartCounter.textContent = Cart.number_of_products();
@@ -58,7 +68,7 @@ function setBehaviour() {
 	});
 	let seeCartButton = document.querySelector("#products-see-cart-button");
 	seeCartButton.addEventListener('click',() => {
-		window.location.replace(window.location.origin + "/cart.html" + window.location.search);
+		window.location.href = window.location.origin + "/cart.html" + window.location.search;
 	});
 }
 
@@ -68,22 +78,21 @@ function fetchContent() {
 	  method: 'GET',
 	}).then(res => res.json())
 	.then(products => displayProducts(products));
+
 	var url_categories = config["url"] + "/menu/category";
+	const pList = document.querySelector('product-list').shadowRoot;
 	fetch(url_categories, {
 	  method: 'GET',
 	}).then(res => res.json())
 	.then(categories => displayCategories(categories))
-	.then((categories)=>{
-		const pList = document.querySelector('product-list');
-		return waitForElm(pList.shadowRoot, 'product-card:nth-child(' + categories.length + ')')
-	})
+	.then((categories)=> waitForElm(pList, 'product-card:nth-child(' + categories.length + ')') )
 	.then(() => {
-		const pList = document.querySelector('product-list');
 		const cList = document.querySelector('ul');
 		const firstCategory = cList.querySelector('li');
-		let show = pList.shadowRoot.querySelectorAll('product-card[category-id*="' + firstCategory.getAttribute("category-id") + '"]');
+		let show = pList.querySelectorAll('product-card[category-id*="' + firstCategory.getAttribute("category-id") + '"]');
 		show.forEach((item) => { item.style.display = "block"; });
 	});
+
 	let cartCounter = document.querySelector('.products-cart-button > span');
 	cartCounter.textContent = Cart.number_of_products();
 }
