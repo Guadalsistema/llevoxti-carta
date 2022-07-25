@@ -30,7 +30,7 @@ function main() {
 				Cart.clear();
 				let pList = document.querySelector("product-list");
 				pList.clear();
-				window.location.replace(window.location.origin + "/products.html" + window.location.search);
+				window.location.href = window.location.origin + "/products.html" + window.location.search;
 			}
 		);
 	});

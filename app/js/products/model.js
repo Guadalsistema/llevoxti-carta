@@ -1,4 +1,3 @@
-import { InvalidArgumentException } from '../utils.js';
 import { FieldModel, Model } from '../model.js';
 
 class Product extends Model {

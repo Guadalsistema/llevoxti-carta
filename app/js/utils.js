@@ -16,11 +16,25 @@ function roundTo(n, digits) {
     return n;
 }
 
-class InvalidArgumentException extends Error {
-    constructor(message) {
-      super(message);
-      this.name = 'InvalidArgumentException';
-    }
-  }
+function waitForElm(elem, selector) {
+    return new Promise(resolve => {
+        if (elem.querySelector(selector)) {
+            return resolve(elem.querySelector(selector));
+        }
 
-export { roundTo, InvalidArgumentException };
+        const observer = new MutationObserver(mutations => {
+            if (elem.querySelector(selector)) {
+                resolve(elem.querySelector(selector));
+                observer.disconnect();
+            }
+        });
+
+        observer.observe(elem, {
+            childList: true,
+            subtree: true
+        });
+    });
+}
+
+
+export { roundTo, waitForElm };
