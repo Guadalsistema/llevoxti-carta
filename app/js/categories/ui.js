@@ -11,9 +11,7 @@ class CategoryCard extends HTMLElement {
 		link.setAttribute("href", "products.html?category-id=" + cat_id);
 
 		var style = document.createElement('style');
-		style.textContent = ``; // TODO if not long text put style here
-
-		// TODO find a image/icon in the list this name
+		style.textContent = ``;
 
 		shadow.appendChild(style);
 		shadow.appendChild(icon);

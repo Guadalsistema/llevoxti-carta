@@ -1,6 +1,7 @@
 import { config } from '../config.js'
 import { roundTo } from '../utils.js';
 import { ModelHTMLElement } from '../model.js';
+import { Cart } from '../cart/model.js'
 
 class ProductCard extends ModelHTMLElement {
 	__minQty = 0;
@@ -55,6 +56,11 @@ class ProductCard extends ModelHTMLElement {
 				return;
 			}
 			let p = this.shadowRoot.querySelector('p');
+			Cart.update(this.toObject());
+			const cartCounter = document.querySelector('.products-cart-button > span');
+			if(cartCounter) {
+				cartCounter.textContent = Cart.number_of_products();
+			}
 			p.textContent = newVal;
 			let minus = this.shadowRoot.querySelector('.minus');
 			let qty = this.shadowRoot.querySelector('.product__number');

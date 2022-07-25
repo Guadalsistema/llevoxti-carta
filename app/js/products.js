@@ -6,19 +6,12 @@ import { InvalidRequestException } from './exception.js';
 
 function displayProducts(products) {
 	var placeholder = document.querySelector('product-list');
-	let cartCounter = document.querySelector('.products-cart-button > span');
+	products.sort((left, right) => { return left.category_id - right.category_id; });
 	for (const product of products) {
 		let pCard = document.createElement('product-card');
 		product['product_uom_qty'] = 0;
 		pCard.fromObject(product);
-		let buttons = pCard.shadowRoot.querySelector.querySelectorAll('.product__button');
-		// TODO automaticamente meter en el carrito
-		pCard.addEventListener('click', (ev) => {
-			Cart.add(pCard.toObject());
-			pCard.setAttribute('product_uom_qty', pCard.minQty);
-			product__button
-			cartCounter.textContent = Cart.number_of_products();
-		});
+		let buttons = pCard.shadowRoot.querySelectorAll('.product__button');
 		placeholder.shadowRoot.appendChild(pCard);
 	}
 }
@@ -26,6 +19,7 @@ function displayProducts(products) {
 function displayCategories(categories) {
 	let pTemplate = document.getElementById("li-category-tmpl");
 	let placeholder = document.querySelector('ul');
+	categories.sort((left, right) => { return left.id - right.id; });
 	for (const category of categories) {
 		let container = pTemplate.content.querySelector('.menu__categories-item');
 		container.textContent = category.name;
@@ -37,10 +31,10 @@ function displayCategories(categories) {
 	placeholder.addEventListener('click', (ev) => {
 		// TODO que no filtre que posicione
 		const pList = document.querySelector('product-list');
-		let hidde = pList.shadowRoot.querySelectorAll('product-card[style*="display: block"]');
-		hidde.forEach((item) => { item.style.display = "none"; });
-		let show = pList.shadowRoot.querySelectorAll('product-card[category-id*="' + ev.target.getAttribute("category-id") + '"]');
-		show.forEach((item) => { item.style.display = "block"; });
+		let show = pList.shadowRoot.querySelector('product-card[category-id*="' + ev.target.getAttribute("category-id") + '"]');
+		if(show) {
+			show.scrollIntoView();
+		}
 	});
 	return Promise.resolve(categories)
 }
@@ -84,14 +78,7 @@ function fetchContent() {
 	fetch(url_categories, {
 	  method: 'GET',
 	}).then(res => res.json())
-	.then(categories => displayCategories(categories))
-	.then((categories)=> waitForElm(pList, 'product-card:nth-child(' + categories.length + ')') )
-	.then(() => {
-		const cList = document.querySelector('ul');
-		const firstCategory = cList.querySelector('li');
-		let show = pList.querySelectorAll('product-card[category-id*="' + firstCategory.getAttribute("category-id") + '"]');
-		show.forEach((item) => { item.style.display = "block"; });
-	});
+	.then(categories => displayCategories(categories));
 
 	let cartCounter = document.querySelector('.products-cart-button > span');
 	cartCounter.textContent = Cart.number_of_products();
