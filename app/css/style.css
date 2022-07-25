@@ -93,6 +93,10 @@ main {
   overflow-y: auto;
   overflow-y: hidden;
 }
+.main-menu >li.active{
+    background-color: green;
+  }
+
 .menu__categories-item{
   background-color: var(--blanco);
   color: var(--negro);
@@ -100,7 +104,6 @@ main {
   word-wrap:break-word;
   border-bottom: 1px solid gray;
 } 
-
 .categories {
     background-color: var(--blanco);
     border-radius: 5px;

@@ -17,7 +17,11 @@
      display: inherit;
      height: auto;
  }
-   .product__prize {
+ .product__imagen {
+  width: 30vw;
+  height:auto;
+ }
+ .product__prize {
      float: left;
      text-align:left;
      color: var(--negro);
@@ -159,7 +163,7 @@ transform: rotate(90deg);
          line-height: 1vh;
      }
      .product__prize {
-      font-size:3 vh;
+      font-size:3vh;
     }
     .product__number {
       height: 5vh;
@@ -183,7 +187,7 @@ transform: rotate(90deg);
     .product__number {
       height: 4vh;
       width: 4vw;
-      font-size:vh;
+      font-size:3vh;
      }
      .product__button {
       border: 0.5vh solid var(--oro);

@@ -11,12 +11,11 @@ function displayProducts(products) {
 		let pCard = document.createElement('product-card');
 		product['product_uom_qty'] = 0;
 		pCard.fromObject(product);
-		let buttons = pCard.shadowRoot.querySelector.querySelectorAll('.product__button');
+		let buttons = pCard.shadowRoot.querySelectorAll('.product__button');
 		// TODO automaticamente meter en el carrito
 		pCard.addEventListener('click', (ev) => {
 			Cart.add(pCard.toObject());
 			pCard.setAttribute('product_uom_qty', pCard.minQty);
-			product__button
 			cartCounter.textContent = Cart.number_of_products();
 		});
 		placeholder.shadowRoot.appendChild(pCard);
