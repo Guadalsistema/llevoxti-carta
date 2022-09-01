@@ -4,6 +4,12 @@ import { ProductCategoryLi, ProductCard, ProductList } from  './products/ui.js';
 import { waitForElm } from './utils.js';
 import { InvalidRequestException } from './exception.js';
 
+function displayRestaurantName() {
+	let namePlaceholder = document.querySelector("h1.header__title");
+	if(namePlaceholder === null) { return; }
+	namePlaceholder.textContent = config["name"];
+}
+
 function displayProducts(products) {
 	var placeholder = document.querySelector('product-list');
 	products.sort((left, right) => { return left.category_id - right.category_id; });
@@ -97,6 +103,7 @@ function fetchContent() {
 }
 
 function main() {
+	displayRestaurantName();
 	fetchContent();
 	setBehaviour();
 }
