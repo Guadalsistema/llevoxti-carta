@@ -7,9 +7,15 @@ import { InvalidRequestException } from './exception.js';
 function displayProducts(products) {
 	var placeholder = document.querySelector('product-list');
 	products.sort((left, right) => { return left.category_id - right.category_id; });
+	var stored = Cart.products();
 	for (const product of products) {
 		let pCard = document.createElement('product-card');
-		product['product_uom_qty'] = 0;
+		var store = stored.filter( prod => prod["id"] == product["id"] );
+		if(store.length && store[0]['product_uom_qty']) {
+			product['product_uom_qty'] = store[0]['product_uom_qty'];
+		} else {
+			product['product_uom_qty'] = 0;
+		}
 		pCard.fromObject(product);
 		let buttons = pCard.shadowRoot.querySelectorAll('.product__button');
 		placeholder.shadowRoot.appendChild(pCard);
@@ -29,7 +35,6 @@ function displayCategories(categories) {
 	}
 
 	placeholder.addEventListener('click', (ev) => {
-		// TODO que no filtre que posicione
 		const pList = document.querySelector('product-list');
 		let show = pList.shadowRoot.querySelector('product-card[category-id*="' + ev.target.getAttribute("category-id") + '"]');
 		if(show) {
@@ -43,10 +48,12 @@ function setBehaviour() {
 	let cartButton = document.querySelector("#products-cart-button");
 	cartButton.addEventListener('click',() => {
 		var url_order = config["url"] + "/restaurant/order" + window.location.search;
+		let products = Cart.products();
+		let filtered = products.filter((prod) => prod.product_uom_qty > 0);
 		fetch(url_order, {
 			method: 'POST',
 			cache: 'no-cache',
-			body: JSON.stringify(Cart.products()),
+			body: JSON.stringify(filtered),
 		})
 		.then((response) => {
 			if(response.ok) {
@@ -55,15 +62,20 @@ function setBehaviour() {
 			throw new InvalidRequestException(response.statusText);
 		})
 		.then(() => {
-			Cart.clear();
 			let cartCounter = document.querySelector('.products-cart-button > span');
+			var pList = document.querySelector('product-list');
+			for (let pCard of pList.shadowRoot.querySelectorAll('product-card[product_uom_qty]:not([product_uom_qty="0"])')) {
+				pCard.setAttribute("product_uom_qty", "0");
+			}
+
+			Cart.clear();
 			cartCounter.textContent = Cart.number_of_products();
 		});
 	});
-	let seeCartButton = document.querySelector("#products-see-cart-button");
+	/*let seeCartButton = document.querySelector("#products-see-cart-button");
 	seeCartButton.addEventListener('click',() => {
 		window.location.href = window.location.origin + "/cart.html" + window.location.search;
-	});
+	});*/
 }
 
 function fetchContent() {

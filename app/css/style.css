@@ -16,6 +16,7 @@ a,a:active, a:visited {text-decoration: none;}
     --negro: #191b1c;
     --blanco: azure;
     --azul: royalblue;
+    --gris: #D3D3D3;
 }
 
 body {
@@ -86,6 +87,7 @@ main {
   width: 40vw;
   top:10vh;
 }
+
 .main-menu{
   height: 85vh;
   line-height: 6vh;
@@ -100,26 +102,10 @@ main {
   word-wrap:break-word;
   border-bottom: 1px solid gray;
 } 
+.menu__categories-item:hover {
+  background-color:var(--gris);
+}
 
-.categories {
-    background-color: var(--blanco);
-    border-radius: 5px;
-    display: flex;
-    justify-content: flex-start;
-    align-content: center;
-    padding: 10px;
-}
-.categories__icon {
-    width: 100px;
-    height: 80px;
-    position: relative;
-}
-.categories__title {
-    font-family: 'Arima Madurai', cursive;
-    font-weight: 400;
-    color: var(--negro);
-    font-size: 32px;
-}
 
 /*-------Product page----------*/
 

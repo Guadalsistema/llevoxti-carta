@@ -43,6 +43,7 @@ class ProductCard extends ModelHTMLElement {
 		if(attrName == "product-id") {
 			let img = this.shadowRoot.querySelector('img');
 			img.setAttribute('src', config['url'] + '/web/image/product.product/' + newVal + '/image_128');
+			img.classList.add("product__imagen");
 			return;
 		}
 		if(attrName == "price") {
