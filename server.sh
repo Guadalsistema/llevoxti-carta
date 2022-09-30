@@ -32,7 +32,7 @@ fi
 if echo $1 | grep -q "^start$"; then
 	${CONTAINER_ENGINE} run --rm -d \
 		--name ${PODNAME} -p 8080:80 \
-		-v "${PWD}/app:/usr/local/apache2/htdocs/" \
+		-v "${PWD}/app:/usr/local/apache2/htdocs/:ro" \
 		docker.io/library/httpd:2.4
 	exit 0
 fi
