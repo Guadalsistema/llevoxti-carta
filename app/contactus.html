@@ -12,8 +12,11 @@
    </head>
    <body>
 
-  
-    <div class="contactus_form">
+    <header class="header">
+      <div><h1 class="header__title">Restaurant</h1></div>
+    </header>
+
+   <div class="main">
 
         <div class="formulario">      
           <h1>Envío de pedido</h1>
@@ -56,6 +59,13 @@
                     </p>
 
                     <p>
+                      <label for="poblacion" class="colocar_poblacion">Población de envío
+                       <span class="obligatorio">*</span>
+                      </label>
+                        <input type="text" name="introducir_poblacion" id="poblacion" placeholder="Escribe tu población de envío">
+                    </p> 
+
+                    <p>
                       <label for="provincia" class="colocar_provincia">Provincia de envío
                        <span class="obligatorio">*</span>
                       </label>
@@ -63,22 +73,14 @@
                     </p> 
 
                     <p>
-                      <label for="asunto" class="colocar_asunto">Asunto
-                        <span class="obligatorio">*</span>
-                      </label>
-                        <input type="text" name="introducir_asunto" id="assunto" required="obligatorio" placeholder="Escribe un asunto">
-                    </p>    
-                  
-                    <p>
                       <label for="mensaje" class="colocar_mensaje">Mensaje
                         <span class="obligatorio">*</span>
                       </label>                     
                                         <textarea name="introducir_mensaje" class="texto_mensaje" id="mensaje" required="obligatorio" placeholder="Deja aquí tu comentario..."></textarea> 
                                     </p>       
                                     
-                 
-                    <button type="submit" name="enviar_formulario" id="enviar"><p>Enviar</p></button>
-    
+               
+   
                     <p class="aviso">
                       <span class="obligatorio"> * </span>los campos son obligatorios.
                     </p>          

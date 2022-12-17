@@ -32,24 +32,17 @@ body {
     height: 10vh;
     border: 0;
     padding: 0;
-    background-color: var(--blanco);
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    position: fixed;
-    transition: transform 0.3s;
-}
-
-.header::before {
-    content: "";
-    position: absolute;
     top: 0; bottom:0; left: 0; right: 0; 
-    margin-left: 0;
+    background-color: var(--blanco);
     background-image: url('../img/IMAGE-BG-1.webp');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     filter: brightness(0.5);
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    transition: transform 0.3s;
 }
 
 .header__title {
