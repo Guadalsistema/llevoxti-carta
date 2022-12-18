@@ -53,7 +53,18 @@ function displayCategories(categories) {
 function setBehaviour() {
 	let cartButton = document.querySelector("#products-cart-button");
 	cartButton.addEventListener('click',() => {
-		var url_order = config["url"] + "/restaurant/order" + window.location.search;
+		var url_order = config["url"] + "restaurant/order" + window.location.search;
+
+		alert(url_order);
+		var Isapp = url_order.indexOf("App");
+        alert(Isapp);
+		if(Isapp >= 0) {
+			alert("Es un pedido App" + window.location.origin);
+    		window.open(window.location.origin + "/contactus.html", "_self");
+		} else {
+			alert("No es un pedido App");
+		}
+
 		let products = Cart.products();
 		let filtered = products.filter((prod) => prod.product_uom_qty > 0);
 		fetch(url_order, {

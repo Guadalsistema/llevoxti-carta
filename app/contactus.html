@@ -23,7 +23,7 @@
             <h3>En breve enviaremos su pedido</h3>
     
     
-              <form action="submeter-formulario.php" method="post">       
+              <form id= "form_envio" action="products.html" method="post">       
     
                     <p>
                      <label for="email" class="colocar_email">Email
@@ -77,9 +77,13 @@
                         <span class="obligatorio">*</span>
                       </label>                     
                                         <textarea name="introducir_mensaje" class="texto_mensaje" id="mensaje" required="obligatorio" placeholder="Deja aquí tu comentario..."></textarea> 
-                                    </p>       
+                    </p>       
                                     
-               
+                  <p>
+                    <button type="submit">Enviar
+
+                    </button>
+                  </p>
    
                     <p class="aviso">
                       <span class="obligatorio"> * </span>los campos son obligatorios.
@@ -111,6 +115,16 @@
                   document.getElementById('provincia').value = darProvincia(inputCP.value);
                 }
               </script>
+              <script>
+                 const $form_envio = document.querySelector("#form_envio")
+                 $form_envio.addEventListener('submit', datosenvio)
+
+                 function datosenvio(event){
+
+                 }
+              </script>
+
+
         </div>  
       </div>
     
@@ -119,7 +133,8 @@
              <img src="img/llevoxtiapaisado400.png" alt="LLEVOXTI" />
           </div>
           <div class="mi-pedido">
-             <button type="button" class="products-cart-button" id="products-cart-button">Enviar pedido<span>0</span></button>                  <label for="pedido" class="toggle-button">
+             <button type="button" class="products-cart-button" id="products-cart-button">Enviar pedido<span> 0</span></button> 
+              <label for="pedido" class="toggle-button"></label>
           </div>
           <!-- div class="mi-cuenta">
              <button type="button" class="products-cart-button" id="products-see-cart-button">Ver pedido</button>
