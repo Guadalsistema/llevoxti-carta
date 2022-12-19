@@ -23,7 +23,7 @@
             <h3>En breve enviaremos su pedido</h3>
     
     
-              <form id= "form_envio" action="products.html" method="post">       
+              <form id= "form_envio" action="" method="post">       
     
                     <p>
                      <label for="email" class="colocar_email">Email
@@ -120,7 +120,24 @@
                  $form_envio.addEventListener('submit', datosenvio)
 
                  function datosenvio(event){
-
+                  event.preventDefault()
+                  var email = document.getElementById("email").value;
+                  localStorage.setItem("lxtmail",JSON.stringify(email));
+                  var nombre = document.getElementById("nombre").value;
+                  localStorage.setItem("lxtnombre",JSON.stringify(nombre));
+                  var telefono = document.getElementById("telefono").value;
+                  localStorage.setItem("lxttelefono",JSON.stringify(telefono));
+                  var direccion = document.getElementById("direccion").value;
+                  localStorage.setItem("lxtdireccion",JSON.stringify(direccion));
+                  var c_postal = document.getElementById("c_postal").value;
+                  localStorage.setItem("lxtc_postal",JSON.stringify(c_postal));
+                  var poblacion = document.getElementById("poblacion").value;
+                  localStorage.setItem("lxtpoblacion",JSON.stringify(poblacion));
+                  var provincia = document.getElementById("provincia").value;
+                  localStorage.setItem("lxtprovincia",JSON.stringify(provincia));
+                  var mensaje = document.getElementById("mensaje").value;
+                  localStorage.setItem("lxtmensaje",JSON.stringify(mensaje));
+                  alert (mensaje)
                  }
               </script>
 
