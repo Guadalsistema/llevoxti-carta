@@ -1,20 +1,13 @@
-HTML CSS 
-/* Importación de fuentes de google fonts */ 
-@import url(https://fonts.googleapis.com/css?family=Noto+Sans);
-
-
-
-.contactus_form{  
+.contactusform{  
 width: 460px; 
 height: auto;
-margin: 80px auto;
+margin: 0px auto;
 border-radius: 10px;  
-padding-top: 30px;
+padding-top: 0px;
 padding-bottom: 20px;  
-background-color: #fbfbfb; 
+background-color: var(--amarillo); 
 padding-left: 30px; 
 }
-
 
 input{
 background-color: #fbfbfb; 
@@ -47,7 +40,6 @@ padding-top: 15px;
 
 label{
 display: block; 
-float: center;  
 }
 
 
@@ -69,15 +61,13 @@ color: #0e0e0e;
 
 h1{
 font-size: 39px;  
-text-align: letf; 
-padding-bottom: 20px; 
 color: #ab4493;
 }
 
 
 h3{
 font-size: 16px; 
-padding-bottom: 30px;
+padding-bottom: 0px;
 color: #0e0e0e;   
 }
 
@@ -95,16 +85,4 @@ color: #a8a8a8;
 
 ::-webkit-textarea-placeholder {
 color: #a8a8a8;
-}
-
-
-.formulario input:focus{
-outline:0;
-border: 1px solid #97d848;
-}
-
-
-.formulario textarea:focus{
-outline:0;
-border: 1px solid #97d848;
 }
