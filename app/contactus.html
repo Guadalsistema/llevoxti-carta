@@ -29,7 +29,7 @@
                      <label for="email" class="colocar_email">Email
                       <span class="obligatorio">*</span>
                      </label>
-                       <input type="email" name="introducir_email" id="email" required="obligatorio" placeholder="Escribe tu Email">
+                       <input type="email" name="introducir_email" id="email" required="obligatorio" placeholder="Escribe tu Email")>
                     </p>                
                     <p>
                       <label for="nombre" class="colocar_nombre">Nombre
@@ -74,9 +74,8 @@
 
                     <p>
                       <label for="mensaje" class="colocar_mensaje">Mensaje
-                        <span class="obligatorio">*</span>
                       </label>                     
-                                        <textarea name="introducir_mensaje" class="texto_mensaje" id="mensaje" required="obligatorio" placeholder="Deja aquí tu comentario..."></textarea> 
+                        <textarea name="introducir_mensaje" class="texto_mensaje" id="mensaje" required="obligatorio" placeholder="Deja aquí tu comentario..."></textarea> 
                     </p>       
                                     
                   <p>
@@ -90,6 +89,22 @@
                     </p>          
                 
               </form>
+              <script>
+                /*if(localStorage.getItem("lxtemail")===null){
+                  alert ("no existe")
+                }else{
+                  alert ("Existe")
+                }*/
+                 document.getElementById("email").value = localStorage.getItem("lxtemail").replace(/['"]+/g, '');
+                 document.getElementById("nombre").value = localStorage.getItem("lxtnombre").replace(/['"]+/g, '');
+                 document.getElementById("telefono").value = localStorage.getItem("lxttelefono").replace(/['"]+/g, '');
+                 document.getElementById("direccion").value = localStorage.getItem("lxtdireccion").replace(/['"]+/g, '');
+                 document.getElementById("c_postal").value = localStorage.getItem("lxtc_postal").replace(/['"]+/g, '');
+                 document.getElementById("poblacion").value = localStorage.getItem("lxtpoblacion").replace(/['"]+/g, '');
+                 document.getElementById("provincia").value = localStorage.getItem("lxtprovincia").replace(/['"]+/g, '');
+                 document.getElementById("mensaje").value = localStorage.getItem("lxtmensaje").replace(/['"]+/g, '');
+              </script>
+  
               <script type="text/javascript">
                 function darProvincia(cpostal){
                   var cp_provincias = {
@@ -118,11 +133,10 @@
               <script>
                  const $form_envio = document.querySelector("#form_envio")
                  $form_envio.addEventListener('submit', datosenvio)
-
                  function datosenvio(event){
                   event.preventDefault()
                   var email = document.getElementById("email").value;
-                  localStorage.setItem("lxtmail",JSON.stringify(email));
+                  localStorage.setItem("lxtemail",JSON.stringify(email));
                   var nombre = document.getElementById("nombre").value;
                   localStorage.setItem("lxtnombre",JSON.stringify(nombre));
                   var telefono = document.getElementById("telefono").value;
@@ -137,10 +151,8 @@
                   localStorage.setItem("lxtprovincia",JSON.stringify(provincia));
                   var mensaje = document.getElementById("mensaje").value;
                   localStorage.setItem("lxtmensaje",JSON.stringify(mensaje));
-                  alert (mensaje)
                  }
               </script>
-
 
         </div>  
       </div>
