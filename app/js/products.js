@@ -73,7 +73,7 @@ function darProvincia(cpostal){
 	}
 }
 
-function is_whatsapp_order() {
+function is_app_order() {
 	const params = new Proxy(new URLSearchParams(window.location.search), {
 		get(target, prop, receiver) { return target.get(prop); },
 		has(target, key) {
@@ -87,7 +87,7 @@ function is_whatsapp_order() {
 }
 
 function send_order() {
-	var url_order = config["url"] + "restaurant/order" + window.location.search;
+	var url_order = config["url"] + "/restaurant/order" + window.location.search;
 
 	let products = Cart.products();
 	let filtered = products.filter((prod) => prod.product_uom_qty > 0);
@@ -95,8 +95,9 @@ function send_order() {
 		order: filtered,
 	};
 
-	if (is_whatsapp_order()) {
+	if (is_app_order()) {
 		if (!Address.valid()) {
+			console.log("Invalid address");
 			return;
 		}
 		order["address"] = Address.toObject();
@@ -140,9 +141,21 @@ function setBehaviour() {
 	inputCP.onkeyup = function(){
 		document.getElementById('provincia').value = darProvincia(inputCP.value);
 	}
+	let dialog_form = document.getElementById("form_envio");
+	dialog_form.addEventListener('click', (ev) => {
+		ev.preventDefault();
+		Address.labels.forEach((label) => {
+			let value = document.getElementById(label).value;
+			if (value !== "") {
+				localStorage.setItem("lxt" + label, value);
+			}
+		});
+		send_order();
+		document.getElementsByTagName("dialog")[0].close();
+	});
 	let cartButton = document.querySelector("#products-cart-button");
 	cartButton.addEventListener('click',() => {
-		if (is_whatsapp_order()) {
+		if (is_app_order()) {
 			show_address_dialog();
 		} else {
 			send_order();
