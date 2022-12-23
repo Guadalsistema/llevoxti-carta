@@ -82,8 +82,8 @@ function is_whatsapp_order() {
 		  }
 		  return Boolean([...target.keys()].find((v) => v === key));
 		}
-	});	
-	return 'table' in params && params.table == "whatsapp";
+	});
+	return 'table' in params && params.table == "app";
 }
 
 function send_order() {
@@ -95,7 +95,7 @@ function send_order() {
 		order: filtered,
 	};
 
-	if (is_whatsapp_order()) { 
+	if (is_whatsapp_order()) {
 		if (!Address.valid()) {
 			return;
 		}
@@ -142,8 +142,8 @@ function setBehaviour() {
 	}
 	let cartButton = document.querySelector("#products-cart-button");
 	cartButton.addEventListener('click',() => {
-		if (is_whatsapp_order() && !Address.valid()) { 
-			show_address_dialog();	
+		if (is_whatsapp_order()) {
+			show_address_dialog();
 		} else {
 			send_order();
 		}
