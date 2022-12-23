@@ -141,8 +141,8 @@ function setBehaviour() {
 	inputCP.onkeyup = function(){
 		document.getElementById('state_id').value = darProvincia(inputCP.value);
 	}
-	let dialog_form = document.getElementById("form_envio");
-	dialog_form.addEventListener('click', (ev) => {
+	let dialog_form = document.getElementById("address_dialog");
+	dialog_form.addEventListener('close', (ev) => {
 		ev.preventDefault();
 		Address.labels.forEach((label) => {
 			let value = document.getElementById(label).value;
@@ -155,12 +155,13 @@ function setBehaviour() {
 	});
 	let cartButton = document.querySelector("#products-cart-button");
 	cartButton.addEventListener('click',() => {
-		if (is_app_order()) {
-			show_address_dialog();
-		} else {
-			send_order();
+		if(Cart.length > 0) {
+			if (is_app_order()) {
+				show_address_dialog();
+			} else {
+				send_order();
+			}
 		}
-
 	});
 	/*let seeCartButton = document.querySelector("#products-see-cart-button");
 	seeCartButton.addEventListener('click',() => {

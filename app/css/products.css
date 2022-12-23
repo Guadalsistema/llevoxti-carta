@@ -1,4 +1,4 @@
-dialog > .contactusform {
+#form_envio > .contactusform {
 	width: 460px;
 	height: auto;
 	margin: 0px auto;
@@ -9,7 +9,7 @@ dialog > .contactusform {
 	padding-left: 30px;
 }
 
-dialog > input {
+#form_envio > input {
 	background-color: #fbfbfb;
 	width: 408px;
 	height: 40px;
@@ -23,7 +23,7 @@ dialog > input {
 }
 
 
-dialog > textarea {
+#form_envio > textarea {
 	background-color: #fbfbfb;
 	width: 405px;
 	height: 150px;
@@ -38,41 +38,41 @@ dialog > textarea {
 }
 
 
-dialog > label {
+#form_envio > label {
 	display: block;
 }
 
 
-dialog > button p{
+#form_envio > button p{
 	color: #fff;
 }
 
 
-dialog > span {
+#form_envio > span {
 	color: #ab4493;
 }
 
 
-dialog > .aviso {
+#form_envio > .aviso {
 	font-size: 13px;
 	color: #0e0e0e;
 }
 
 
-dialog > h1 {
+#form_envio > h1 {
 	font-size: 39px;
 	color: #ab4493;
 }
 
 
-dialog > h3 {
+#form_envio > h3 {
 	font-size: 16px;
 	padding-bottom: 0px;
 	color: #0e0e0e;
 }
 
 
-dialog > p{
+#form_envio > p {
 	font-size: 14px;
 	color: #0e0e0e;
 }
