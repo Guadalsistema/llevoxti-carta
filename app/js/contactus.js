@@ -10,7 +10,7 @@ formLabels.forEach((label) => {
 function darProvincia(cpostal){
 	let cp_provincias={
 		1:"Álava",2:"Albacete",3:"Alicante",4:"Almer\u00EDa",5:"\u00C1vila",
-		6:"Badajoz",7:"Baleares",08:"Barcelona",09:"Burgos",10:"C\u00E1ceres",
+		6:"Badajoz",7:"Baleares",8:"Barcelona",9:"Burgos",10:"C\u00E1ceres",
 		11:"C\u00E1diz",12:"Castell\u00F3n",13:"CiudadReal",14:"C\u00F3rdoba",15:"Coruña",
 		16:"Cuenca",17:"Gerona",18:"Granada",19:"Guadalajara",20:"Guip\u00FAzcoa",
 		21:"Huelva",22:"Huesca",23:"Ja\u00E9n",24:"Le\u00F3n",25:"L\u00E9rida",

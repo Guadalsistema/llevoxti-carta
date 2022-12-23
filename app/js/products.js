@@ -1,3 +1,4 @@
+import { Address } from './customer/address.js';
 import { Cart } from './cart/model.js';
 import { config } from './config.js';
 import { ProductCategoryLi, ProductCard, ProductList } from  './products/ui.js';
@@ -50,44 +51,103 @@ function displayCategories(categories) {
 	return Promise.resolve(categories)
 }
 
-function setBehaviour() {
-	let cartButton = document.querySelector("#products-cart-button");
-	cartButton.addEventListener('click',() => {
-		var url_order = config["url"] + "restaurant/order" + window.location.search;
+function darProvincia(cpostal){
+	let cp_provincias={
+		1:"Álava", 2:"Albacete", 3:"Alicante", 4:"Almer\u00EDa", 5:"\u00C1vila",
+		6:"Badajoz", 7:"Baleares", 8:"Barcelona", 9:"Burgos", 10:"C\u00E1ceres",
+		11:"C\u00E1diz", 12:"Castell\u00F3n", 13:"Ciudad Real", 14:"C\u00F3rdoba", 15:"Coruña",
+		16:"Cuenca", 17:"Gerona", 18:"Granada", 19:"Guadalajara", 20:"Guip\u00FAzcoa",
+		21:"Huelva", 22:"Huesca", 23:"Ja\u00E9n", 24:"Le\u00F3n", 25:"L\u00E9rida",
+		26:"LaRioja", 27:"Lugo", 28:"Madrid", 29:"Málaga", 30:"Murcia",
+		31:"Navarra", 32:"Orense", 33:"Asturias", 34:"Palencia", 35:"LasPalmas",
+		36:"Pontevedra", 37:"Salamanca", 38:"Santa Cruz de Tenerife", 39:"Cantabria", 40:"Segovia",
+		41:"Sevilla", 42:"Soria", 43:"Tarragona", 44:"Teruel", 45:"Toledo",
+		46:"Valencia", 47:"Valladolid", 48:"Vizcaya", 49:"Zamora", 50:"Zaragoza",
+		51:"Ceuta", 52:"Melilla"
+	};
+	if(cpostal.length == 5 && cpostal <= 52999 && cpostal >= 1000) {
+		return cp_provincias[parseInt(cpostal.substring(0, 2))];
+	}
+	else {
+		return"---";
+	}
+}
 
-		alert(url_order);
-		var Isapp = url_order.indexOf("App");
-        alert(Isapp);
-		if(Isapp >= 0) {
-			alert("Es un pedido App" + window.location.origin);
-    		window.open(window.location.origin + "/contactus.html", "_self");
-		} else {
-			alert("No es un pedido App");
+function is_whatsapp_order() {
+	const params = new Proxy(new URLSearchParams(window.location.search), {
+		get(target, prop, receiver) { return target.get(prop); },
+		has(target, key) {
+		  if (key[0] === '_') {
+		    return false;
+		  }
+		  return Boolean([...target.keys()].find((v) => v === key));
+		}
+	});	
+	return 'table' in params && params.table == "whatsapp";
+}
+
+function send_order() {
+	var url_order = config["url"] + "restaurant/order" + window.location.search;
+
+	let products = Cart.products();
+	let filtered = products.filter((prod) => prod.product_uom_qty > 0);
+	let order = {
+		order: filtered,
+	};
+
+	if (is_whatsapp_order()) { 
+		if (!Address.valid()) {
+			return;
+		}
+		order["address"] = Address.toObject();
+	}
+
+	fetch(url_order, {
+		method: 'POST',
+		cache: 'no-cache',
+		body: JSON.stringify(order),
+	})
+	.then((response) => {
+		if(response.ok) {
+			return;
+		}
+		throw new InvalidRequestException(response.statusText);
+	})
+	.then(() => {
+		let cartCounter = document.querySelector('.products-cart-button > span');
+		var pList = document.querySelector('product-list');
+		for (let pCard of pList.shadowRoot.querySelectorAll('product-card[product_uom_qty]:not([product_uom_qty="0"])')) {
+			pCard.setAttribute("product_uom_qty", "0");
 		}
 
-		let products = Cart.products();
-		let filtered = products.filter((prod) => prod.product_uom_qty > 0);
-		fetch(url_order, {
-			method: 'POST',
-			cache: 'no-cache',
-			body: JSON.stringify(filtered),
-		})
-		.then((response) => {
-			if(response.ok) {
-				return;
-			}
-			throw new InvalidRequestException(response.statusText);
-		})
-		.then(() => {
-			let cartCounter = document.querySelector('.products-cart-button > span');
-			var pList = document.querySelector('product-list');
-			for (let pCard of pList.shadowRoot.querySelectorAll('product-card[product_uom_qty]:not([product_uom_qty="0"])')) {
-				pCard.setAttribute("product_uom_qty", "0");
-			}
+		Cart.clear();
+		cartCounter.textContent = Cart.number_of_products();
+	});
+}
 
-			Cart.clear();
-			cartCounter.textContent = Cart.number_of_products();
-		});
+function show_address_dialog() {
+	Address.labels.forEach((label) => {
+		let value = localStorage.getItem("lxt" + label);
+		if (value !== null) {
+			document.getElementById(label).value = value;
+		}
+	});
+	document.getElementsByTagName("dialog")[0].showModal();
+}
+
+function setBehaviour() {
+	var inputCP = document.getElementById('c_postal');
+	inputCP.onkeyup = function(){
+		document.getElementById('provincia').value = darProvincia(inputCP.value);
+	}
+	let cartButton = document.querySelector("#products-cart-button");
+	cartButton.addEventListener('click',() => {
+		if (is_whatsapp_order() && !Address.valid()) { 
+			show_address_dialog();	
+		} else {
+			send_order();
+		}
+
 	});
 	/*let seeCartButton = document.querySelector("#products-see-cart-button");
 	seeCartButton.addEventListener('click',() => {
