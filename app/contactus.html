@@ -1,176 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-     <meta charset="utf-8">
-	 <meta name="viewport" content="initial-scale=1">
-     <title>Llevoxti - Contacto</title>
-     <link rel="preconnect" href="https://fonts.googleapis.com">
-     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-     <link href="https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@200;400;800&display=swap" rel="stylesheet">
-     <link rel="stylesheet" href="css/style.css">
-     <link rel="stylesheet" type="text/css" href="css/contactus.css">
-   </head>
-   <body>
+	 <head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>Llevoxti - Contacto</title>
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/contactus.css">
+		<script src="js/contactus.js" defer></script>
+	</head>
+	<body>
 
-    <header class="header">
-      <div><h1 class="header__title">Restaurant</h1></div>
-    </header>
+		<header class="header">
+			<div><h1 class="header__title">Restaurant</h1></div>
+		</header>
 
-   <div class="main">
+	<div class="main">
+		<div class="contactusform">
+			<h1>Formulario de envío</h1>
+				<h3>En breve enviaremos su pedido</h3>
+					<form id= "form_envio" action="" method="post">
+						<p>
+							<label for="email" class="colocar_email">Email
+								<span class="obligatorio">*</span>
+							</label>
+								<input type="email" name="introducir_email" id="email" required="obligatorio" placeholder="Escribe tu Email")>
+						</p>
+						<p>
+							<label for="nombre" class="colocar_nombre">Nombre
+								<span class="obligatorio">*</span>
+							</label>
+								<input type="text" name="introducir_nombre" id="nombre" required="obligatorio" placeholder="Escribe tu nombre">
+						</p>
 
-        <div class="contactusform">      
-          <h1>Formulario de envío</h1>
-            <h3>En breve enviaremos su pedido</h3>
-    
-    
-              <form id= "form_envio" action="" method="post">       
-    
-                    <p>
-                     <label for="email" class="colocar_email">Email
-                      <span class="obligatorio">*</span>
-                     </label>
-                       <input type="email" name="introducir_email" id="email" required="obligatorio" placeholder="Escribe tu Email")>
-                    </p>                
-                    <p>
-                      <label for="nombre" class="colocar_nombre">Nombre
-                        <span class="obligatorio">*</span>
-                      </label>
-                        <input type="text" name="introducir_nombre" id="nombre" required="obligatorio" placeholder="Escribe tu nombre">
-                    </p>
+						<p>
+							<label for="telefone" class="colocar_telefono">Teléfono
+							</label>
+								<input type="tel" name="introducir_telefono" id="telefono" placeholder="Escribe tu teléfono">
+						</p>
 
-                    <p>
-                      <label for="telefone" class="colocar_telefono">Teléfono
-                      </label>
-                        <input type="tel" name="introducir_telefono" id="telefono" placeholder="Escribe tu teléfono">
-                    </p>    
-                  
-                    <p>
-                      <label for="direccion" class="colocar_direccion">Dirección de envío
-                       <span class="obligatorio">*</span>
-                      </label>
-                        <input type="text" name="introducir_direccion" id="direccion" placeholder="Escribe tu dirección de envío">
-                    </p> 
+						<p>
+							<label for="direccion" class="colocar_direccion">Dirección de envío
+							<span class="obligatorio">*</span>
+							</label>
+								<input type="text" name="introducir_direccion" id="direccion" placeholder="Escribe tu dirección de envío">
+						</p>
 
-                    <p>
-                      <label for="c_postal" class="colocar_c_postal">Código postal de envío
-                       <span class="obligatorio">*</span>
-                      </label>
-                        <input type="text" name="introducir_c_postal" id="c_postal" placeholder="Escribe tu código postal de envío">
-                    </p>
+						<p>
+							<label for="c_postal" class="colocar_c_postal">Código postal de envío
+							<span class="obligatorio">*</span>
+							</label>
+								<input type="text" name="introducir_c_postal" id="c_postal" placeholder="Escribe tu código postal de envío">
+						</p>
 
-                    <p>
-                      <label for="poblacion" class="colocar_poblacion">Población de envío
-                       <span class="obligatorio">*</span>
-                      </label>
-                        <input type="text" name="introducir_poblacion" id="poblacion" placeholder="Escribe tu población de envío">
-                    </p> 
+						<p>
+							<label for="poblacion" class="colocar_poblacion">Población de envío
+							<span class="obligatorio">*</span>
+							</label>
+								<input type="text" name="introducir_poblacion" id="poblacion" placeholder="Escribe tu población de envío">
+						</p>
 
-                    <p>
-                      <label for="provincia" class="colocar_provincia">Provincia de envío
-                       <span class="obligatorio">*</span>
-                      </label>
-                        <input type="text" name="introducir_provincia" id="provincia" placeholder="Escribe tu provincia de envío">
-                    </p> 
+						<p>
+							<label for="provincia" class="colocar_provincia">Provincia de envío
+							<span class="obligatorio">*</span>
+							</label>
+								<input type="text" name="introducir_provincia" id="provincia" placeholder="Escribe tu provincia de envío">
+						</p>
 
-                    <p>
-                      <label for="mensaje" class="colocar_mensaje">Mensaje
-                      </label>                     
-                        <textarea name="introducir_mensaje" class="texto_mensaje" id="mensaje" required="obligatorio" placeholder="Deja aquí tu comentario..."></textarea> 
-                    </p>       
-                                    
-                  <p>
-                    <button type="submit">Enviar
+						<p>
+							<label for="mensaje" class="colocar_mensaje">Mensaje
+							</label>
+								<textarea name="introducir_mensaje" class="texto_mensaje" id="mensaje" required="obligatorio" placeholder="Deja aquí tu comentario..."></textarea>
+						</p>
 
-                    </button>
-                  </p>
-   
-                    <p class="aviso">
-                      <span class="obligatorio"> * </span>los campos son obligatorios.
-                    </p>          
-                
-              </form>
-              <script>
-                /*if(localStorage.getItem("lxtemail")===null){
-                  alert ("no existe")
-                }else{
-                  alert ("Existe")
-                }*/
-                 document.getElementById("email").value = localStorage.getItem("lxtemail").replace(/['"]+/g, '');
-                 document.getElementById("nombre").value = localStorage.getItem("lxtnombre").replace(/['"]+/g, '');
-                 document.getElementById("telefono").value = localStorage.getItem("lxttelefono").replace(/['"]+/g, '');
-                 document.getElementById("direccion").value = localStorage.getItem("lxtdireccion").replace(/['"]+/g, '');
-                 document.getElementById("c_postal").value = localStorage.getItem("lxtc_postal").replace(/['"]+/g, '');
-                 document.getElementById("poblacion").value = localStorage.getItem("lxtpoblacion").replace(/['"]+/g, '');
-                 document.getElementById("provincia").value = localStorage.getItem("lxtprovincia").replace(/['"]+/g, '');
-                 document.getElementById("mensaje").value = localStorage.getItem("lxtmensaje").replace(/['"]+/g, '');
-              </script>
-  
-              <script type="text/javascript">
-                function darProvincia(cpostal){
-                  var cp_provincias = {
-                    1: "Álava", 2: "Albacete", 3: "Alicante", 4: "Almer\u00EDa", 5: "\u00C1vila",
-                    6: "Badajoz", 7: "Baleares", 08: "Barcelona", 09: "Burgos", 10: "C\u00E1ceres",
-                    11: "C\u00E1diz", 12: "Castell\u00F3n", 13: "Ciudad Real", 14: "C\u00F3rdoba", 15: "Coruña",
-                    16: "Cuenca", 17: "Gerona", 18: "Granada", 19: "Guadalajara", 20: "Guip\u00FAzcoa",
-                    21: "Huelva", 22: "Huesca", 23: "Ja\u00E9n", 24: "Le\u00F3n", 25: "L\u00E9rida",
-                    26: "La Rioja", 27: "Lugo", 28: "Madrid", 29: "Málaga", 30: "Murcia",
-                    31: "Navarra", 32: "Orense", 33: "Asturias", 34: "Palencia", 35: "Las Palmas",
-                    36: "Pontevedra", 37: "Salamanca", 38: "Santa Cruz de Tenerife", 39: "Cantabria", 40: "Segovia",
-                    41: "Sevilla", 42: "Soria", 43: "Tarragona", 44: "Teruel", 45: "Toledo",
-                    46: "Valencia", 47: "Valladolid", 48: "Vizcaya", 49: "Zamora", 50: "Zaragoza",
-                    51: "Ceuta", 52: "Melilla"
-                  };
-                  if(cpostal.length == 5 && cpostal <= 52999 && cpostal >= 1000)
-                    return cp_provincias[parseInt(cpostal.substring(0,2))];
-                  else
-                    return "---";
-                }
-                var inputCP = document.getElementById('c_postal');
-                inputCP.onkeyup = function(){
-                  document.getElementById('provincia').value = darProvincia(inputCP.value);
-                }
-              </script>
-              <script>
-                 const $form_envio = document.querySelector("#form_envio")
-                 $form_envio.addEventListener('submit', datosenvio)
-                 function datosenvio(event){
-                  event.preventDefault()
-                  var email = document.getElementById("email").value;
-                  localStorage.setItem("lxtemail",JSON.stringify(email));
-                  var nombre = document.getElementById("nombre").value;
-                  localStorage.setItem("lxtnombre",JSON.stringify(nombre));
-                  var telefono = document.getElementById("telefono").value;
-                  localStorage.setItem("lxttelefono",JSON.stringify(telefono));
-                  var direccion = document.getElementById("direccion").value;
-                  localStorage.setItem("lxtdireccion",JSON.stringify(direccion));
-                  var c_postal = document.getElementById("c_postal").value;
-                  localStorage.setItem("lxtc_postal",JSON.stringify(c_postal));
-                  var poblacion = document.getElementById("poblacion").value;
-                  localStorage.setItem("lxtpoblacion",JSON.stringify(poblacion));
-                  var provincia = document.getElementById("provincia").value;
-                  localStorage.setItem("lxtprovincia",JSON.stringify(provincia));
-                  var mensaje = document.getElementById("mensaje").value;
-                  localStorage.setItem("lxtmensaje",JSON.stringify(mensaje));
-                 }
-              </script>
+					<p>
+						<button type="submit">Enviar
 
-        </div>  
-      </div>
-    
-       <nav id="pie-app" class="pie-app">
-          <div class="logo-pie">
-             <img src="img/llevoxtiapaisado400.png" alt="LLEVOXTI" />
-          </div>
-          <div class="mi-pedido">
-             <button type="button" class="products-cart-button" id="products-cart-button">Enviar pedido<span> 0</span></button> 
-              <label for="pedido" class="toggle-button"></label>
-          </div>
-          <!-- div class="mi-cuenta">
-             <button type="button" class="products-cart-button" id="products-see-cart-button">Ver pedido</button>
-          </div -->
-       </nav>
-       <footer>
-       </footer>
-   </body>
+						</button>
+					</p>
+
+						<p class="aviso">
+							<span class="obligatorio"> * </span>los campos son obligatorios.
+						</p>
+
+					</form>
+
+			</div>
+		</div>
+
+		<nav id="pie-app" class="pie-app">
+			<div class="logo-pie">
+				<img src="img/llevoxtiapaisado400.png" alt="LLEVOXTI" />
+			</div>
+			<div class="mi-pedido">
+				<button type="button" class="products-cart-button" id="products-cart-button">Enviar pedido<span> 0</span></button>
+					<label for="pedido" class="toggle-button" />
+			</div>
+			<!-- div class="mi-cuenta">
+				<button type="button" class="products-cart-button" id="products-see-cart-button">Ver pedido</button>
+			</div -->
+		</nav>
+	 </body>
 </html>
 
