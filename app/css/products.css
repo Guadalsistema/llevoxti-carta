@@ -1,80 +1,80 @@
-dialog > .contactusform {  
-	width: 460px; 
+dialog > .contactusform {
+	width: 460px;
 	height: auto;
 	margin: 0px auto;
-	border-radius: 10px;  
+	border-radius: 10px;
 	padding-top: 0px;
-	padding-bottom: 20px;  
-	background-color: var(--amarillo); 
-	padding-left: 30px; 
+	padding-bottom: 20px;
+	background-color: var(--amarillo);
+	padding-left: 30px;
 }
 
 dialog > input {
-	background-color: #fbfbfb; 
-	width: 408px; 
-	height: 40px; 
-	border-radius: 5px;  
-	border-style: solid; 
-	border-width: 1px; 
-	border-color: var(--oro); 
-	margin-top: 10px;  
+	background-color: #fbfbfb;
+	width: 408px;
+	height: 40px;
+	border-radius: 5px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: var(--oro);
+	margin-top: 10px;
 	padding-left: 10px;
-	margin-bottom: 20px; 
+	margin-bottom: 20px;
 }
 
 
 dialog > textarea {
-	background-color: #fbfbfb; 
-	width: 405px; 
-	height: 150px; 
-	border-radius: 5px;  
-	border-style: solid; 
-	border-width: 1px; 
-	border-color: #ab4493; 
-	margin-top: 10px;  
+	background-color: #fbfbfb;
+	width: 405px;
+	height: 150px;
+	border-radius: 5px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #ab4493;
+	margin-top: 10px;
 	padding-left: 10px;
-	margin-bottom: 20px; 
-	padding-top: 15px; 
+	margin-bottom: 20px;
+	padding-top: 15px;
 }
 
 
 dialog > label {
-	display: block; 
+	display: block;
 }
 
 
 dialog > button p{
-	color: #fff; 
+	color: #fff;
 }
 
 
 dialog > span {
-	color: #ab4493; 
+	color: #ab4493;
 }
 
 
 dialog > .aviso {
-	font-size: 13px;  
-	color: #0e0e0e;  
+	font-size: 13px;
+	color: #0e0e0e;
 }
 
 
 dialog > h1 {
-	font-size: 39px;  
+	font-size: 39px;
 	color: #ab4493;
 }
 
 
 dialog > h3 {
-	font-size: 16px; 
+	font-size: 16px;
 	padding-bottom: 0px;
-	color: #0e0e0e;   
+	color: #0e0e0e;
 }
 
 
 dialog > p{
-	font-size: 14px; 
-	color: #0e0e0e; 
+	font-size: 14px;
+	color: #0e0e0e;
 }
 
 
