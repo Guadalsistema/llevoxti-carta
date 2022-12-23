@@ -1,6 +1,6 @@
 class Address {
-	static mandatoryLabels = ["email", "nombre", "telefono", "direccion", "c_postal", "poblacion", "provincia"];
-	static labels = ["email", "nombre", "telefono", "direccion", "c_postal", "poblacion", "provincia", "mensaje"];
+	static mandatoryLabels = ["email", "name", "telefono", "direccion", "c_postal", "poblacion", "provincia"];
+	static labels = ["email", "name", "telefono", "direccion", "c_postal", "poblacion", "provincia", "mensaje"];
 
 	static valid() {
 		let array = Address.mandatoryLabels.map((label) => {
