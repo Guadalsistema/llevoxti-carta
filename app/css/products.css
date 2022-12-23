@@ -1,6 +1,7 @@
-#form_envio > .contactusform {
-	width: 460px;
-	height: auto;
+#address_dialog {
+    height: 85vh;
+    width: 70vw;
+    top: 10vh;
 	margin: 0px auto;
 	border-radius: 10px;
 	padding-top: 0px;
@@ -9,70 +10,67 @@
 	padding-left: 30px;
 }
 
-#form_envio > input {
+#address_dialog input {
 	background-color: #fbfbfb;
-	width: 408px;
+	width: 50vw;
 	height: 40px;
 	border-radius: 5px;
 	border-style: solid;
 	border-width: 1px;
 	border-color: var(--oro);
-	margin-top: 10px;
+	margin-top: 0px;
 	padding-left: 10px;
-	margin-bottom: 20px;
+	margin-bottom: 0px;
 }
 
 
-#form_envio > textarea {
+#address_dialog textarea {
 	background-color: #fbfbfb;
-	width: 405px;
+	width: 55vw;
 	height: 150px;
 	border-radius: 5px;
 	border-style: solid;
 	border-width: 1px;
 	border-color: #ab4493;
-	margin-top: 10px;
+	margin-top: 0px;
 	padding-left: 10px;
-	margin-bottom: 20px;
+	margin-bottom: 0px;
 	padding-top: 15px;
 }
 
 
-#form_envio > label {
+#address_dialog label {
 	display: block;
 }
 
 
-#form_envio > button p{
+#address_dialog button p{
 	color: #fff;
 }
 
 
-#form_envio > span {
+#address_dialog span {
 	color: #ab4493;
 }
 
 
-#form_envio > .aviso {
+#faddress_dialog aviso {
 	font-size: 13px;
 	color: #0e0e0e;
 }
 
-
-#form_envio > h1 {
+#faddress_dialog h1 {
 	font-size: 39px;
 	color: #ab4493;
 }
 
-
-#form_envio > h3 {
+#faddress_dialog h3 {
 	font-size: 16px;
 	padding-bottom: 0px;
 	color: #0e0e0e;
 }
 
-
-#form_envio > p {
+#faddress_dialog p {
 	font-size: 14px;
 	color: #0e0e0e;
 }
