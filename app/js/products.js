@@ -137,9 +137,9 @@ function show_address_dialog() {
 }
 
 function setBehaviour() {
-	var inputCP = document.getElementById('c_postal');
+	var inputCP = document.getElementById('zip');
 	inputCP.onkeyup = function(){
-		document.getElementById('provincia').value = darProvincia(inputCP.value);
+		document.getElementById('state_id').value = darProvincia(inputCP.value);
 	}
 	let dialog_form = document.getElementById("form_envio");
 	dialog_form.addEventListener('click', (ev) => {
