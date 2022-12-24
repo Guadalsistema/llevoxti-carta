@@ -12,9 +12,10 @@
      <script type="module" src="js/products.js"></script>
    </head>
    <body>
-	   <dialog id="address_dialog">
-			<div class="contactusform">
-				<h1>Formulario de envío</h1>
+      <dialog is="cart-dialog" id="cart-dialog"></dialog>
+	  <dialog id="address_dialog">
+		<div class="contactusform">
+			<h1>Formulario de envío</h1>
 				<h3>En breve enviaremos su pedido</h3>
 				<form id="form_envio" method="dialog">
 					<p>
@@ -74,8 +75,9 @@
 					<p class="aviso">
 						<span class="obligatorio"> * </span>los campos son obligatorios.
 					</p>
-					<p> <button class="products-cart-button" type="submit">Volver</button>
-						<button class="products-cart-button" type="submit">Enviar</button>
+					<p>
+						<button class="products-cart-button" type="submit">Volver</button>
+						<button class="products-cart-button" type="submit" method="dialog">Enviar</button>
 					</p>
 				</form>
 			</div>
@@ -104,9 +106,9 @@
              <button type="button" class="products-cart-button" id="products-cart-button">Enviar pedido<span>0</span></button>
              <label for="pedido" class="toggle-button"></label>
           </div>
-          <!-- div class="mi-cuenta">
-             <button type="button" class="products-cart-button" id="products-see-cart-button">Ver pedido</button>
-          </div -->
+          <div class="my-cart">
+             <button type="button" class="products-cart-button" id="show-cart-button">Ver pedido</button>
+          </div>
        </nav>
        <footer>
        </footer>

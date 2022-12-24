@@ -1,6 +1,7 @@
 import { Address } from './customer/address.js';
 import { Cart } from './cart/model.js';
 import { config } from './config.js';
+import { CartDialog } from './cart/dialog.js';
 import { ProductCategoryLi, ProductCard, ProductList } from  './products/ui.js';
 import { waitForElm } from './utils.js';
 import { InvalidRequestException } from './exception.js';
@@ -133,10 +134,17 @@ function show_address_dialog() {
 			document.getElementById(label).value = value;
 		}
 	});
-	document.getElementsByTagName("dialog")[0].showModal();
+	document.getElementById("address_dialog").showModal();
 }
 
 function setBehaviour() {
+	// Show Cart dialog
+	let showCartButton = document.getElementById("show-cart-button");
+	showCartButton.addEventListener('click', () => {
+		let cartDialog = document.getElementById("cart-dialog");
+		//cartDialog.
+	});
+
 	var inputCP = document.getElementById('zip');
 	inputCP.onkeyup = function(){
 		document.getElementById('state_id').value = darProvincia(inputCP.value);
@@ -151,7 +159,7 @@ function setBehaviour() {
 			}
 		});
 		send_order();
-		document.getElementsByTagName("dialog")[0].close();
+		document.getElementById("address_dialog").close();
 	});
 	let cartButton = document.querySelector("#products-cart-button");
 	cartButton.addEventListener('click',() => {
@@ -196,5 +204,6 @@ function main() {
 customElements.define('product-category', ProductCategoryLi, { extends: "li" });
 customElements.define('product-list', ProductList);
 customElements.define('product-card', ProductCard);
+customElements.define("cart-dialog", CartDialog, { extends: "dialog" });
 
 main();
