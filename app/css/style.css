@@ -229,14 +229,10 @@ main {
 .products-cart-button{
     background-color: var(--negro);
     color:var(--blanco);
-    display: flex;
-    align-items: center;
     text-align: center;
-    justify-content: center;
-    width: 40vw;
+    width: 45%;
     height: 5vh;
     font-size: 2vh;
-    flex-wrap: nowrap;
 }
 
 .mi-cuenta{
