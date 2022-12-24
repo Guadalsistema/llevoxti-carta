@@ -1,0 +1,87 @@
+#address_dialog {
+    height: 85vh;
+    width: 70vw;
+    top: 10vh;
+	margin: 0px auto;
+	border-radius: 10px;
+	padding-top: 0px;
+	padding-bottom: 20px;
+	background-color: var(--amarillo);
+	padding-left: 30px;
+}
+
+#address_dialog input {
+	background-color: #fbfbfb;
+	width: 50vw;
+	height: 40px;
+	border-radius: 5px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: var(--oro);
+	margin-top: 0px;
+	padding-left: 10px;
+	margin-bottom: 0px;
+}
+
+
+#address_dialog textarea {
+	background-color: #fbfbfb;
+	width: 55vw;
+	height: 150px;
+	border-radius: 5px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #ab4493;
+	margin-top: 0px;
+	padding-left: 10px;
+	margin-bottom: 0px;
+	padding-top: 15px;
+}
+
+
+#address_dialog label {
+	display: block;
+}
+
+
+#address_dialog button p{
+	color: #fff;
+}
+
+
+#address_dialog span {
+	color: #ab4493;
+}
+
+
+#faddress_dialog aviso {
+	font-size: 13px;
+	color: #0e0e0e;
+}
+
+#faddress_dialog h1 {
+	font-size: 39px;
+	color: #ab4493;
+}
+
+#faddress_dialog h3 {
+	font-size: 16px;
+	padding-bottom: 0px;
+	color: #0e0e0e;
+}
+
+#faddress_dialog p {
+	font-size: 14px;
+	color: #0e0e0e;
+}
+
+
+::-webkit-input-placeholder {
+	color: #a8a8a8;
+}
+
+
+::-webkit-textarea-placeholder {
+	color: #a8a8a8;
+}
+
