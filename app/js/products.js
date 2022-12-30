@@ -7,6 +7,7 @@ import { InvalidRequestException } from './exception.js';
 customElements.define('product-category', ProductCategoryLi, { extends: "li" });
 customElements.define('product-list', ProductList);
 customElements.define('product-card', ProductCard);
+customElements.define("cart-dialog", CartDialog, { extends: "dialog" });
 
 function displayRestaurantName() {
 	let namePlaceholder = document.querySelector("h1.header__title");
