@@ -212,9 +212,9 @@ main {
     flex-wrap: wrap;
     position: fixed;
     bottom: 0;
-    width: 100vw;
+    width: 80vw;
     height: 5vh;
-    background-color:var(--blanco);
+    background-color:var(--amarillo);
   }
 .logo-pie{
     width: 20vw;
@@ -230,13 +230,8 @@ main {
     background-color: var(--negro);
     color:var(--blanco);
     text-align: center;
-    width: 45%;
+    width: 40vw;
     height: 5vh;
     font-size: 2vh;
-}
-
-.mi-cuenta{
-    width: 40%;
-    text-align: center;
-    justify-content: center;
+    border-color: var(--amarillo);
 }
