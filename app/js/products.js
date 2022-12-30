@@ -7,7 +7,6 @@ import { InvalidRequestException } from './exception.js';
 customElements.define('product-category', ProductCategoryLi, { extends: "li" });
 customElements.define('product-list', ProductList);
 customElements.define('product-card', ProductCard);
-customElements.define("cart-dialog", CartDialog, { extends: "dialog" });
 
 function displayRestaurantName() {
 	let namePlaceholder = document.querySelector("h1.header__title");
@@ -157,17 +156,24 @@ function setBehaviour() {
 	cartDialog.addEventListener('close', () => document.querySelector('#show-cart-button').style.display = "flex");
 	
 	showCartButton.addEventListener('click', () => {
+<<<<<<< HEAD
+=======
+		let cartDialog = document.getElementById("cart-dialog");
+>>>>>>> d912859 (added cart dialog)
 		let cartProductList = document.getElementById("cart-product-list");
 		cartProductList.clear();
 		let products = Cart.toObjects();
 		cartProductList.loadObjects(products);
 		const lambda = (x) => parseInt(x.getAttribute('product_uom_qty'));
 		cartProductList.displayProductCards(lambda)
+<<<<<<< HEAD
 		//document.querySelector('#pie-app').style.display = "none";
 
 		document.querySelector('#products-cart-button').style.display = "none";
 		document.querySelector('#show-cart-button').style.display = "none";
 
+=======
+>>>>>>> d912859 (added cart dialog)
 		cartDialog.showModal();
 	});
 
@@ -228,9 +234,12 @@ function fetchContent() {
 
 	var url_categories = config["url"] + "/menu/category";
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	const pList = document.getElementById('full-product-list').shadowRoot;
 >>>>>>> ee99303 (update dialog buttons)
+=======
+>>>>>>> d912859 (added cart dialog)
 	fetch(url_categories, {
 		method: 'GET',
 	}).then(res => res.json())
