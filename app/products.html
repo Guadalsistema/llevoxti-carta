@@ -12,7 +12,9 @@
      <script type="module" src="js/products.js"></script>
    </head>
    <body>
-      <dialog is="cart-dialog" id="cart-dialog"></dialog>
+      <dialog is="cart-dialog" id="cart-dialog">
+		  <product-list></product-list>
+	  </dialog>
 	  <dialog id="address_dialog">
 		<div class="contactusform">
 			<h1>Formulario de envío</h1>
@@ -22,48 +24,48 @@
 						<label for="email" class="colocar_email">Email
 							<span class="obligatorio">*</span>
 						</label>
-							<input type="email" name="introducir_email" id="email" required="obligatorio" placeholder="Escribe tu Email")>
+							<input type="email" name="introducir_email" id="email" required="1" placeholder="Escribe tu Email")>
 					</p>
 					<p>
 						<label for="name" class="colocar_nombre">Nombre
 							<span class="obligatorio">*</span>
 						</label>
-							<input type="text" name="introducir_nombre" id="name" required="obligatorio" placeholder="Escribe tu nombre">
+							<input type="text" name="introducir_nombre" id="name" required="1" placeholder="Escribe tu nombre">
 					</p>
 
 					<p>
 						<label for="phone" class="colocar_telefono">Teléfono
 							<span class="obligatorio">*</span>
 						</label>
-							<input type="tel" name="introducir_telefono" id="phone" placeholder="Escribe tu teléfono">
+							<input type="tel" name="introducir_telefono" id="phone" required="1" placeholder="Escribe tu teléfono">
 					</p>
 
 					<p>
 						<label for="street" class="colocar_direccion">Dirección de envío
 						<span class="obligatorio">*</span>
 						</label>
-							<input type="text" name="introducir_direccion" id="street" placeholder="Escribe tu dirección de envío">
+							<input type="text" name="introducir_direccion" id="street" required="1" placeholder="Escribe tu dirección de envío">
 					</p>
 
 					<p>
 						<label for="zip" class="colocar_c_postal">Código postal de envío
 						<span class="obligatorio">*</span>
 						</label>
-							<input type="text" name="introducir_c_postal" id="zip" placeholder="Escribe tu código postal de envío">
+							<input type="text" name="introducir_c_postal" id="zip" required="1" placeholder="Escribe tu código postal de envío">
 					</p>
 
 					<p>
 						<label for="city" class="colocar_poblacion">Población de envío
 						<span class="obligatorio">*</span>
 						</label>
-							<input type="text" name="introducir_poblacion" id="city" placeholder="Escribe tu población de envío">
+							<input type="text" name="introducir_poblacion" id="city" required="1" placeholder="Escribe tu población de envío">
 					</p>
 
 					<p>
 						<label for="state_id" class="colocar_provincia">Provincia de envío
 						<span class="obligatorio">*</span>
 						</label>
-							<input type="text" name="introducir_provincia" id="state_id" placeholder="Escribe tu provincia de envío">
+							<input type="text" name="introducir_provincia" id="state_id" required="1" placeholder="Escribe tu provincia de envío">
 					</p>
 
 					<p>
