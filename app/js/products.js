@@ -1,15 +1,12 @@
 import { Address } from './customer/address.js';
 import { Cart } from './cart/model.js';
 import { config } from './config.js';
-import { CartDialog } from './cart/dialog.js';
 import { ProductCategoryLi, ProductCard, ProductList } from  './products/ui.js';
-import { waitForElm } from './utils.js';
 import { InvalidRequestException } from './exception.js';
 
 customElements.define('product-category', ProductCategoryLi, { extends: "li" });
 customElements.define('product-list', ProductList);
 customElements.define('product-card', ProductCard);
-customElements.define("cart-dialog", CartDialog, { extends: "dialog" });
 
 function displayRestaurantName() {
 	let namePlaceholder = document.querySelector("h1.header__title");
@@ -30,7 +27,6 @@ function displayProducts(products) {
 			product['product_uom_qty'] = 0;
 		}
 		pCard.fromObject(product);
-		let buttons = pCard.shadowRoot.querySelectorAll('.product__button');
 		placeholder.shadowRoot.appendChild(pCard);
 	}
 }
@@ -81,12 +77,12 @@ function darProvincia(cpostal){
 
 function is_app_order() {
 	const params = new Proxy(new URLSearchParams(window.location.search), {
-		get(target, prop, receiver) { return target.get(prop); },
+		get(target, prop, _) { return target.get(prop); },
 		has(target, key) {
-		  if (key[0] === '_') {
-		    return false;
-		  }
-		  return Boolean([...target.keys()].find((v) => v === key));
+			if (key[0] === '_') {
+				return false;
+			}
+			return Boolean([...target.keys()].find((v) => v === key));
 		}
 	});
 	return 'table' in params && params.table == "app";
@@ -147,7 +143,13 @@ function setBehaviour() {
 	let showCartButton = document.getElementById("show-cart-button");
 	showCartButton.addEventListener('click', () => {
 		let cartDialog = document.getElementById("cart-dialog");
-		//cartDialog.
+		let cartProductList = document.getElementById("cart-product-list");
+		cartProductList.clear();
+		let products = Cart.toObjects();
+		cartProductList.loadObjects(products);
+		const lambda = (x) => parseInt(x.getAttribute('product_uom_qty'));
+		cartProductList.displayProductCards(lambda)
+		cartDialog.showModal();
 	});
 
 	var inputCP = document.getElementById('zip');
@@ -188,23 +190,18 @@ function setBehaviour() {
 			}
 		}
 	});
-	/*let seeCartButton = document.querySelector("#products-see-cart-button");
-	seeCartButton.addEventListener('click',() => {
-		window.location.href = window.location.origin + "/cart.html" + window.location.search;
-	});*/
 }
 
 function fetchContent() {
 	var url_products = config["url"] + "/menu";
 	fetch(url_products, {
-	  method: 'GET',
+		method: 'GET',
 	}).then(res => res.json())
 	.then(products => displayProducts(products));
 
 	var url_categories = config["url"] + "/menu/category";
-	const pList = document.getElementById('full-product-list').shadowRoot;
 	fetch(url_categories, {
-	  method: 'GET',
+		method: 'GET',
 	}).then(res => res.json())
 	.then(categories => displayCategories(categories));
 

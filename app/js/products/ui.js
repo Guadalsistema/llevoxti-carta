@@ -57,7 +57,9 @@ class ProductCard extends ModelHTMLElement {
 				return;
 			}
 			let p = this.shadowRoot.querySelector('p');
-			Cart.update(this.toObject());
+			if (parseInt(oldVal) != parseInt(newVal)) {
+				Cart.update(this.toObject());
+			}
 			const cartCounter = document.querySelector('.products-cart-button > span');
 			if(cartCounter) {
 				cartCounter.textContent = Cart.number_of_products();
@@ -140,6 +142,11 @@ class ProductCard extends ModelHTMLElement {
 }
 
 class ProductList extends ModelHTMLElement {
+
+	static get observedAttributes() {
+		return ['display_products_with_0_qty'];
+	}
+
 	// todo name list setter
 	constructor(){
 		super();
@@ -154,19 +161,56 @@ class ProductList extends ModelHTMLElement {
 		shadow.appendChild(container);
 	}
 
+	attributeChangedCallback(attrName, oldVal, newVal) {
+		if(attrName == "display_products_with_0_qty") {
+			let h2 = this.shadowRoot.querySelector('h2');
+			h2.textContent = newVal;
+			let img = this.shadowRoot.querySelector('img');
+			img.setAttribute('alt', newVal);
+			return;
+		}
+	}
+
 	clear() {
 		for (let pCard of this.shadowRoot.querySelectorAll('product-card')) {
 			pCard.remove();
 		}
 	}
 
+	displayProductCards(func=undefined) {
+		if(func === undefined) {
+			func = () => true;
+		}
+		let cards = this.shadowRoot.querySelectorAll('product-card');
+		let index = 0;
+		for(var card of cards) {
+			let display = "none";
+			if(func(card, index)) {
+				display = "block";
+			}
+			card.style.display = display;
+			index++;
+		}
+	}
+
+	/**
+	 * @param {array} products
+	 */
+	loadObjects(products) {
+		for (const product of products) {
+			let pCard = document.createElement('product-card');
+			pCard.fromObject(product);
+			this.shadowRoot.appendChild(pCard);
+		}
+
+	}
 }
 
 class ProductCategoryLi extends HTMLLIElement {
 	constructor() {
-	  super();
+		super();
 
-	  // write element functionality in here
+		// write element functionality in here
 
 	}
 }

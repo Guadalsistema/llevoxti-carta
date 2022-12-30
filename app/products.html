@@ -11,9 +11,12 @@
      <link rel="stylesheet" href="css/products.css">
      <script type="module" src="js/products.js"></script>
    </head>
-   <body>
-      <dialog is="cart-dialog" id="cart-dialog">
-		  <product-list id="cart-product-list"></product-list>
+	<body>
+		<dialog id="cart-dialog">
+			<product-list id="cart-product-list"></product-list>
+			<form method="dialog">
+				<button>Cerrar</button>
+			</form>
 	  </dialog>
 	  <dialog id="address_dialog">
 		<div class="contactusform">
