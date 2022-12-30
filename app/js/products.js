@@ -140,13 +140,19 @@ function show_address_dialog() {
 		}
 	});
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> f7a75a9 (mostrar logo y ocultar botones)
 	//document.querySelector('#pie-app').style.display = "none";
 	document.querySelector('#products-cart-button').style.display = "none";
 	document.querySelector('#show-cart-button').style.display = "none";
 
+<<<<<<< HEAD
 =======
 	document.querySelector('#pie-app').style.display = "none";
 >>>>>>> 6aaecee (hidde pie if button disabled)
+=======
+>>>>>>> f7a75a9 (mostrar logo y ocultar botones)
 	document.getElementById("address_dialog").showModal();
 }
 
@@ -155,11 +161,15 @@ function setBehaviour() {
 	let showCartButton = document.getElementById("show-cart-button");
 	let cartDialog = document.getElementById("cart-dialog");
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> f7a75a9 (mostrar logo y ocultar botones)
 	//cartDialog.addEventListener('close', () => document.querySelector('#pie-app').style.display = "flex");
 
 	cartDialog.addEventListener('close', () => document.querySelector('#products-cart-button').style.display = "flex");
 	cartDialog.addEventListener('close', () => document.querySelector('#show-cart-button').style.display = "flex");
 	
+<<<<<<< HEAD
 	showCartButton.addEventListener('click', () => {
 <<<<<<< HEAD
 =======
@@ -167,6 +177,8 @@ function setBehaviour() {
 >>>>>>> d912859 (added cart dialog)
 =======
 	cartDialog.addEventListener('close', () => document.querySelector('#pie-app').style.display = "flex");
+=======
+>>>>>>> f7a75a9 (mostrar logo y ocultar botones)
 	showCartButton.addEventListener('click', () => {
 >>>>>>> 6aaecee (hidde pie if button disabled)
 		let cartProductList = document.getElementById("cart-product-list");
@@ -177,16 +189,22 @@ function setBehaviour() {
 		cartProductList.displayProductCards(lambda)
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> f7a75a9 (mostrar logo y ocultar botones)
 		//document.querySelector('#pie-app').style.display = "none";
 
 		document.querySelector('#products-cart-button').style.display = "none";
 		document.querySelector('#show-cart-button').style.display = "none";
 
+<<<<<<< HEAD
 =======
 >>>>>>> d912859 (added cart dialog)
 =======
 		document.querySelector('#pie-app').style.display = "none";
 >>>>>>> 6aaecee (hidde pie if button disabled)
+=======
+>>>>>>> f7a75a9 (mostrar logo y ocultar botones)
 		cartDialog.showModal();
 	});
 
@@ -197,16 +215,22 @@ function setBehaviour() {
 	let dialog_form = document.getElementById("address_dialog");
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> f7a75a9 (mostrar logo y ocultar botones)
 	//dialog_form.addEventListener('close', () => document.querySelector('#pie-app').style.display = "flex");
     
 	dialog_form.addEventListener('close', () => document.querySelector('#products-cart-button').style.display = "flex");
 	dialog_form.addEventListener('close', () => document.querySelector('#show-cart-button').style.display = "flex");
 
+<<<<<<< HEAD
 =======
 >>>>>>> ee99303 (update dialog buttons)
 =======
 	dialog_form.addEventListener('close', () => document.querySelector('#pie-app').style.display = "flex");
 >>>>>>> 6aaecee (hidde pie if button disabled)
+=======
+>>>>>>> f7a75a9 (mostrar logo y ocultar botones)
 	let dialog_send = document.getElementById("dialog-address-send");
 	dialog_send.addEventListener('click', (ev) => {
 		ev.preventDefault();
