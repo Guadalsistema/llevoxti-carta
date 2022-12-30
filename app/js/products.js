@@ -135,20 +135,23 @@ function show_address_dialog() {
 			document.getElementById(label).value = value;
 		}
 	});
+	document.querySelector('#pie-app').style.display = "none";
 	document.getElementById("address_dialog").showModal();
 }
 
 function setBehaviour() {
 	// Show Cart dialog
 	let showCartButton = document.getElementById("show-cart-button");
+	let cartDialog = document.getElementById("cart-dialog");
+	cartDialog.addEventListener('close', () => document.querySelector('#pie-app').style.display = "flex");
 	showCartButton.addEventListener('click', () => {
-		let cartDialog = document.getElementById("cart-dialog");
 		let cartProductList = document.getElementById("cart-product-list");
 		cartProductList.clear();
 		let products = Cart.toObjects();
 		cartProductList.loadObjects(products);
 		const lambda = (x) => parseInt(x.getAttribute('product_uom_qty'));
 		cartProductList.displayProductCards(lambda)
+		document.querySelector('#pie-app').style.display = "none";
 		cartDialog.showModal();
 	});
 
@@ -157,6 +160,7 @@ function setBehaviour() {
 		document.getElementById('state_id').value = darProvincia(inputCP.value);
 	}
 	let dialog_form = document.getElementById("address_dialog");
+	dialog_form.addEventListener('close', () => document.querySelector('#pie-app').style.display = "flex");
 	let dialog_send = document.getElementById("dialog-address-send");
 	dialog_send.addEventListener('click', (ev) => {
 		ev.preventDefault();
