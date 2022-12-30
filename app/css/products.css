@@ -10,6 +10,18 @@
 	padding-left: 30px;
 }
 
+#cart-dialog {
+    height: 85vh;
+    width: 70vw;
+    top: 10vh;
+	margin: 0px auto;
+	border-radius: 10px;
+	padding-top: 0px;
+	padding-bottom: 20px;
+	background-color: var(--amarillo);
+	padding-left: 30px;
+}
+
 #address_dialog input {
 	background-color: #fbfbfb;
 	width: 50vw;
