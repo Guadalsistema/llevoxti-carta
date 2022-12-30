@@ -13,7 +13,7 @@
    </head>
    <body>
       <dialog is="cart-dialog" id="cart-dialog">
-		  <product-list></product-list>
+		  <product-list id="cart-product-list"></product-list>
 	  </dialog>
 	  <dialog id="address_dialog">
 		<div class="contactusform">
@@ -71,8 +71,8 @@
 						<span class="obligatorio"> * </span>los campos son obligatorios.
 					</p>
 					<p>
-						<button class="products-cart-button" type="submit">Volver</button>
-						<button class="products-cart-button" type="submit" method="dialog">Enviar</button>
+						<button class="products-cart-button" id="dialog-address-cancel">Volver</button>
+						<button class="products-cart-button" id="dialog-address-send">Enviar</button>
 					</p>
 				</form>
 			</div>
@@ -91,7 +91,7 @@
           </ul>
        </nav>
        <main>
-          <product-list></product-list>
+          <product-list id="full-product-list"></product-list>
        </main>
        <nav id="pie-app" class="pie-app">
           <div class="logo-pie">

@@ -18,7 +18,7 @@ function displayRestaurantName() {
 }
 
 function displayProducts(products) {
-	var placeholder = document.querySelector('product-list');
+	var placeholder = document.getElementById('full-product-list');
 	products.sort((left, right) => { return left.category_id - right.category_id; });
 	var stored = Cart.products();
 	for (const product of products) {
@@ -48,7 +48,7 @@ function displayCategories(categories) {
 	}
 
 	placeholder.addEventListener('click', (ev) => {
-		const pList = document.querySelector('product-list');
+		const pList = document.getElementById('full-product-list');
 		let show = pList.shadowRoot.querySelector('product-card[category-id*="' + ev.target.getAttribute("category-id") + '"]');
 		if(show) {
 			show.scrollIntoView();
@@ -122,7 +122,7 @@ function send_order() {
 	})
 	.then(() => {
 		let cartCounter = document.querySelector('.products-cart-button > span');
-		var pList = document.querySelector('product-list');
+		var pList = document.getElementById('full-product-list');
 		for (let pCard of pList.shadowRoot.querySelectorAll('product-card[product_uom_qty]:not([product_uom_qty="0"])')) {
 			pCard.setAttribute("product_uom_qty", "0");
 		}
@@ -155,7 +155,8 @@ function setBehaviour() {
 		document.getElementById('state_id').value = darProvincia(inputCP.value);
 	}
 	let dialog_form = document.getElementById("address_dialog");
-	dialog_form.addEventListener('close', (ev) => {
+	let dialog_send = document.getElementById("dialog-address-send");
+	dialog_send.addEventListener('click', (ev) => {
 		ev.preventDefault();
 		Address.labels.forEach((label) => {
 			let value = document.getElementById(label).value;
@@ -164,7 +165,18 @@ function setBehaviour() {
 			}
 		});
 		send_order();
-		document.getElementById("address_dialog").close();
+		dialog_form.close();
+	});
+	let dialog_cancel = document.getElementById("dialog-address-cancel");
+	dialog_cancel.addEventListener('click', (ev) => {
+		ev.preventDefault();
+		Address.labels.forEach((label) => {
+			let value = document.getElementById(label).value;
+			if (value !== "") {
+				localStorage.setItem("lxt" + label, value);
+			}
+		});
+		dialog_form.close();
 	});
 	let cartButton = document.querySelector("#products-cart-button");
 	cartButton.addEventListener('click',() => {
@@ -190,7 +202,7 @@ function fetchContent() {
 	.then(products => displayProducts(products));
 
 	var url_categories = config["url"] + "/menu/category";
-	const pList = document.querySelector('product-list').shadowRoot;
+	const pList = document.getElementById('full-product-list').shadowRoot;
 	fetch(url_categories, {
 	  method: 'GET',
 	}).then(res => res.json())
