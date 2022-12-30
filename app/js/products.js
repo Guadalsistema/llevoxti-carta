@@ -120,6 +120,13 @@ function send_order() {
 	.then(() => {
 		let cartCounter = document.querySelector('.products-cart-button > span');
 		var pList = document.getElementById('full-product-list');
+<<<<<<< HEAD
+=======
+		for (let pCard of pList.shadowRoot.querySelectorAll('product-card[product_uom_qty]:not([product_uom_qty="0"])')) {
+			pCard.setAttribute("product_uom_qty", "0");
+		}
+
+>>>>>>> ee99303 (update dialog buttons)
 		Cart.clear();
 		cartCounter.textContent = Cart.number_of_products();
 		window.location.reload();
@@ -169,11 +176,14 @@ function setBehaviour() {
 		document.getElementById('state_id').value = darProvincia(inputCP.value);
 	}
 	let dialog_form = document.getElementById("address_dialog");
+<<<<<<< HEAD
 	//dialog_form.addEventListener('close', () => document.querySelector('#pie-app').style.display = "flex");
     
 	dialog_form.addEventListener('close', () => document.querySelector('#products-cart-button').style.display = "flex");
 	dialog_form.addEventListener('close', () => document.querySelector('#show-cart-button').style.display = "flex");
 
+=======
+>>>>>>> ee99303 (update dialog buttons)
 	let dialog_send = document.getElementById("dialog-address-send");
 	dialog_send.addEventListener('click', (ev) => {
 		ev.preventDefault();
@@ -217,6 +227,10 @@ function fetchContent() {
 	.then(products => displayProducts(products));
 
 	var url_categories = config["url"] + "/menu/category";
+<<<<<<< HEAD
+=======
+	const pList = document.getElementById('full-product-list').shadowRoot;
+>>>>>>> ee99303 (update dialog buttons)
 	fetch(url_categories, {
 		method: 'GET',
 	}).then(res => res.json())
