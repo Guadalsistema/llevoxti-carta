@@ -7,7 +7,19 @@
 	padding-top: 0px;
 	padding-bottom: 20px;
 	background-color: var(--amarillo);
-	padding-left: 30px;
+	padding-left: 4vh;
+}
+
+#cart-dialog {
+    height: 85vh;
+    width: 80vw;
+    top: 5vh;
+	margin-left: 20vw;
+	border-radius: 10px;
+	padding-top: 0px;
+	padding-bottom: 20px;
+	background-color: var(--blanco);
+	padding-left: 4vh;
 }
 
 #address_dialog input {

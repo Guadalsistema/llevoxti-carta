@@ -1,6 +1,6 @@
 class Cart {
 
-	static toObject() {
+	static toObjects() {
         let cartJSON = sessionStorage.getItem('order');
         if(cartJSON == null) {
             cartJSON = '[]';
@@ -9,7 +9,7 @@ class Cart {
 	}
 
     static add(newProduct) {
-		let cart = this.toObject();
+		let cart = this.toObjects();
         let found = false;
         for(let i = 0; !found && i < cart.length; i++) {
             if(newProduct.id == cart[i].id) {
@@ -26,7 +26,7 @@ class Cart {
     }
 
     static update(newProduct) {
-		let cart = this.toObject();
+		let cart = this.toObjects();
 
         let found = false;
         for(let i = 0; !found && i < cart.length; i++) {
@@ -44,7 +44,7 @@ class Cart {
     }
 
     static get length() {
-		let cart = this.toObject();
+		let cart = this.toObjects();
         return cart.length;
     }
 
@@ -58,7 +58,7 @@ class Cart {
 	}
 
 	static products() {
-		return this.toObject();
+		return this.toObjects();
 	}
 
 	static clear() {

@@ -1,10 +1,12 @@
 import { Address } from './customer/address.js';
 import { Cart } from './cart/model.js';
 import { config } from './config.js';
-import { CartDialog } from './cart/dialog.js';
 import { ProductCategoryLi, ProductCard, ProductList } from  './products/ui.js';
-import { waitForElm } from './utils.js';
 import { InvalidRequestException } from './exception.js';
+
+customElements.define('product-category', ProductCategoryLi, { extends: "li" });
+customElements.define('product-list', ProductList);
+customElements.define('product-card', ProductCard);
 
 function displayRestaurantName() {
 	let namePlaceholder = document.querySelector("h1.header__title");
@@ -13,7 +15,7 @@ function displayRestaurantName() {
 }
 
 function displayProducts(products) {
-	var placeholder = document.querySelector('product-list');
+	var placeholder = document.getElementById('full-product-list');
 	products.sort((left, right) => { return left.category_id - right.category_id; });
 	var stored = Cart.products();
 	for (const product of products) {
@@ -25,7 +27,6 @@ function displayProducts(products) {
 			product['product_uom_qty'] = 0;
 		}
 		pCard.fromObject(product);
-		let buttons = pCard.shadowRoot.querySelectorAll('.product__button');
 		placeholder.shadowRoot.appendChild(pCard);
 	}
 }
@@ -43,7 +44,7 @@ function displayCategories(categories) {
 	}
 
 	placeholder.addEventListener('click', (ev) => {
-		const pList = document.querySelector('product-list');
+		const pList = document.getElementById('full-product-list');
 		let show = pList.shadowRoot.querySelector('product-card[category-id*="' + ev.target.getAttribute("category-id") + '"]');
 		if(show) {
 			show.scrollIntoView();
@@ -76,12 +77,12 @@ function darProvincia(cpostal){
 
 function is_app_order() {
 	const params = new Proxy(new URLSearchParams(window.location.search), {
-		get(target, prop, receiver) { return target.get(prop); },
+		get(target, prop, _) { return target.get(prop); },
 		has(target, key) {
-		  if (key[0] === '_') {
-		    return false;
-		  }
-		  return Boolean([...target.keys()].find((v) => v === key));
+			if (key[0] === '_') {
+				return false;
+			}
+			return Boolean([...target.keys()].find((v) => v === key));
 		}
 	});
 	return 'table' in params && params.table == "app";
@@ -117,7 +118,7 @@ function send_order() {
 	})
 	.then(() => {
 		let cartCounter = document.querySelector('.products-cart-button > span');
-		var pList = document.querySelector('product-list');
+		var pList = document.getElementById('full-product-list');
 		for (let pCard of pList.shadowRoot.querySelectorAll('product-card[product_uom_qty]:not([product_uom_qty="0"])')) {
 			pCard.setAttribute("product_uom_qty", "0");
 		}
@@ -134,15 +135,35 @@ function show_address_dialog() {
 			document.getElementById(label).value = value;
 		}
 	});
+	//document.querySelector('#pie-app').style.display = "none";
+	document.querySelector('#products-cart-button').style.display = "none";
+	document.querySelector('#show-cart-button').style.display = "none";
+
 	document.getElementById("address_dialog").showModal();
 }
 
 function setBehaviour() {
 	// Show Cart dialog
 	let showCartButton = document.getElementById("show-cart-button");
+	let cartDialog = document.getElementById("cart-dialog");
+	//cartDialog.addEventListener('close', () => document.querySelector('#pie-app').style.display = "flex");
+
+	cartDialog.addEventListener('close', () => document.querySelector('#products-cart-button').style.display = "flex");
+	cartDialog.addEventListener('close', () => document.querySelector('#show-cart-button').style.display = "flex");
+	
 	showCartButton.addEventListener('click', () => {
-		let cartDialog = document.getElementById("cart-dialog");
-		//cartDialog.
+		let cartProductList = document.getElementById("cart-product-list");
+		cartProductList.clear();
+		let products = Cart.toObjects();
+		cartProductList.loadObjects(products);
+		const lambda = (x) => parseInt(x.getAttribute('product_uom_qty'));
+		cartProductList.displayProductCards(lambda)
+		//document.querySelector('#pie-app').style.display = "none";
+
+		document.querySelector('#products-cart-button').style.display = "none";
+		document.querySelector('#show-cart-button').style.display = "none";
+
+		cartDialog.showModal();
 	});
 
 	var inputCP = document.getElementById('zip');
@@ -150,7 +171,13 @@ function setBehaviour() {
 		document.getElementById('state_id').value = darProvincia(inputCP.value);
 	}
 	let dialog_form = document.getElementById("address_dialog");
-	dialog_form.addEventListener('close', (ev) => {
+	//dialog_form.addEventListener('close', () => document.querySelector('#pie-app').style.display = "flex");
+    
+	dialog_form.addEventListener('close', () => document.querySelector('#products-cart-button').style.display = "flex");
+	dialog_form.addEventListener('close', () => document.querySelector('#show-cart-button').style.display = "flex");
+
+	let dialog_send = document.getElementById("dialog-address-send");
+	dialog_send.addEventListener('click', (ev) => {
 		ev.preventDefault();
 		Address.labels.forEach((label) => {
 			let value = document.getElementById(label).value;
@@ -159,7 +186,18 @@ function setBehaviour() {
 			}
 		});
 		send_order();
-		document.getElementById("address_dialog").close();
+		dialog_form.close();
+	});
+	let dialog_cancel = document.getElementById("dialog-address-cancel");
+	dialog_cancel.addEventListener('click', (ev) => {
+		ev.preventDefault();
+		Address.labels.forEach((label) => {
+			let value = document.getElementById(label).value;
+			if (value !== "") {
+				localStorage.setItem("lxt" + label, value);
+			}
+		});
+		dialog_form.close();
 	});
 	let cartButton = document.querySelector("#products-cart-button");
 	cartButton.addEventListener('click',() => {
@@ -171,23 +209,18 @@ function setBehaviour() {
 			}
 		}
 	});
-	/*let seeCartButton = document.querySelector("#products-see-cart-button");
-	seeCartButton.addEventListener('click',() => {
-		window.location.href = window.location.origin + "/cart.html" + window.location.search;
-	});*/
 }
 
 function fetchContent() {
 	var url_products = config["url"] + "/menu";
 	fetch(url_products, {
-	  method: 'GET',
+		method: 'GET',
 	}).then(res => res.json())
 	.then(products => displayProducts(products));
 
 	var url_categories = config["url"] + "/menu/category";
-	const pList = document.querySelector('product-list').shadowRoot;
 	fetch(url_categories, {
-	  method: 'GET',
+		method: 'GET',
 	}).then(res => res.json())
 	.then(categories => displayCategories(categories));
 
@@ -200,10 +233,5 @@ function main() {
 	fetchContent();
 	setBehaviour();
 }
-
-customElements.define('product-category', ProductCategoryLi, { extends: "li" });
-customElements.define('product-list', ProductList);
-customElements.define('product-card', ProductCard);
-customElements.define("cart-dialog", CartDialog, { extends: "dialog" });
 
 main();

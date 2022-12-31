@@ -11,10 +11,14 @@
      <link rel="stylesheet" href="css/products.css">
      <script type="module" src="js/products.js"></script>
    </head>
-   <body>
-      <dialog is="cart-dialog" id="cart-dialog"></dialog>
+	<body>
+		<dialog id="cart-dialog">
+			<product-list id="cart-product-list"></product-list>
+			<form method="dialog" class="pie-app">
+				<button class="products-cart-button">Volver</button>
+			</form>
+	  </dialog>
 	  <dialog id="address_dialog">
-		<div class="contactusform">
 			<h1>Formulario de envío</h1>
 				<h3>En breve enviaremos su pedido</h3>
 				<form id="form_envio" method="dialog">
@@ -22,65 +26,57 @@
 						<label for="email" class="colocar_email">Email
 							<span class="obligatorio">*</span>
 						</label>
-							<input type="email" name="introducir_email" id="email" required="obligatorio" placeholder="Escribe tu Email")>
+							<input type="email" name="introducir_email" id="email" required="1" placeholder="Escribe tu Email")>
 					</p>
 					<p>
 						<label for="name" class="colocar_nombre">Nombre
 							<span class="obligatorio">*</span>
 						</label>
-							<input type="text" name="introducir_nombre" id="name" required="obligatorio" placeholder="Escribe tu nombre">
+							<input type="text" name="introducir_nombre" id="name" required="1" placeholder="Escribe tu nombre">
 					</p>
-
 					<p>
 						<label for="phone" class="colocar_telefono">Teléfono
 							<span class="obligatorio">*</span>
 						</label>
-							<input type="tel" name="introducir_telefono" id="phone" placeholder="Escribe tu teléfono">
+							<input type="tel" name="introducir_telefono" id="phone" required="1" placeholder="Escribe tu teléfono">
 					</p>
-
 					<p>
 						<label for="street" class="colocar_direccion">Dirección de envío
 						<span class="obligatorio">*</span>
 						</label>
-							<input type="text" name="introducir_direccion" id="street" placeholder="Escribe tu dirección de envío">
+							<input type="text" name="introducir_direccion" id="street" required="1" placeholder="Escribe tu dirección de envío">
 					</p>
-
 					<p>
 						<label for="zip" class="colocar_c_postal">Código postal de envío
 						<span class="obligatorio">*</span>
 						</label>
-							<input type="text" name="introducir_c_postal" id="zip" placeholder="Escribe tu código postal de envío">
+							<input type="text" name="introducir_c_postal" id="zip" required="1" placeholder="Escribe tu código postal de envío">
 					</p>
-
 					<p>
 						<label for="city" class="colocar_poblacion">Población de envío
 						<span class="obligatorio">*</span>
 						</label>
-							<input type="text" name="introducir_poblacion" id="city" placeholder="Escribe tu población de envío">
+							<input type="text" name="introducir_poblacion" id="city" required="1" placeholder="Escribe tu población de envío">
 					</p>
-
 					<p>
 						<label for="state_id" class="colocar_provincia">Provincia de envío
 						<span class="obligatorio">*</span>
 						</label>
-							<input type="text" name="introducir_provincia" id="state_id" placeholder="Escribe tu provincia de envío">
+							<input type="text" name="introducir_provincia" id="state_id" required="1" placeholder="Escribe tu provincia de envío">
 					</p>
-
 					<p>
 						<label for="comment" class="colocar_mensaje">Mensaje
 						</label>
 							<textarea name="introducir_mensaje" class="texto_mensaje" id="comment" placeholder="Deja aquí tu comentario..."></textarea>
 					</p>
-
 					<p class="aviso">
 						<span class="obligatorio"> * </span>los campos son obligatorios.
 					</p>
-					<p>
-						<button class="products-cart-button" type="submit">Volver</button>
-						<button class="products-cart-button" type="submit" method="dialog">Enviar</button>
-					</p>
+					<nav class="pie-app">
+						<button type="button" class="products-cart-button" id="dialog-address-cancel">Volver</button>
+						<button type="button" class="products-cart-button" id="dialog-address-send">Enviar</button>
+					</nav>
 				</form>
-			</div>
 	   </dialog>
      <!-- page content -->
        <header class="header">
@@ -96,19 +92,14 @@
           </ul>
        </nav>
        <main>
-          <product-list></product-list>
+          <product-list id="full-product-list"></product-list>
        </main>
        <nav id="pie-app" class="pie-app">
           <div class="logo-pie">
              <img src="img/llevoxtiapaisado400.png" alt="LLEVOXTI" />
           </div>
-          <div class="mi-pedido">
              <button type="button" class="products-cart-button" id="products-cart-button">Enviar pedido<span>0</span></button>
-             <label for="pedido" class="toggle-button"></label>
-          </div>
-          <div class="my-cart">
              <button type="button" class="products-cart-button" id="show-cart-button">Ver pedido</button>
-          </div>
        </nav>
        <footer>
        </footer>
