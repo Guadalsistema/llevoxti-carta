@@ -65,6 +65,17 @@ p.pie_dialog{
     text-align: left;
 	padding-top: 10px;
 }
+
+p.recogida{
+	float: left;
+    height: 5vh;
+	width: 0;
+	background-color: var(--blanco);
+	font-size: 2vh;
+    text-align: left;
+	padding-top: 10px;
+}
+
 #address_dialog label {
 	display: block;
 }
