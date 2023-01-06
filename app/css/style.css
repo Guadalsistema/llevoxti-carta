@@ -208,16 +208,16 @@ main {
   }
   .pie-app {
     display: flex;
-    flex-direction: column;
     flex-wrap: wrap;
     position: fixed;
     bottom: 0;
-    width: 80vw;
+    width: 100vw;
     height: 5vh;
     background-color:var(--amarillo);
   }
 .logo-pie{
     width: 20vw;
+    height: 8vh;
     text-align: left;
     justify-content: center;
     background-color: var(--amarillo);
