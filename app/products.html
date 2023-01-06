@@ -17,6 +17,9 @@
 			<form method="dialog" class="pie-app">
 				<button class="products-cart-button">Volver</button>
 			</form>
+			<p class="pie_dialog">
+				Total pedido:
+			</p>
 	  </dialog>
 	  <dialog id="address_dialog">
 			<h1>Formulario de envío</h1>
@@ -72,11 +75,15 @@
 					<p class="aviso">
 						<span class="obligatorio"> * </span>los campos son obligatorios.
 					</p>
-					<nav class="pie-app">
-						<button type="button" class="products-cart-button" id="dialog-address-cancel">Volver</button>
-						<button type="button" class="products-cart-button" id="dialog-address-send">Enviar</button>
-					</nav>
 				</form>
+				<p class="pie_dialog">
+					Total pedido:
+				</p>
+				
+				<nav class="pie-app">
+					<button type="button" class="products-cart-button" id="dialog-address-cancel">Volver</button>
+					<button type="button" class="products-cart-button" id="dialog-address-send">Enviar</button>
+				</nav>
 	   </dialog>
      <!-- page content -->
        <header class="header">
@@ -94,6 +101,9 @@
        <main>
           <product-list id="full-product-list"></product-list>
        </main>
+	   <p class="pie_dialog">
+		Total pedido:
+	   </p>
        <nav id="pie-app" class="pie-app">
           <div class="logo-pie">
              <img src="img/llevoxtiapaisado400.png" alt="LLEVOXTI" />
