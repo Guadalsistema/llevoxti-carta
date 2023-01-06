@@ -69,13 +69,18 @@ p.pie_dialog{
     position: fixed;
     bottom: 5.2vh;
 	left:25vw;
+<<<<<<< HEAD
     width: 65vw;
+=======
+    width: 40vw;
+>>>>>>> 6d526a2 (añadido total pedido)
     height: 5vh;
 	border-radius: 10px;
 	border-width: 2px;
 	border-style: solid;
 	border-color: var(--rosa);
 	background-color: var(--blanco);
+<<<<<<< HEAD
 	font-size: 3vh;
     text-align: left;
 	padding-top: 0.5vh;
@@ -88,6 +93,12 @@ p.pie_dialog input{
     border: 0;
 }
 
+=======
+	font-size: 2vh;
+    text-align: left;
+	padding-top: 10px;
+}
+>>>>>>> 6d526a2 (añadido total pedido)
 #address_dialog label {
 	display: block;
 }
