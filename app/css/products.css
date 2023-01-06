@@ -70,16 +70,21 @@ p.pie_dialog{
     bottom: 5.2vh;
 	left:25vw;
 <<<<<<< HEAD
+<<<<<<< HEAD
     width: 65vw;
 =======
     width: 40vw;
 >>>>>>> 6d526a2 (añadido total pedido)
+=======
+    width: 55vw;
+>>>>>>> 9b65571 (cambio tamaño total pedido para verlo bien en movil)
     height: 5vh;
 	border-radius: 10px;
 	border-width: 2px;
 	border-style: solid;
 	border-color: var(--rosa);
 	background-color: var(--blanco);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	font-size: 3vh;
     text-align: left;
@@ -110,6 +115,11 @@ p.recogida{
 	font-size: 2vh;
     text-align: left;
 	padding-top: 10px;
+=======
+	font-size: 3vh;
+    text-align: left;
+	padding-top: 0.5vh;
+>>>>>>> 9b65571 (cambio tamaño total pedido para verlo bien en movil)
 }
 
 >>>>>>> 2635609 (añadido recogida en establecimiento)
