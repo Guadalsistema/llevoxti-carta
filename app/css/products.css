@@ -98,7 +98,21 @@ p.pie_dialog input{
     text-align: left;
 	padding-top: 10px;
 }
+<<<<<<< HEAD
 >>>>>>> 6d526a2 (añadido total pedido)
+=======
+
+p.recogida{
+	float: left;
+    height: 5vh;
+	width: 0;
+	background-color: var(--blanco);
+	font-size: 2vh;
+    text-align: left;
+	padding-top: 10px;
+}
+
+>>>>>>> 2635609 (añadido recogida en establecimiento)
 #address_dialog label {
 	display: block;
 }
