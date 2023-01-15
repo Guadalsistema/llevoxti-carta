@@ -120,10 +120,16 @@ function send_order() {
 		let cartCounter = document.querySelector('.products-cart-button > span');
 		var pList = document.getElementById('full-product-list');
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		for (let pCard of pList.shadowRoot.querySelectorAll('product-card[product_uom_qty]:not([product_uom_qty="0"])')) {
 			pCard.setAttribute("product_uom_qty", "0");
 		}
+=======
+	//	for (let pCard of pList.shadowRoot.querySelectorAll('product-card[product_uom_qty]:not[="0"])')) {
+			//pCard.setAttribute("product_uom_qty", "0");
+	//	}
+>>>>>>> fe200a2 (cambio total pedido solo en ver pedido)
 
 >>>>>>> ee99303 (update dialog buttons)
 		Cart.clear();
