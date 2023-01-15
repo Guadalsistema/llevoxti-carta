@@ -71,6 +71,7 @@ p.pie_dialog{
 	left:25vw;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     width: 65vw;
 =======
     width: 40vw;
@@ -78,6 +79,9 @@ p.pie_dialog{
 =======
     width: 55vw;
 >>>>>>> 9b65571 (cambio tamaño total pedido para verlo bien en movil)
+=======
+    width: 65vw;
+>>>>>>> 01b8a2c (cambio witdh del total pedido)
     height: 5vh;
 	border-radius: 10px;
 	border-width: 2px;
