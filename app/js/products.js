@@ -119,12 +119,13 @@ function send_order() {
 	.then(() => {
 		let cartCounter = document.querySelector('.products-cart-button > span');
 		var pList = document.getElementById('full-product-list');
-		for (let pCard of pList.shadowRoot.querySelectorAll('product-card[product_uom_qty]:not([product_uom_qty="0"])')) {
-			pCard.setAttribute("product_uom_qty", "0");
-		}
+	//	for (let pCard of pList.shadowRoot.querySelectorAll('product-card[product_uom_qty]:not[="0"])')) {
+			//pCard.setAttribute("product_uom_qty", "0");
+	//	}
 
 		Cart.clear();
 		cartCounter.textContent = Cart.number_of_products();
+		window.location.reload();
 	});
 }
 
@@ -226,6 +227,8 @@ function fetchContent() {
 
 	let cartCounter = document.querySelector('.products-cart-button > span');
 	cartCounter.textContent = Cart.number_of_products();
+
+	document.getElementById("t_pedido").value = Cart.total_price;
 }
 
 function main() {
