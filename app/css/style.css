@@ -17,6 +17,7 @@ a,a:active, a:visited {text-decoration: none;}
     --blanco: #ffffff;
     --azul: royalblue;
     --gris: #D3D3D3;
+    --rosa: #ab4493;
 }
 
 body {
@@ -208,7 +209,6 @@ main {
   }
   .pie-app {
     display: flex;
-    flex-direction: column;
     flex-wrap: wrap;
     position: fixed;
     bottom: 0;
@@ -218,6 +218,7 @@ main {
   }
 .logo-pie{
     width: 20vw;
+    height: 8vh;
     text-align: left;
     justify-content: center;
     background-color: var(--amarillo);

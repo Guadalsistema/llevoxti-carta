@@ -17,6 +17,12 @@
 			<form method="dialog" class="pie-app">
 				<button class="products-cart-button">Volver</button>
 			</form>
+			<p class="pie_dialog" style = "font-family: 'Arima Madurai', cursive;">
+				<label for="t_pedido" class="Total_pedido">
+					Total pedido:
+				</label>
+				<input type="text" name="Total pedido" readonly id="t_pedido" placeholder="Total pedido">
+		   </p>
 	  </dialog>
 	  <dialog id="address_dialog">
 			<h1>Formulario de envío</h1>
@@ -39,6 +45,11 @@
 							<span class="obligatorio">*</span>
 						</label>
 							<input type="tel" name="introducir_telefono" id="phone" required="1" placeholder="Escribe tu teléfono">
+					</p>
+					<p style="font-weight: bold;padding-left: 10vw;">
+						<input type="checkbox" style="width: 5vw;height: 3vh;vertical-align: middle;" id="recogica" name="recogida">
+						   Recogida en establecimiento
+						</input>
 					</p>
 					<p>
 						<label for="street" class="colocar_direccion">Dirección de envío
@@ -72,11 +83,12 @@
 					<p class="aviso">
 						<span class="obligatorio"> * </span>los campos son obligatorios.
 					</p>
-					<nav class="pie-app">
-						<button type="button" class="products-cart-button" id="dialog-address-cancel">Volver</button>
-						<button type="button" class="products-cart-button" id="dialog-address-send">Enviar</button>
-					</nav>
 				</form>
+		
+				<nav class="pie-app">
+					<button type="button" class="products-cart-button" id="dialog-address-cancel">Volver</button>
+					<button type="button" class="products-cart-button" id="dialog-address-send">Enviar</button>
+				</nav>
 	   </dialog>
      <!-- page content -->
        <header class="header">
@@ -98,8 +110,8 @@
           <div class="logo-pie">
              <img src="img/llevoxtiapaisado400.png" alt="LLEVOXTI" />
           </div>
-             <button type="button" class="products-cart-button" id="products-cart-button">Enviar pedido<span>0</span></button>
-             <button type="button" class="products-cart-button" id="show-cart-button">Ver pedido</button>
+             <button type="button" class="products-cart-button" id="products-cart-button">Enviar pedido:<span>0</span></button>
+             <button type="button" class="products-cart-button" id="show-cart-button">Ver pedido:<span>0</span></button>
        </nav>
        <footer>
        </footer>

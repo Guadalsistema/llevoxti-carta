@@ -50,6 +50,28 @@
 	padding-top: 15px;
 }
 
+p.pie_dialog{
+    position: fixed;
+    bottom: 5.2vh;
+	left:25vw;
+    width: 65vw;
+    height: 5vh;
+	border-radius: 10px;
+	border-width: 2px;
+	border-style: solid;
+	border-color: var(--rosa);
+	background-color: var(--blanco);
+	font-size: 3vh;
+    text-align: left;
+	padding-top: 0.5vh;
+	font-weight: bold;
+}
+p.pie_dialog input{
+	font-size: 3vh;
+    width: 25vw;
+    height: 3vh;
+    border: 0;
+}
 
 #address_dialog label {
 	display: block;

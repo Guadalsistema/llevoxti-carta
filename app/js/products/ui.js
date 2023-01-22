@@ -81,6 +81,7 @@ class ProductCard extends ModelHTMLElement {
 	addQty(val) {
 		let qty = parseInt(this.getAttribute('product_uom_qty'));
 		this.setAttribute('product_uom_qty', qty + val);
+		document.getElementById("t_pedido").value = Cart.total_price;
 	}
 
 	constructor(...args){

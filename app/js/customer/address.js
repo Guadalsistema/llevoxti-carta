@@ -1,9 +1,9 @@
 class Address {
-	static mandatoryLabels = ["email", "name", "phone", "street", "zip", "city", "state_id"];
+	static mandatory = ["email", "name", "phone", "street", "zip", "city", "state_id"];
 	static labels = ["email", "name", "phone", "street", "zip", "city", "state_id", "comment"];
 
 	static valid() {
-		let array = Address.mandatoryLabels.map((label) => {
+		let array = Address.mandatory.map((label) => {
 			let value = localStorage.getItem("lxt" + label);
 			if (value === null) {
 				return "";
@@ -15,7 +15,7 @@ class Address {
 
 	static toObject() {
 		let object = {}
-		let array = Address.mandatoryLabels.forEach((label) => {
+		let array = Address.mandatory.forEach((label) => {
 			let value = localStorage.getItem("lxt" + label);
 			if (value !== null) {
 				object[label] = value;
