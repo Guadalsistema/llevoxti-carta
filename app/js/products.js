@@ -119,7 +119,6 @@ function send_order() {
 	.then(() => {
 		let cartCounter = document.querySelector('.products-cart-button > span');
 		var pList = document.getElementById('full-product-list');
-
 		Cart.clear();
 		cartCounter.textContent = Cart.number_of_products();
 		window.location.reload();

@@ -87,7 +87,6 @@ main {
   line-height: 6vh;
   background-color: var(--blanco);
   overflow-y: auto;
-  overflow-y: hidden;
 }
 .menu__categories-item{
   background-color: var(--blanco);
