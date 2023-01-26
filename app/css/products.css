@@ -8,21 +8,6 @@
 	padding-bottom: 20px;
 	background-color: var(--amarillo);
 	padding-left: 4vh;
-<<<<<<< HEAD
-}
-
-#cart-dialog {
-    height: 85vh;
-    width: 80vw;
-    top: 5vh;
-	margin-left: 20vw;
-	border-radius: 10px;
-	padding-top: 0px;
-	padding-bottom: 20px;
-	background-color: var(--blanco);
-	padding-left: 4vh;
-=======
->>>>>>> f7a75a9 (mostrar logo y ocultar botones)
 }
 
 #cart-dialog {
@@ -69,27 +54,13 @@ p.pie_dialog{
     position: fixed;
     bottom: 5.2vh;
 	left:25vw;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     width: 65vw;
-=======
-    width: 40vw;
->>>>>>> 6d526a2 (añadido total pedido)
-=======
-    width: 55vw;
->>>>>>> 9b65571 (cambio tamaño total pedido para verlo bien en movil)
-=======
-    width: 65vw;
->>>>>>> 01b8a2c (cambio witdh del total pedido)
     height: 5vh;
 	border-radius: 10px;
 	border-width: 2px;
 	border-style: solid;
 	border-color: var(--rosa);
 	background-color: var(--blanco);
-<<<<<<< HEAD
-<<<<<<< HEAD
 	font-size: 3vh;
     text-align: left;
 	padding-top: 0.5vh;
@@ -102,31 +73,6 @@ p.pie_dialog input{
     border: 0;
 }
 
-=======
-	font-size: 2vh;
-    text-align: left;
-	padding-top: 10px;
-}
-<<<<<<< HEAD
->>>>>>> 6d526a2 (añadido total pedido)
-=======
-
-p.recogida{
-	float: left;
-    height: 5vh;
-	width: 0;
-	background-color: var(--blanco);
-	font-size: 2vh;
-    text-align: left;
-	padding-top: 10px;
-=======
-	font-size: 3vh;
-    text-align: left;
-	padding-top: 0.5vh;
->>>>>>> 9b65571 (cambio tamaño total pedido para verlo bien en movil)
-}
-
->>>>>>> 2635609 (añadido recogida en establecimiento)
 #address_dialog label {
 	display: block;
 }
