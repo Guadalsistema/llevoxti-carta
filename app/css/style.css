@@ -211,7 +211,7 @@ main {
     flex-wrap: wrap;
     position: fixed;
     bottom: 0;
-    width: 80vw;
+    width: 100vw;
     height: 5vh;
     background-color:var(--amarillo);
   }
