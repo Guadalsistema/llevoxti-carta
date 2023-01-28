@@ -91,8 +91,8 @@ transform: rotate(90deg);
       font-size:2vh;
     }
     .product__number {
-      width: 5vw;
-      font-size:2vh;
+      width: 6vw;
+      font-size:3vh;
      }
      .product__button {
       border: 0.5vh solid var(--oro);
@@ -120,15 +120,15 @@ transform: rotate(90deg);
    }
    @media screen and (min-width: 600px) and (max-width: 900px){
      .product__name {
-         font-size: 2vh;
+         font-size: 5vh;
          line-height: 5vh;
      }
      .product__prize {
-      font-size:3.5vh;
+      font-size:7vh;
     }
     .product__number {
       width: 6vw;
-      font-size:6vh;
+      font-size:10vh;
      }
      .product__button {
       border: 0.5vh solid var(--oro);
@@ -156,11 +156,11 @@ transform: rotate(90deg);
    }
    @media screen and (min-width: 1600px) and (max-width: 2600px){
      .product__name {
-         font-size: 2vh;
+         font-size: 4vh;
          line-height: 1vh;
      }
      .product__prize {
-      font-size:3vh;
+      font-size:5vh;
     }
     .product__number {
       width: 5vw;
