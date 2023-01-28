@@ -207,13 +207,4 @@ class ProductList extends ModelHTMLElement {
 	}
 }
 
-class ProductCategoryLi extends HTMLLIElement {
-	constructor() {
-		super();
-
-		// write element functionality in here
-
-	}
-}
-
-export { ProductCategoryLi, ProductCard, ProductList };
+export { ProductCard, ProductList };
