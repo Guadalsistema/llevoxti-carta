@@ -199,7 +199,7 @@ class ProductList extends ModelHTMLElement {
 	 */
 	loadObjects(products) {
 		for (const product of products) {
-			let pCard = document.createElement('product-card');
+			let pCard = new ProductCard();
 			pCard.fromObject(product);
 			this.shadowRoot.appendChild(pCard);
 		}

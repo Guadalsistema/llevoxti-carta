@@ -16,11 +16,11 @@ class PosCategoryLi extends HTMLLIElement {
 
 		var icon = document.createElement('span');
 		var link = document.createElement('a');
-		var style = document.createElement('style');
+		const linkElem = document.createElement('link');
+		linkElem.setAttribute('rel', 'stylesheet');
+		linkElem.setAttribute('href', 'css/category-card.css');
 
-		style.textContent = ``;
-
-		self.appendChild(style);
+		self.appendChild(linkElem);
 		self.appendChild(icon);
 		self.appendChild(link);
 
@@ -34,18 +34,13 @@ class PosCategoryLi extends HTMLLIElement {
 	}
 
 	static get observedAttributes() {
-		return ["pos-category-id", "name"];
+		return ["name"];
 	}
 
 	attributeChangedCallback(attrName, _, newVal) {
 		if(attrName == "name") {
 			let name = this.querySelector('a');
 			name.textContent = newVal;
-			return;
-		}
-		if(attrName == "pos-category-id") {
-			let cat_id = this.querySelector('a');
-			link.setAttribute("href", "products.html?category-id=" + cat_id);
 			return;
 		}
 		throw InvalidArgumentException(attrName);
@@ -63,8 +58,19 @@ class PosCategoryLi extends HTMLLIElement {
 
 class PosCategoryUl extends HTMLUListElement {
 	constructor() {
-		super();
+		self = super();
 		// write element functionality in here
+	}
+
+	/**
+	 * @param {array} categories
+	 */
+	loadObjects(categories) {
+		for (const category of categories) {
+			let pCard = new PosCategoryLi(category)
+			this.appendChild(pCard);
+		}
+
 	}
 }
 

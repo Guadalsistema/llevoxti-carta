@@ -34,20 +34,15 @@ function displayProducts(products) {
 }
 
 function displayCategories(categories) {
-	let pTemplate = document.getElementById("li-category-tmpl");
-	let placeholder = document.querySelector('ul');
-	categories.sort((left, right) => { return left.id - right.id; });
-	for (const category of categories) {
-		let container = pTemplate.content.querySelector('.menu__categories-item');
-		container.textContent = category.name;
-		container.setAttribute('category-id', category.id);
-		var clone = document.importNode(pTemplate.content, true);
-		placeholder.appendChild(clone);
-	}
+	let placeholder = document.querySelector('ul.main-menu');
+	// drop category with parent_id
+	categories.sort((left, right) => { return left.sequence - right.sequence; });
+	categories = categories.filter( x => !x.parent_id);
+	placeholder.loadObjects(categories);
 
 	placeholder.addEventListener('click', (ev) => {
 		const pList = document.getElementById('full-product-list');
-		let show = pList.shadowRoot.querySelector('product-card[category-id*="' + ev.target.getAttribute("category-id") + '"]');
+		let show = pList.shadowRoot.querySelector('product-card[category-id*="' + ev.target.parentElement.getAttribute("pos-category-id") + '"]');
 		if(show) {
 			show.scrollIntoView();
 		}
@@ -233,17 +228,6 @@ function main() {
 	displayRestaurantName();
 	fetchContent();
 	setBehaviour();
-	let nav = document.getElementsByTagName("ul")[0];
-	let card = new PosCategoryLi({
-		id: 0,
-		name: 'name',
-		display_name: 'display-name',
-		menu_product_id: 0,
-		sequence: 0,
-		parent_id: undefined,
-		menu: false,
-	});
-	nav.appendChild(card);
 }
 
 main();
