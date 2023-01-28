@@ -19,6 +19,8 @@ class PosCategoryLi extends HTMLLIElement {
 		self.appendChild(icon);
 		self.appendChild(link);
 
+		self.classList.add("menu__categories-item");
+
 		if(obj) {
 			for(const key in this.fields) {
 				if(obj[key]) {
@@ -54,6 +56,7 @@ class PosCategoryLi extends HTMLLIElement {
 class PosCategoryUl extends HTMLUListElement {
 	constructor() {
 		self = super();
+		self.classList.add("main-menu");
 		// write element functionality in here
 	}
 
