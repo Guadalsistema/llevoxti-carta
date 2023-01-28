@@ -16,11 +16,6 @@ class PosCategoryLi extends HTMLLIElement {
 
 		var icon = document.createElement('span');
 		var link = document.createElement('a');
-		const linkElem = document.createElement('link');
-		linkElem.setAttribute('rel', 'stylesheet');
-		linkElem.setAttribute('href', 'css/category-card.css');
-
-		self.appendChild(linkElem);
 		self.appendChild(icon);
 		self.appendChild(link);
 
