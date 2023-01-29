@@ -7,7 +7,9 @@ class PosCategoryLi extends HTMLLIElement {
 			'menu_product_id': 'menu-product-id',
 			'sequence': 'sequence',
 			'parent_id': 'parent-id',
-			'menu': 'menu'
+			'menu': 'menu',
+			'fijo': 'fijo',
+			'seleccionable': 'seleccionable',
 		};
 	}
 
