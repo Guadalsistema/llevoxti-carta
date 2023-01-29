@@ -36,4 +36,30 @@ function waitForElm(elem, selector) {
     });
 }
 
-export { roundTo, waitForElm };
+class Signal {
+    #counter = 0;
+
+    slots = {};
+
+    connect(object, fn) {
+        if (typeof(fn) !== "function") {
+            // TODO if fn is str move to function of object
+            throw TypeError("Connect to something diferent of function not implemented");
+        }
+
+        this.#counter += 1;
+        this.slots[this.#counter] = fn.bind(object);
+
+        return this.#counter;
+    }
+
+    disconnect(id) {
+        delete this.slots[id];
+    }
+
+    emit(...args) {
+        Object.entries(this.slots).forEach((arr)=>arr[1](...args));
+    }
+}
+
+export { roundTo, waitForElm, Signal };

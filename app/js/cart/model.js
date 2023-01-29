@@ -45,6 +45,7 @@ class Cart {
 
     static get length() {
 		let cart = this.toObjects();
+        // TODO remove menu products from menu
         return cart.length;
     }
 

@@ -4,7 +4,9 @@ import { config } from './config.js';
 import { ProductCard, ProductList } from  './products/ui.js';
 import { PosCategoryUl, PosCategoryLi } from  './categories/ui.js';
 import { InvalidRequestException } from './exception.js';
+import { CartButton } from './cart/ui.js';
 
+customElements.define('cart-button', CartButton, { extends: "button" });
 customElements.define('category-card', PosCategoryLi, { extends: "li" });
 customElements.define('category-list', PosCategoryUl, { extends: "ul" });
 customElements.define('product-list', ProductList);
