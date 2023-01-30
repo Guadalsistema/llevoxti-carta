@@ -20,9 +20,17 @@
 	background-color: var(--blanco);
 	padding-left: 4vh;
 }
-#menufijo h1{
+
+#name_menu{
+	font-size: 5vw;
+	width: 100%;
+	font-weight: bold;
 	text-align: center;
-	font-size: 4vh;
+}
+#menu_submenu{
+	font-size: 5vw;
+	width: 100%;
+	font-weight: bold;
 }
 
 #cart-dialog {

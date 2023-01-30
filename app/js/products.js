@@ -5,6 +5,7 @@ import { ProductCard, ProductList } from  './products/ui.js';
 import { PosCategoryUl, PosCategoryLi } from  './categories/ui.js';
 import { InvalidRequestException } from './exception.js';
 import { CartButton } from './cart/ui.js';
+import { isEmpty } from './utils.js';
 
 customElements.define('cart-button', CartButton, { extends: "button" });
 customElements.define('category-card', PosCategoryLi, { extends: "li" });
@@ -22,7 +23,8 @@ function displayProducts(products) {
 	var placeholder = document.getElementById('full-product-list');
 	products.sort((left, right) => { return left.category_id - right.category_id; });
 	var stored = Cart.products();
-	for (const product of products) {
+	var products_show = products.filter(prod=> prod["lst_price"] > 0);
+	for (const product of products_show) {
 		let pCard = document.createElement('product-card');
 		var store = stored.filter( prod => prod["id"] == product["id"] );
 		if(store.length && store[0]['product_uom_qty']) {
@@ -35,20 +37,71 @@ function displayProducts(products) {
 	}
 }
 
+function displaySubcategories(categories, categories_parent, products_cat, ismenu_pos_id, menu_display_name){
+	let dialog_menu_fijo = document.getElementById("menufijo");
+	document.getElementById('name_menu').innerHTML = menu_display_name;
+	let products_ismenu = products_cat.filter(pro => pro.pos_categ_id == ismenu_pos_id); //Filtro los productos del menu
+	let categories_menu = categories.filter( p => p.id==ismenu_pos_id) //Filtro del menu
+	let categories_submenu = categories_parent.filter(p => p.parent_id==ismenu_pos_id) //Filtro del submenu
+	// VISUALIZAMOS PRODUCTOS DEL MENU QUE LLEVA PRECIO
+	var menu_cab  = document.getElementById('menu_cab');
+	let fileCss = 'css/product-card-menu.css'; // CREAMOS LA VARIABLE DE css que se ejecuta ojo tiene que existir el archivo
+	let lista_productos_modal=new ProductList(fileCss);
+	products_ismenu.forEach(p => {
+			p.show_image = false;
+			p.product_uom_qty = 0;
+			});
+			var tipo_menu = "S"
+	lista_productos_modal.loadObjects(products_ismenu,fileCss, tipo_menu);
+	menu_cab.appendChild(lista_productos_modal);	
+				// BUCLE DE SUBCATEGORIAS
+	var sub_menu  = document.getElementById('menu_submenu');
+	var sub_menu_fragment = document.createDocumentFragment()
+				categories_submenu.forEach(item_subm =>{
+					const dialog_menu_fijo = document.getElementById("sub_menu");
+					const div_submenu = document.createElement('div')
+					if(item_subm.seleccionable == false){
+						tipo_menu = "F"
+					}else{
+						tipo_menu = "S"
+					};
+					div_submenu.textContent = "-" + item_subm.name+ " Tipo: " + tipo_menu;
+					div_submenu.setAttribute('class', 'menu_submenu');
+					sub_menu_fragment.appendChild(div_submenu)
+					let products_submenu = products_cat.filter(pro => pro.pos_categ_id == item_subm.id); //Filtro los productos del submenu
+					products_submenu.forEach(p => {
+						p.show_image = false;
+						p.product_uom_qty = 0;
+					});
+					let lista_productos_modal=new ProductList(fileCss);
+					let listProductMenu = document.createElement('div');
+		            listProductMenu.setAttribute('id', 'listProductMenu');
+					listProductMenu.setAttribute('title', 'Tipo Menú: ' + tipo_menu + ' Nombre Menú: ' + item_subm.name);
+					lista_productos_modal.loadObjects(products_submenu, fileCss, tipo_menu);
+                    listProductMenu.appendChild(lista_productos_modal);
+					sub_menu_fragment.appendChild(listProductMenu);
+				});	
+	sub_menu.appendChild(sub_menu_fragment);	
+	dialog_menu_fijo.showModal();
+};
 function displayCategories(categories) {
+
 	let placeholder = document.querySelector('ul.main-menu');
 	// drop category with parent_id
 	categories.sort((left, right) => { return left.sequence - right.sequence; });
+	let categories_parent = categories.filter( x => x.parent_id);
 	categories = categories.filter( x => !x.parent_id);
 	placeholder.loadObjects(categories);
 
 	placeholder.addEventListener('click', (ev) => {
 		const pList = document.getElementById('full-product-list');
-		if(ev.target.parentElement.getAttribute('menu')){
+		if(ev.target.parentElement.getAttribute('menu')){  //Si la categoria es menú abrimos dialog
+			var url_products = config["url"] + "/menu";
+			let ismenu_pos_id = ev.target.parentElement.getAttribute('pos-category-id');
             let menu_display_name = ev.target.parentElement.getAttribute('display-name');
-			const dialog_menu_fijo = document.getElementById("menufijo");
-			document.getElementById('name_menu').innerHTML = menu_display_name;
-			dialog_menu_fijo.showModal();
+			fetch(url_products)
+			.then(res => res.json())
+			.then(products_cat => {displaySubcategories(categories, categories_parent, products_cat, ismenu_pos_id, menu_display_name);});
 		}
 		let show = pList.shadowRoot.querySelector('product-card[category-id*="' + ev.target.parentElement.getAttribute("pos-category-id") + '"]');
 		if(show) {
@@ -169,6 +222,14 @@ function setBehaviour() {
 		});
 		dialog_form.close();
 	});
+	let dialog_cancel_menu = document.getElementById("dialog-cancel-menu");
+	dialog_cancel_menu.addEventListener('click', (ev) => {
+		ev.preventDefault();
+	    menufijo.close();
+		document.getElementById("menu_cab").innerHTML = "";
+		document.getElementById("menu_submenu").innerHTML = "";
+
+	});
 	let cartButton = document.querySelector("#products-cart-button");
 	cartButton.addEventListener('click',() => {
 		if(Cart.length > 0) {
@@ -182,16 +243,17 @@ function setBehaviour() {
 }
 
 function fetchContent() {
+	var products;
+	var products_categoria;
 	var url_products = config["url"] + "/menu";
-	fetch(url_products, {
-		method: 'GET',
-	}).then(res => res.json())
-	.then(products => displayProducts(products));
-
 	var url_categories = config["url"] + "/menu/category";
-	fetch(url_categories, {
-		method: 'GET',
-	}).then(res => res.json())
+	var local_products;
+	fetch(url_products)
+	.then(res => res.json())
+	.then(products => {displayProducts(products);});
+	
+	fetch(url_categories)
+	.then(res => res.json())
 	.then(categories => displayCategories(categories));
 
 	let cartCounter = document.querySelector('.products-cart-button > span');
