@@ -135,7 +135,6 @@ function setBehaviour() {
 	// Show Cart dialog
 	let showCartButton = document.getElementById("show-cart-button");
 	let cartDialog = document.getElementById("cart-dialog");
-	//cartDialog.addEventListener('close', () => document.querySelector('#pie-app').style.display = "flex");
 
 	cartDialog.addEventListener('close', () => document.querySelector('#products-cart-button').style.display = "flex");
 	cartDialog.addEventListener('close', () => document.querySelector('#show-cart-button').style.display = "flex");
@@ -147,8 +146,7 @@ function setBehaviour() {
 		cartProductList.loadObjects(products);
 		const lambda = (x) => parseInt(x.getAttribute('product_uom_qty'));
 		cartProductList.displayProductCards(lambda)
-		//document.querySelector('#pie-app').style.display = "none";
-
+	
 		document.querySelector('#products-cart-button').style.display = "none";
 		document.querySelector('#show-cart-button').style.display = "none";
 
@@ -160,8 +158,7 @@ function setBehaviour() {
 		document.getElementById('state_id').value = darProvincia(inputCP.value);
 	}
 	let dialog_form = document.getElementById("address_dialog");
-	//dialog_form.addEventListener('close', () => document.querySelector('#pie-app').style.display = "flex");
-    
+
 	dialog_form.addEventListener('close', () => document.querySelector('#products-cart-button').style.display = "flex");
 	dialog_form.addEventListener('close', () => document.querySelector('#show-cart-button').style.display = "flex");
 
