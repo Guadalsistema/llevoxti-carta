@@ -1,6 +1,4 @@
 import { Cart } from './model.js'
-import { Signal } from '../utils.js'
-
 
 class CartButton extends HTMLButtonElement {
 	qty_placeholder = null;
