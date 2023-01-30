@@ -44,6 +44,7 @@ function displayCategories(categories) {
 
 	placeholder.addEventListener('click', (ev) => {
 		const pList = document.getElementById('full-product-list');
+		alert(ccategory-card);
 		let show = pList.shadowRoot.querySelector('product-card[category-id*="' + ev.target.parentElement.getAttribute("pos-category-id") + '"]');
 		if(show) {
 			show.scrollIntoView();
