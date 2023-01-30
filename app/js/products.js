@@ -4,7 +4,9 @@ import { config } from './config.js';
 import { ProductCard, ProductList } from  './products/ui.js';
 import { PosCategoryUl, PosCategoryLi } from  './categories/ui.js';
 import { InvalidRequestException } from './exception.js';
+import { CartButton } from './cart/ui.js';
 
+customElements.define('cart-button', CartButton, { extends: "button" });
 customElements.define('category-card', PosCategoryLi, { extends: "li" });
 customElements.define('category-list', PosCategoryUl, { extends: "ul" });
 customElements.define('product-list', ProductList);
@@ -76,9 +78,7 @@ function is_app_order() {
 	const params = new Proxy(new URLSearchParams(window.location.search), {
 		get(target, prop, _) { return target.get(prop); },
 		has(target, key) {
-			if (key[0] === '_') {
-				return false;
-			}
+			if (key[0] === '_') { return false; }
 			return Boolean([...target.keys()].find((v) => v === key));
 		}
 	});
@@ -108,16 +108,11 @@ function send_order() {
 		body: JSON.stringify(order),
 	})
 	.then((response) => {
-		if(response.ok) {
-			return;
-		}
+		if(response.ok) { return; }
 		throw new InvalidRequestException(response.statusText);
 	})
 	.then(() => {
-		let cartCounter = document.querySelector('.products-cart-button > span');
-		var pList = document.getElementById('full-product-list');
 		Cart.clear();
-		cartCounter.textContent = Cart.number_of_products();
 		window.location.reload();
 	});
 }
@@ -140,7 +135,6 @@ function setBehaviour() {
 	// Show Cart dialog
 	let showCartButton = document.getElementById("show-cart-button");
 	let cartDialog = document.getElementById("cart-dialog");
-	//cartDialog.addEventListener('close', () => document.querySelector('#pie-app').style.display = "flex");
 
 	cartDialog.addEventListener('close', () => document.querySelector('#products-cart-button').style.display = "flex");
 	cartDialog.addEventListener('close', () => document.querySelector('#show-cart-button').style.display = "flex");
@@ -152,8 +146,7 @@ function setBehaviour() {
 		cartProductList.loadObjects(products);
 		const lambda = (x) => parseInt(x.getAttribute('product_uom_qty'));
 		cartProductList.displayProductCards(lambda)
-		//document.querySelector('#pie-app').style.display = "none";
-
+	
 		document.querySelector('#products-cart-button').style.display = "none";
 		document.querySelector('#show-cart-button').style.display = "none";
 
@@ -165,8 +158,7 @@ function setBehaviour() {
 		document.getElementById('state_id').value = darProvincia(inputCP.value);
 	}
 	let dialog_form = document.getElementById("address_dialog");
-	//dialog_form.addEventListener('close', () => document.querySelector('#pie-app').style.display = "flex");
-    
+
 	dialog_form.addEventListener('close', () => document.querySelector('#products-cart-button').style.display = "flex");
 	dialog_form.addEventListener('close', () => document.querySelector('#show-cart-button').style.display = "flex");
 

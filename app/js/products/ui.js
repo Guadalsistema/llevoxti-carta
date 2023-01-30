@@ -2,6 +2,7 @@ import { config } from '../config.js'
 import { roundTo } from '../utils.js';
 import { ModelHTMLElement } from '../model.js';
 import { Cart } from '../cart/model.js'
+import { isEmpty } from '../utils.js';
 
 class ProductCard extends ModelHTMLElement {
 	__minQty = 0;
@@ -51,12 +52,14 @@ class ProductCard extends ModelHTMLElement {
 			h3.textContent = roundTo(newVal,2) + '€';
 			return;
 		}
+
 		if(attrName == "product_uom_qty") {
 			if(parseInt(newVal) < this.minQty) {
 				this.setAttribute("product_uom_qty", this.minQty);
 				return;
 			}
 			let p = this.shadowRoot.querySelector('p');
+			if(isEmpty(oldVal)) { oldVal = 0; }
 			if (parseInt(oldVal) != parseInt(newVal)) {
 				Cart.update(this.toObject());
 			}
