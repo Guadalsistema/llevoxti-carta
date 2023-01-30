@@ -9,7 +9,7 @@ class CartButton extends HTMLButtonElement {
 		self = super(obj);
 
         self.setAttribute("type", "button");
-        self.textContent = "Ver pedido:";
+        self.textContent = "Enviar pedido:";
 
 		self.qty_placeholder = document.createElement('span');
         self.qty_placeholder.textContent = Cart.length;
