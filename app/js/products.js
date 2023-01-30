@@ -78,9 +78,7 @@ function is_app_order() {
 	const params = new Proxy(new URLSearchParams(window.location.search), {
 		get(target, prop, _) { return target.get(prop); },
 		has(target, key) {
-			if (key[0] === '_') {
-				return false;
-			}
+			if (key[0] === '_') { return false; }
 			return Boolean([...target.keys()].find((v) => v === key));
 		}
 	});
@@ -110,16 +108,11 @@ function send_order() {
 		body: JSON.stringify(order),
 	})
 	.then((response) => {
-		if(response.ok) {
-			return;
-		}
+		if(response.ok) { return; }
 		throw new InvalidRequestException(response.statusText);
 	})
 	.then(() => {
-		let cartCounter = document.querySelector('.products-cart-button > span');
-		var pList = document.getElementById('full-product-list');
 		Cart.clear();
-		cartCounter.textContent = Cart.number_of_products();
 		window.location.reload();
 	});
 }

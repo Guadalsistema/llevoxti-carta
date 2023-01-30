@@ -62,4 +62,8 @@ class Signal {
     }
 }
 
-export { roundTo, waitForElm, Signal };
+function isEmpty(value){
+    return (value == null || value === '');
+}
+
+export { roundTo, waitForElm, Signal, isEmpty };

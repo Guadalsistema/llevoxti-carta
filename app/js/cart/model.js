@@ -1,5 +1,8 @@
-import { roundTo } from '../utils.js';
+import { roundTo, Signal } from '../utils.js';
+
 class Cart {
+    static change_qty = new Signal();
+
 	static toObjects() {
         let cartJSON = sessionStorage.getItem('order');
         if(cartJSON == null) {
@@ -23,6 +26,8 @@ class Cart {
         }
 
         sessionStorage.setItem('order', JSON.stringify(cart));
+    
+        this.change_qty.emit(this.length);
     }
 
     static update(newProduct) {
@@ -41,6 +46,7 @@ class Cart {
         }
 
         sessionStorage.setItem('order', JSON.stringify(cart));
+        this.change_qty.emit(this.length);
     }
 
     static get length() {
@@ -73,6 +79,7 @@ class Cart {
 
 	static clear() {
         sessionStorage.removeItem('order');
+        this.change_qty.emit(this.length);
 	}
 }
 
