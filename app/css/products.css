@@ -9,6 +9,21 @@
 	background-color: var(--amarillo);
 	padding-left: 4vh;
 }
+#menufijo {
+    height: 85vh;
+    width: 80vw;
+    top: 10vh;
+	margin: 0px auto;
+	border-radius: 10px;
+	padding-top: 0px;
+	padding-bottom: 20px;
+	background-color: var(--blanco);
+	padding-left: 4vh;
+}
+#menufijo h1{
+	text-align: center;
+	font-size: 4vh;
+}
 
 #cart-dialog {
     height: 85vh;
