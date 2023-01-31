@@ -44,7 +44,16 @@ function displayCategories(categories) {
 
 	placeholder.addEventListener('click', (ev) => {
 		const pList = document.getElementById('full-product-list');
-		alert(ccategory-card);
+		if(ev.target.parentElement.getAttribute('menu')){
+			let ismenu = ev.target.parentElement.getAttribute('menu');
+			let menu_fijo = ev.target.parentElement.getAttribute('fijo');
+			let menu_seleccionable = ev.target.parentElement.getAttribute('seleccionable');
+            let menu_display_name = ev.target.parentElement.getAttribute('display-name');
+			//alert('Es un Menú: ' + menu_display_name + ' Fijo: '+ menu_fijo + ' Seleccionable: '+ menu_seleccionable);
+			const dialog_menu_fijo = document.getElementById("menufijo");
+			document.getElementById('name_menu').innerHTML = menu_display_name;
+			dialog_menu_fijo.showModal();
+		}
 		let show = pList.shadowRoot.querySelector('product-card[category-id*="' + ev.target.parentElement.getAttribute("pos-category-id") + '"]');
 		if(show) {
 			show.scrollIntoView();
