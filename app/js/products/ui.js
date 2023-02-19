@@ -143,24 +143,28 @@ class ProductCard extends ModelHTMLElement {
 			productbox.appendChild(this.productAmount);
 				let productButtonAdd = document.createElement('div');
 				productButtonAdd.setAttribute('class', 'product__button sum');
+				switch (tipo_menu) {
+					case "M":
+				    	productButtonAdd.setAttribute('title', 'Principal');
+						break;
+					case "F":
+						productButtonAdd.setAttribute('title', 'Fijo');
+						break;
+					case "S":	
+					    productButtonAdd.setAttribute('title', 'Seleccion');
+						break;
+					default:
+						productButtonAdd.setAttribute('title', 'Boton Sumar');	
+				}
 				productButtonAdd.appendChild(document.createElement('div'));
 				productButtonAdd.appendChild(document.createElement('div'));
-				if (tipo_menu == "F" || tipo_menu == "S"){
-					//Si el tipo de menu es fijo ocultamos boton para no poder añadir ni quitar
-					productButtonAdd.addEventListener('click', (ev) => {
-						ev.stopPropagation();
-						this.addQty(1);
-						this.display_qty_producs_submenu();
-				     });
+				productButtonAdd.addEventListener('click', (ev) => {
+					ev.stopPropagation();
+					this.addQty(1);
+					this.display_qty_producs_submenu();
+				})
 				if(tipo_menu == "F"){
 					productButtonAdd.hidden = "True"; 
-				}
-				}
-				else {	
-					productButtonAdd.addEventListener('click', (ev) => {
-						ev.stopPropagation();
-						this.addQty(1)
-						});
 				}
 				this.productAmount.appendChild(productButtonAdd);
 				let productNumber = document.createElement('div');
@@ -175,9 +179,10 @@ class ProductCard extends ModelHTMLElement {
 				productButtonMinus.addEventListener('click', (ev) => {
 					ev.stopPropagation();
 					this.addQty(-1)
+					this.display_qty_producs_submenu();
 				});
 				this.productAmount.appendChild(productButtonMinus);
-			let productPrize = document.createElement('div');
+				let productPrize = document.createElement('div');
 			    productPrize.setAttribute('id', 'product__prize');
 			    productPrize.setAttribute('class', 'product__prize');
 				productbox.appendChild(productPrize);

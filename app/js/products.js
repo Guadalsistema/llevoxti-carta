@@ -26,17 +26,22 @@ function displayProducts(products) {
 	var products_show = products.filter(prod=> prod["lst_price"] > 0);
 	for (const product of products_show) {
 		let pCard = document.createElement('product-card');
-		var store = stored.filter( prod => prod["id"] == product["id"] );
-		if(store.length && store[0]['product_uom_qty']) {
-			product['product_uom_qty'] = store[0]['product_uom_qty'];
-		} else {
-			product['product_uom_qty'] = 0;
-		}
+		product['product_uom_qty'] = bus_qty_cart(product["id"]);
 		pCard.fromObject(product);
 		placeholder.shadowRoot.appendChild(pCard);
 	}
 }
-
+function bus_qty_cart(id_product_bus) {
+	let prod_store = Cart.products().filter( prod => prod["id"] == id_product_bus )
+	let product_store_qty
+	if(prod_store.length && prod_store[0]['product_uom_qty']) {
+		product_store_qty  = prod_store[0]['product_uom_qty'];
+	 }
+	 else{
+		product_store_qty = 0
+	 }
+	return product_store_qty;
+}
 function displaySubcategories(categories, categories_parent, products_cat, ismenu_pos_id, menu_display_name){
 	let dialog_menu_fijo = document.getElementById("menufijo");
 	document.getElementById('name_menu').innerHTML = menu_display_name;
@@ -49,9 +54,9 @@ function displaySubcategories(categories, categories_parent, products_cat, ismen
 	let lista_productos_modal=new ProductList(fileCss);
 	products_ismenu.forEach(p => {
 			p.show_image = false;
-			p.product_uom_qty = 0;
+			p.product_uom_qty = bus_qty_cart(p.id);
 			});
-			var tipo_menu = "S"
+			var tipo_menu = "M"
 	lista_productos_modal.loadObjects(products_ismenu,fileCss, tipo_menu);
 	menu_cab.appendChild(lista_productos_modal);	
 				// BUCLE DE SUBCATEGORIAS
@@ -71,7 +76,7 @@ function displaySubcategories(categories, categories_parent, products_cat, ismen
 					let products_submenu = products_cat.filter(pro => pro.pos_categ_id == item_subm.id); //Filtro los productos del submenu
 					products_submenu.forEach(p => {
 						p.show_image = false;
-						p.product_uom_qty = 0;
+						p.product_uom_qty = bus_qty_cart(p.id);
 					});
 					let lista_productos_modal=new ProductList(fileCss);
 					let listProductMenu = document.createElement('div');
