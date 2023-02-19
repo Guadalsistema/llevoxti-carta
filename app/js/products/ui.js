@@ -181,6 +181,11 @@ class ProductList extends ModelHTMLElement {
 		}
 	}
 
+	/**
+	 * Hide product function
+	 * 
+	 * @param {*} func Recive a function to hide products if true
+	 */
 	displayProductCards(func=undefined) {
 		if(func === undefined) {
 			func = () => true;
@@ -206,7 +211,28 @@ class ProductList extends ModelHTMLElement {
 			pCard.fromObject(product);
 			this.shadowRoot.appendChild(pCard);
 		}
+	}
 
+	/**
+	 * @param {object} use the properties of object for filter, if key doesn't exist discard it
+	 * 
+	 * @return Array of elements
+	 * 
+	 * TODO:
+	 * - return NodeList
+	 * - Use all childs not only product-card
+	 */
+	findAll(obj) {
+		let arr = Array.from(this.shadowRoot.querySelectorAll("product-card"));
+		return arr.filter((el) => {
+			for (const [key, value] of Object.entries(obj)) {
+				let inKey = el.fields[key];
+				if (!el.hasAttribute(inKey) || el.getAttribute(inKey) != value) {
+					return false;
+				}
+			}
+			return true;
+		});
 	}
 }
 
