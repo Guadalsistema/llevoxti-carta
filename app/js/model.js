@@ -23,6 +23,7 @@ class ModelHTMLElement extends HTMLElement {
 		}
 	}
 
+	// TODO: This should return the inverse operation
 	toObject() {
 		let obj = {}
 		for(const key in this.fields) {
