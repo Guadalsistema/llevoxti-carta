@@ -9,6 +9,8 @@ function displayCategories(categories) {
 		let card = catTemplate.content.querySelector('category-card');
 		card.setAttribute("category-id", category.id);
 		card.setAttribute("name", category.name);
+		card.setAttribute("title", category.name);
+		card.setAttribute("title", "menu_product_id: " + menu_product_id);
 		var clone = document.importNode(catTemplate.content, true);
 		placeholder.appendChild(clone);
 	}

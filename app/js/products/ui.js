@@ -106,16 +106,38 @@ class ProductCard extends ModelHTMLElement {
 		 let tipo_submenu = submenu.slice(pos+2,pos+3);
         return(tipo_submenu);
 	}
+	tipo_submenu_product_menu(id_cat){
+		//var container = document.querySelector('#main-menu'); //Selecionamos las categorias
+        var data_cat_prod_qty = document.querySelector('li[pos-category-id="' + id_cat + '"]'); // Seleccionamos la categoria del producto
+		var tipo_submenu ;
+		var product_menu = "";
+		if(data_cat_prod_qty !== null){ 
+			tipo_submenu = data_cat_prod_qty.getAttribute('menu'); // Selecionamos si la categoria pertenece a un menu
+			if (tipo_submenu = true){
+				tipo_submenu = "F"
+			} 
+			else{
+				tipo_submenu = "S"
+			}
+			product_menu = data_cat_prod_qty.getAttribute('menu-product-id'); // Selecionamos el producto relacionadon con al categoria
+		}
+		return tipo_submenu, product_menu 
+	}
 	display_qty_producs_submenu() {
-		let newCant = this.getAttribute('product_uom_qty');
-		let querySelec_menu = document.querySelectorAll("#listProductMenu");
-		querySelec_menu.forEach(p => {
+		let newCant = this.getAttribute('product_uom_qty'); // unidades
+		let cat_prod_qty = this.getAttribute("category-id"); // categoria del producto seleccionado
+		let id_prod_qty = this.getAttribute("product-id"); // id del producto seleccionado
+		let ismenu_cat_prod_qty , prod_cat_prod_qty = this.tipo_submenu_product_menu(cat_prod_qty);
+		if (id_prod_qty == prod_cat_prod_qty){
+			let querySelec_menu = document.querySelectorAll("#listProductMenu"); // selecion de productos en dialog submenu
+			querySelec_menu.forEach(p => {
 			let tipo_submenu = this.tipo_submenu(p.title)
 			let contSelectProducts = p.childNodes[0].shadowRoot.querySelectorAll('product-card');
 					if(tipo_submenu == "F"){
 						p.childNodes[0].setProductsQty(newCant); //importante
 					};
 			});
+		}	
 		return;
 	}
 	constructor(fileCss, tipo_menu, ...args){
@@ -143,19 +165,6 @@ class ProductCard extends ModelHTMLElement {
 			productbox.appendChild(this.productAmount);
 				let productButtonAdd = document.createElement('div');
 				productButtonAdd.setAttribute('class', 'product__button sum');
-				switch (tipo_menu) {
-					case "M":
-				    	productButtonAdd.setAttribute('title', 'Principal');
-						break;
-					case "F":
-						productButtonAdd.setAttribute('title', 'Fijo');
-						break;
-					case "S":	
-					    productButtonAdd.setAttribute('title', 'Seleccion');
-						break;
-					default:
-						productButtonAdd.setAttribute('title', 'Boton Sumar');	
-				}
 				productButtonAdd.appendChild(document.createElement('div'));
 				productButtonAdd.appendChild(document.createElement('div'));
 				productButtonAdd.addEventListener('click', (ev) => {
