@@ -85,12 +85,20 @@ class ProductCard extends ModelHTMLElement {
 			p.textContent = newVal;
 			let minus = this.shadowRoot.querySelector('.minus');
 			let qty = this.shadowRoot.querySelector('.product__number');
+			let cat_id_pro = this.getAttribute("category-id");
+			let tipo_cat_pro = document.getElementsByName(cat_id_pro);
+			let tipo_submenu =""
+			if (tipo_cat_pro.length > 0){
+				tipo_submenu = this.tipo_submenu(tipo_cat_pro[0].title)
+			}
 			if(parseInt(newVal) <= 0) {
 				minus.style.display = 'none';
 				qty.style.display = 'none';
 			} else {
-				minus.style.display = 'block';
-				qty.style.display = 'block';
+				if (tipo_submenu!="F"){
+					minus.style.display = 'block';
+			}
+			qty.style.display = 'block';
 			}
 			return;
 		}
@@ -102,8 +110,8 @@ class ProductCard extends ModelHTMLElement {
 		document.getElementById("t_pedido").value = Cart.total_price;
 	}
     tipo_submenu(submenu){
-		 let pos = submenu.search(':');
-		 let tipo_submenu = submenu.slice(pos+2,pos+3);
+		 let pos = submenu.search('Fijo:');
+		 let tipo_submenu = submenu.slice(pos+6,pos+7);
         return(tipo_submenu);
 	}
 	tipo_submenu_product_menu(id_cat){

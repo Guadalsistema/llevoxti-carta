@@ -65,9 +65,10 @@ function displaySubcategories(categories, categories_parent, products_cat, ismen
 				categories_submenu.forEach(item_subm =>{
 					const dialog_menu_fijo = document.getElementById("sub_menu");
 					const div_submenu = document.createElement('div')
-					if(item_subm.seleccionable == false){
+					if(item_subm.menu == true){
 						tipo_menu = "F"
-					}else{
+					};
+					if(item_subm.seleccionable  == true){
 						tipo_menu = "S"
 					};
 					div_submenu.textContent = "-" + item_subm.name+ " Tipo: " + tipo_menu;
@@ -81,13 +82,15 @@ function displaySubcategories(categories, categories_parent, products_cat, ismen
 					let lista_productos_modal=new ProductList(fileCss);
 					let listProductMenu = document.createElement('div');
 		            listProductMenu.setAttribute('id', 'listProductMenu');
-					listProductMenu.setAttribute('title', 'Tipo Menú: ' + tipo_menu + ' Nombre Menú: ' + item_subm.name);
+					listProductMenu.setAttribute('name', item_subm.id);
+					listProductMenu.setAttribute('title', 'Menu Fijo: ' + tipo_menu + ' Nombre Menú: ' + item_subm.name);
 					lista_productos_modal.loadObjects(products_submenu, fileCss, tipo_menu);
                     listProductMenu.appendChild(lista_productos_modal);
 					sub_menu_fragment.appendChild(listProductMenu);
 				});	
 	sub_menu.appendChild(sub_menu_fragment);	
 	dialog_menu_fijo.showModal();
+	//Quitamos los signos - de los productos de menu fijo
 };
 function displayCategories(categories) {
 
