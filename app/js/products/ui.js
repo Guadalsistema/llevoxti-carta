@@ -140,7 +140,7 @@ class ProductCard extends ModelHTMLElement {
 			let querySelec_menu = document.querySelectorAll("#listProductMenu"); // selecion de productos en dialog submenu
 			querySelec_menu.forEach(p => {
 			let tipo_submenu = this.tipo_submenu(p.title)
-			let contSelectProducts = p.childNodes[0].shadowRoot.querySelectorAll('product-card');
+			//let contSelectProducts = p.childNodes[0].shadowRoot.querySelectorAll('product-card');
 					if(tipo_submenu == "F"){
 						p.childNodes[0].setProductsQty(newCant); //importante
 					};

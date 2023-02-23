@@ -91,6 +91,18 @@ function displaySubcategories(categories, categories_parent, products_cat, ismen
 	sub_menu.appendChild(sub_menu_fragment);	
 	dialog_menu_fijo.showModal();
 	//Quitamos los signos - de los productos de menu fijo
+	let querySelec_menu = document.querySelectorAll("#listProductMenu"); // selecion de productos en dialog submenu
+	querySelec_menu.forEach(p => {
+		let pos = p.title.search('Fijo:');
+		let tipo_submenu = p.title.slice(pos+6,pos+7);
+		let contSelectProducts = p.childNodes[0].shadowRoot.querySelectorAll('product-card');
+		contSelectProducts.forEach(botton_menos => {
+			if(tipo_submenu == "F"){
+				let minus = botton_menos.shadowRoot.querySelector('.minus')
+				minus.style.display = 'none';
+			}
+		});	
+	});
 };
 function displayCategories(categories) {
 
