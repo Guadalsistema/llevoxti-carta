@@ -17,7 +17,7 @@ class ModelHTMLElement extends HTMLElement {
 			this.setAttribute(this.fields[key], obj[key]);
 		}
 		for(const key in this.optionalFields) {
-			if(obj[key]) {
+			if(!obj[key]) {
 				this.setAttribute(this.optionalFields[key], obj[key]);
 			}
 		}

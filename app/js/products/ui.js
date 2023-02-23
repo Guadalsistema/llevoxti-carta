@@ -18,7 +18,11 @@ class ProductCard extends ModelHTMLElement {
 			this.setAttribute('product_uom_qty', val);
 		}
 	}
-
+	get optionalFields() {
+		return {
+			'show_image': 'show-image',
+		};
+	}
 	get fields() {
 		return {
 			'id': 'product-id',
@@ -30,7 +34,7 @@ class ProductCard extends ModelHTMLElement {
 	}
 
 	static get observedAttributes() {
-		return ['name', 'price', "product_uom_qty", 'product-id'];
+		return ['name', 'price', "product_uom_qty", 'product-id', 'show-image'];
 	}
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
@@ -50,9 +54,20 @@ class ProductCard extends ModelHTMLElement {
 		if(attrName == "price") {
 			let h3 = this.shadowRoot.querySelector('h3');
 			h3.textContent = roundTo(newVal,2) + '€';
+     		if(newVal<= 0){
+				h3.style.display= 'none';
+			}
 			return;
 		}
-
+		if(attrName == "show-image") {
+			let img = this.shadowRoot.querySelector('img');
+			if(newVal=='false'){
+				img.style.display = 'none';
+			} else {
+				img.style.display = 'block';
+			}
+			return;
+		}
 		if(attrName == "product_uom_qty") {
 			if(parseInt(newVal) < this.minQty) {
 				this.setAttribute("product_uom_qty", this.minQty);
@@ -70,12 +85,20 @@ class ProductCard extends ModelHTMLElement {
 			p.textContent = newVal;
 			let minus = this.shadowRoot.querySelector('.minus');
 			let qty = this.shadowRoot.querySelector('.product__number');
+			let cat_id_pro = this.getAttribute("category-id");
+			let tipo_cat_pro = document.getElementsByName(cat_id_pro);
+			let tipo_submenu =""
+			if (tipo_cat_pro.length > 0){
+				tipo_submenu = this.tipo_submenu(tipo_cat_pro[0].title)
+			}
 			if(parseInt(newVal) <= 0) {
 				minus.style.display = 'none';
 				qty.style.display = 'none';
 			} else {
-				minus.style.display = 'block';
-				qty.style.display = 'block';
+				if (tipo_submenu!="F"){
+					minus.style.display = 'block';
+			}
+			qty.style.display = 'block';
 			}
 			return;
 		}
@@ -86,11 +109,53 @@ class ProductCard extends ModelHTMLElement {
 		this.setAttribute('product_uom_qty', qty + val);
 		document.getElementById("t_pedido").value = Cart.total_price;
 	}
-
-	constructor(...args){
+    tipo_submenu(submenu){
+		 let pos = submenu.search('Fijo:');
+		 let tipo_submenu = submenu.slice(pos+6,pos+7);
+        return(tipo_submenu);
+	}
+	tipo_submenu_product_menu(id_cat){
+		//var container = document.querySelector('#main-menu'); //Selecionamos las categorias
+        var data_cat_prod_qty = document.querySelector('li[pos-category-id="' + id_cat + '"]'); // Seleccionamos la categoria del producto
+		var tipo_submenu ;
+		var product_menu = "";
+		if(data_cat_prod_qty !== null){ 
+			tipo_submenu = data_cat_prod_qty.getAttribute('menu'); // Selecionamos si la categoria pertenece a un menu
+			if (tipo_submenu = true){
+				tipo_submenu = "F"
+			} 
+			else{
+				tipo_submenu = "S"
+			}
+			product_menu = data_cat_prod_qty.getAttribute('menu-product-id'); // Selecionamos el producto relacionadon con al categoria
+		}
+		return tipo_submenu, product_menu 
+	}
+	display_qty_producs_submenu() {
+		let newCant = this.getAttribute('product_uom_qty'); // unidades
+		let cat_prod_qty = this.getAttribute("category-id"); // categoria del producto seleccionado
+		let id_prod_qty = this.getAttribute("product-id"); // id del producto seleccionado
+		let ismenu_cat_prod_qty , prod_cat_prod_qty = this.tipo_submenu_product_menu(cat_prod_qty);
+		if (id_prod_qty == prod_cat_prod_qty){
+			let querySelec_menu = document.querySelectorAll("#listProductMenu"); // selecion de productos en dialog submenu
+			querySelec_menu.forEach(p => {
+			let tipo_submenu = this.tipo_submenu(p.title)
+			//let contSelectProducts = p.childNodes[0].shadowRoot.querySelectorAll('product-card');
+					if(tipo_submenu == "F"){
+						p.childNodes[0].setProductsQty(newCant); //importante
+					};
+			});
+		}	
+		return;
+	}
+	constructor(fileCss, tipo_menu, ...args){
 		super(...args);
+		if (typeof fileCss == 'undefined'){
+			fileCss = 'css/product-card.css'
+		};
 		let shadow = this.attachShadow({mode: 'open'});
 		let productbox = document.createElement('div');
+		productbox.setAttribute('id', 'product__box');
 		productbox.setAttribute('class', 'product__box');
 
 			let productName = document.createElement('div');
@@ -112,8 +177,12 @@ class ProductCard extends ModelHTMLElement {
 				productButtonAdd.appendChild(document.createElement('div'));
 				productButtonAdd.addEventListener('click', (ev) => {
 					ev.stopPropagation();
-					this.addQty(1)
-				});
+					this.addQty(1);
+					this.display_qty_producs_submenu();
+				})
+				if(tipo_menu == "F"){
+					productButtonAdd.hidden = "True"; 
+				}
 				this.productAmount.appendChild(productButtonAdd);
 				let productNumber = document.createElement('div');
 				productNumber.setAttribute('class', 'product__number');
@@ -127,24 +196,25 @@ class ProductCard extends ModelHTMLElement {
 				productButtonMinus.addEventListener('click', (ev) => {
 					ev.stopPropagation();
 					this.addQty(-1)
+					this.display_qty_producs_submenu();
 				});
 				this.productAmount.appendChild(productButtonMinus);
-			let productPrize = document.createElement('div');
-			productPrize.setAttribute('class', 'product__prize');
-						productbox.appendChild(productPrize);
+				let productPrize = document.createElement('div');
+			    productPrize.setAttribute('id', 'product__prize');
+			    productPrize.setAttribute('class', 'product__prize');
+				productbox.appendChild(productPrize);
 				let htres = document.createElement('h3');
 				htres.textContent = roundTo(this.getAttribute('price'), 2) + '€';
 				productPrize.appendChild(htres);
 
 		const linkElem = document.createElement('link');
 		linkElem.setAttribute('rel', 'stylesheet');
-		linkElem.setAttribute('href', 'css/product-card.css');
+		linkElem.setAttribute('href', fileCss);
 
 		shadow.appendChild(linkElem);
 		shadow.appendChild(productbox);
 	}
 }
-
 class ProductList extends ModelHTMLElement {
 
 	static get observedAttributes() {
@@ -152,15 +222,18 @@ class ProductList extends ModelHTMLElement {
 	}
 
 	// todo name list setter
-	constructor(){
+	constructor(fileCss){
 		super();
+		if (typeof fileCss == 'undefined'){
+			fileCss = 'css/product-card.css'
+		};
 		let shadow = this.attachShadow({mode: 'open'});
 
 		let container = document.createElement('div');
 		container.setAttribute('class', 'product');
 		const linkElem = document.createElement('link');
 		linkElem.setAttribute('rel', 'stylesheet');
-		linkElem.setAttribute('href', 'css/product-card.css');
+		linkElem.setAttribute('href', fileCss);
 		shadow.appendChild(linkElem);
 		shadow.appendChild(container);
 	}
@@ -205,9 +278,9 @@ class ProductList extends ModelHTMLElement {
 	/**
 	 * @param {array} products
 	 */
-	loadObjects(products) {
+	loadObjects(products, fileCss, tipo_menu) {
 		for (const product of products) {
-			let pCard = new ProductCard();
+			let pCard = new ProductCard(fileCss, tipo_menu);
 			pCard.fromObject(product);
 			this.shadowRoot.appendChild(pCard);
 		}
@@ -233,6 +306,16 @@ class ProductList extends ModelHTMLElement {
 			}
 			return true;
 		});
+	}
+
+	/**
+	 * Set the products-card to Qty
+	 * 
+	 * @param {int} qty
+	 */
+	setProductsQty(qty) {
+		let cards = this.shadowRoot.querySelectorAll('product-card');
+		cards.forEach((card) => card.setAttribute("product_uom_qty", qty));
 	}
 }
 

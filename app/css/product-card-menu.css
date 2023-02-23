@@ -1,37 +1,32 @@
 .product__box {
-    display: table-cell;
-    width: 100vw;
-    background-color: var(--blanco);
-    border-bottom: 1px solid gray;
+	display: -webkit-box;
  }
  .product__box >img{
   float: left;
   margin-left: 1vw;
-
- }
+ } 
  .product__name {
-     flex: 100%;
-     font-size: 8vw;
-     display: inherit;
-     height: auto;
+	font-size: 4vw;
+	width: 50%;
+	font-weight: bold;
+ }
+ .product__name >h2{
+  margin-top: .1vh;
  }
  .product__imagen {
   width: 35vw;
   height:auto;
  }
  .product__prize {
-     float: left;
-     text-align:left;
-     color: var(--negro);
-     font-size: 8vw;
-     margin-top: 10vw;
-     margin-left: 5vh;
+  width: 15%;
+}
+.product__prize >h3{
+  margin: 0;
 }
 .product__amount {
   display:flex;
-  float: right;
-  width: 48%;
-  align-items: center;
+  width: 25%;
+  height: fit-content;
   }
 .product__number {
   color: var(--oro);
@@ -39,8 +34,8 @@
   text-align: center;
 }
 .product__number >p{
-   display: inline;
-   vertical-align: top;
+  margin: 0;
+  height: 0;
 }
 .product__button {
   width: 3vh;
@@ -103,6 +98,7 @@ transform: rotate(90deg);
      .product__name {
          font-size:1.2vh;
          line-height: 3vh;
+         margin-top: 1px;
      }
      .product__prize {
       font-size:2vh;
@@ -113,39 +109,39 @@ transform: rotate(90deg);
      }
      .product__button {
       border: 0.5vh solid var(--oro);
-      height: 6vw;
-      width: 6vw;
+      height: 4vw;
+      width: 4vw;
      }
    }
    @media screen and (min-width: 600px) and (max-width: 900px){
      .product__name {
-         font-size: 5vh;
-         line-height: 5vh;
+         font-size: 2vh;
+         line-height: 2vh;
      }
      .product__prize {
-      font-size:7vh;
+      font-size:2vh;
     }
     .product__number {
       width: 6vw;
-      font-size:10vh;
+      font-size:4vh;
      }
      .product__button {
       border: 0.5vh solid var(--oro);
-      height: 6vw;
-      width: 6vw;
+      height: 4vw;
+      width: 4vw;
      }
    }
    @media screen and (min-width: 900px) and (max-width: 1600px){
      .product__name {
          font-size: 3vh;
-         line-height: 5vh;
+         line-height: 3vh;
      }
      .product__prize {
-      font-size: 4vh;
+      font-size: 3vh;
     }
     .product__number {
-      width: 6vw;
-      font-size:5vh;
+      width: 5vw;
+      font-size:4vh;
      }
      .product__button {
       border: 0.5vh solid var(--oro);
@@ -155,7 +151,7 @@ transform: rotate(90deg);
    }
    @media screen and (min-width: 1600px) and (max-width: 2600px){
      .product__name {
-         font-size: 4vh;
+         font-size: 3vh;
          line-height: 1vh;
      }
      .product__prize {
