@@ -107,15 +107,49 @@ class ProductCard extends ModelHTMLElement {
 	addQty(val) {
 		let qty = parseInt(this.getAttribute('product_uom_qty'));
 		this.setAttribute('product_uom_qty', qty + val);
+		// Comprobamos si es un producto de menu Seleccionable
+			let cat_prod_qty = this.getAttribute("category-id"); // categoria del producto seleccionado
+			let by_count_submenu = this.count_qty_submenu(cat_prod_qty);//Contador de unidades de produto del submenu
+			if (by_count_submenu == false){
+				qty = parseInt(this.getAttribute('product_uom_qty'));
+				this.setAttribute('product_uom_qty', qty - val);
+			}
 		document.getElementById("t_pedido").value = Cart.total_price;
 	}
+
+	count_qty_submenu(submenu){
+		let submenu_pro_qty = document.getElementsByName(submenu); // localizamos el submenu
+		let return_count = true;
+		if(submenu_pro_qty.length > 0){
+			let tipo_submenu = this.tipo_submenu(submenu_pro_qty[0].title); // Comprobamos el tipo de menu que es
+			let cont_uds_submenu = 0;
+			let prodcut_menu_cab_qty = 0;
+			if(tipo_submenu == "S"){ // Si el submenu es Seleccionable
+				//Contador submenu unidades
+					let produdts_submenu_qty = submenu_pro_qty[0].childNodes[0].shadowRoot.querySelectorAll('product-card') //Selecionamos los productos de submenu
+					produdts_submenu_qty.forEach (pro_qtyt => {
+					cont_uds_submenu = cont_uds_submenu +  parseInt(pro_qtyt.getAttribute('product_uom_qty')) // Contador de unidades de submenu
+				})
+				//Localizamos menu Cabecera
+					//let menu_cab = document.getElementsById('menu_cab'); // localizamos div menu cabecera
+					let menu_cab = document.getElementById('menu_cab');// localizamos div menu cabecera
+					let product_menu_cab = menu_cab.childNodes[0].shadowRoot.querySelector('product-card') // Localizamos producto cabecera
+					prodcut_menu_cab_qty = parseInt(product_menu_cab.getAttribute('product_uom_qty')) // Localizamos cantidad producto cabecera
+		};
+		if(cont_uds_submenu > prodcut_menu_cab_qty){
+			//alert( cont_uds_submenu + " " + prodcut_menu_cab_qty +  " nos hemos pasado");
+			return_count = false;
+		}
+		return return_count;
+	}
+	}
+
     tipo_submenu(submenu){
 		 let pos = submenu.search('Fijo:');
 		 let tipo_submenu = submenu.slice(pos+6,pos+7);
         return(tipo_submenu);
 	}
-	tipo_submenu_product_menu(id_cat){
-		//var container = document.querySelector('#main-menu'); //Selecionamos las categorias
+	tipo_submenu_product_menu(id_cat){ //Localizamos si es el producto cabecera para modificar los menus fijos
         var data_cat_prod_qty = document.querySelector('li[pos-category-id="' + id_cat + '"]'); // Seleccionamos la categoria del producto
 		var tipo_submenu ;
 		var product_menu = "";
