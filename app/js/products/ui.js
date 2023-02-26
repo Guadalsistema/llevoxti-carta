@@ -123,21 +123,32 @@ class ProductCard extends ModelHTMLElement {
 		if(submenu_pro_qty.length > 0){
 			let tipo_submenu = this.tipo_submenu(submenu_pro_qty[0].title); // Comprobamos el tipo de menu que es
 			let cont_uds_submenu = 0;
-			let prodcut_menu_cab_qty = 0;
+			let product_menu_cab_qty = 0;
 			if(tipo_submenu == "S"){ // Si el submenu es Seleccionable
 				//Contador submenu unidades
-					let produdts_submenu_qty = submenu_pro_qty[0].childNodes[0].shadowRoot.querySelectorAll('product-card') //Selecionamos los productos de submenu
-					produdts_submenu_qty.forEach (pro_qtyt => {
+					let products_submenu_qty = submenu_pro_qty[0].childNodes[0].shadowRoot.querySelectorAll('product-card') //Selecionamos los productos de submenu
+					products_submenu_qty.forEach (pro_qtyt => {
 					cont_uds_submenu = cont_uds_submenu +  parseInt(pro_qtyt.getAttribute('product_uom_qty')) // Contador de unidades de submenu
 				})
 				//Localizamos menu Cabecera
-					//let menu_cab = document.getElementsById('menu_cab'); // localizamos div menu cabecera
 					let menu_cab = document.getElementById('menu_cab');// localizamos div menu cabecera
 					let product_menu_cab = menu_cab.childNodes[0].shadowRoot.querySelector('product-card') // Localizamos producto cabecera
-					prodcut_menu_cab_qty = parseInt(product_menu_cab.getAttribute('product_uom_qty')) // Localizamos cantidad producto cabecera
+					product_menu_cab_qty = parseInt(product_menu_cab.getAttribute('product_uom_qty')) // Localizamos cantidad producto cabecera
 		};
-		if(cont_uds_submenu > prodcut_menu_cab_qty){
-			//alert( cont_uds_submenu + " " + prodcut_menu_cab_qty +  " nos hemos pasado");
+		let products_submenu_qty = submenu_pro_qty[0].childNodes[0].shadowRoot.querySelectorAll('product-card') //Selecionamos los productos de submenu
+		//alert( cont_uds_submenu + " " + product_menu_cab_qty +  " nos hemos pasado");
+		if(cont_uds_submenu == product_menu_cab_qty){ // Si hemos seleccionado el maximo de productos quitamo el boton +
+				products_submenu_qty.forEach(botton_mas => {
+				let minus = botton_mas.shadowRoot.querySelector('.sum')
+				minus.style.display = 'none';
+			})
+		} else { //Si no visualizamos el botton +
+				products_submenu_qty.forEach(botton_mas => {
+				let minus = botton_mas.shadowRoot.querySelector('.sum')
+				minus.style.display = 'block';	
+				})
+			}
+			if(cont_uds_submenu > product_menu_cab_qty){
 			return_count = false;
 		}
 		return return_count;
