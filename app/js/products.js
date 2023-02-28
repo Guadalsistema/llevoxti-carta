@@ -24,6 +24,23 @@ function displayProducts(products) {
 	products.sort((left, right) => { return left.category_id - right.category_id; });
 	var stored = Cart.products();
 	var products_show = products.filter(prod=> prod["lst_price"] > 0);
+	products_show.forEach(p=>{ //Recorremos productos para añadir si son de menu
+		//log.console(p)
+		var categoria_ismenu = p['pos_categ_id']
+		let data_cat_prod = document.querySelector('li[pos-category-id="' + categoria_ismenu + '"]'); // Seleccionamos la categoria del producto
+		//alert(p['name']);
+		if (data_cat_prod!== null) {
+			let ismenu = data_cat_prod.getAttribute('menu')//localizamos si la categoria es menu
+			if (ismenu == "true"){ //añadimos al objeto el elmento menu
+				//alert(ismenu);
+				p.menu = "true"
+			}
+			else{
+				p.menu = "false"
+			}
+		}	
+	})
+	var products_show = products.filter(prod=> prod["menu"] == 'false');//Eliminamos los articulos que son menu
 	for (const product of products_show) {
 		let pCard = document.createElement('product-card');
 		product['product_uom_qty'] = bus_qty_cart(product["id"]);
@@ -112,7 +129,6 @@ function displayCategories(categories) {
 	let categories_parent = categories.filter( x => x.parent_id);
 	categories = categories.filter( x => !x.parent_id);
 	placeholder.loadObjects(categories);
-
 	placeholder.addEventListener('click', (ev) => {
 		const pList = document.getElementById('full-product-list');
 		if(ev.target.parentElement.getAttribute('menu')){  //Si la categoria es menú abrimos dialog
