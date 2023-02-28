@@ -19,10 +19,17 @@ function darProvincia(cpostal){
 		return"---";
 	}
 }
+function delivery(home_delivery) {
+	Address.delivery.forEach((d_delivery) => {
+		document.getElementById(d_delivery).hidden = home_delivery;
+		document.getElementById(d_delivery).required = home_delivery;
+	});
+}
 
 class Address {
 	static mandatory = ["email", "name", "phone", "street", "zip", "city", "state_id"];
 	static labels = ["email", "name", "phone", "street", "zip", "city", "state_id", "comment"];
+	static delivery = ["street", "zip", "city", "state_id"];
 
 	static valid() {
 		let array = Address.mandatory.map((label) => {
@@ -47,4 +54,4 @@ class Address {
 	}
 }
 
-export { Address, darProvincia };
+export { Address, darProvincia, delivery };

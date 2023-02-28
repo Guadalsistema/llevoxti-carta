@@ -1,4 +1,4 @@
-import { Address, darProvincia } from './customer/address.js';
+import { Address, darProvincia, delivery } from './customer/address.js';
 import { Cart } from './cart/model.js';
 import { config } from './config.js';
 import { ProductCard, ProductList } from  './products/ui.js';
@@ -197,10 +197,10 @@ function show_address_dialog() {
 			document.getElementById(label).value = value;
 		}
 	});
-	//document.querySelector('#pie-app').style.display = "none";
+	var click_delivery = document.getElementById('recogida');
+	delivery(click_delivery.checked);
 	document.querySelector('#products-cart-button').style.display = "none";
 	document.querySelector('#show-cart-button').style.display = "none";
-
 	document.getElementById("address_dialog").showModal();
 }
 
@@ -225,7 +225,11 @@ function setBehaviour() {
 
 		cartDialog.showModal();
 	});
-
+    // Recogida o envio de comandas
+	var click_delivery = document.getElementById('recogida');
+	click_delivery.onclick= function(){
+		delivery(click_delivery.checked)
+	};
 	var inputCP = document.getElementById('zip');
 	inputCP.onkeyup = function(){
 		document.getElementById('state_id').value = darProvincia(inputCP.value);
