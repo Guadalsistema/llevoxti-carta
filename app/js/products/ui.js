@@ -107,14 +107,6 @@ class ProductCard extends ModelHTMLElement {
 	addQty(val) {
 		let qty = parseInt(this.getAttribute('product_uom_qty'));
 		this.setAttribute('product_uom_qty', qty + val);
-				//Localizamos menu Cabecera
-				//let cat_prod_qty = this.getAttribute("category-id"); // categoria del producto seleccionado
-				//var data_cat_prod_qty = document.querySelector('li[pos-category-id="' + cat_prod_qty + '"]'); // Seleccionamos la categoria del producto
-				//var ismenu = data_cat_prod_qty.getAttribute('menu')
-				//if (ismenu == true){
-				//	displaySubcategories(categories, categories_parent, products_cat, ismenu_pos_id, menu_display_name); 
-				//}
-                //displaySubcategories(categories, categories_parent, products_cat, ismenu_pos_id, menu_display_name);  
 		document.getElementById("t_pedido").value = Cart.total_price;
 	}
 
@@ -195,7 +187,6 @@ class ProductCard extends ModelHTMLElement {
 			let querySelec_menu = document.querySelectorAll("#listProductMenu"); // selecion de productos en dialog submenu
 			querySelec_menu.forEach(p => {
 			let tipo_submenu = this.tipo_submenu(p.title)
-			//let contSelectProducts = p.childNodes[0].shadowRoot.querySelectorAll('product-card');
 					if(tipo_submenu == "F"){ // Ponemos todos los productos Fijos igual que articulo menu cabecera
 						p.childNodes[0].setProductsQty(newCant); //importante
 					};
@@ -209,10 +200,6 @@ class ProductCard extends ModelHTMLElement {
 		}	else { // Si no es producto cabecera
 			let cat_prod_qty = this.getAttribute("category-id"); // categoria del producto seleccionado
 			let by_count_submenu = this.count_qty_submenu(cat_prod_qty);//Contador de unidades de produto del submenu
-			//if (by_count_submenu == false){
-		//		let qty = parseInt(this.getAttribute('product_uom_qty'));
-		//		this.setAttribute('product_uom_qty', qty - sum_minus);
-		//	}
 		}
 		return;
 	}

@@ -24,22 +24,7 @@ function displayProducts(products) {
 	products.sort((left, right) => { return left.category_id - right.category_id; });
 	var stored = Cart.products();
 	var products_show = products.filter(prod=> prod["lst_price"] > 0);
-	products_show.forEach(p=>{ //Recorremos productos para añadir si son de menu
-		//log.console(p)
-		var categoria_ismenu = p['pos_categ_id']
-		let data_cat_prod = document.querySelector('li[pos-category-id="' + categoria_ismenu + '"]'); // Seleccionamos la categoria del producto
-		//alert(p['name']);
-		if (data_cat_prod!== null) {
-			let ismenu = data_cat_prod.getAttribute('menu')//localizamos si la categoria es menu
-			if (ismenu == "true"){ //añadimos al objeto el elmento menu
-				//alert(ismenu);
-				p.menu = "true"
-			}
-			else{
-				p.menu = "false"
-			}
-		}	
-	})
+	products_show = add_menu_products(products_show);
 	var products_show = products.filter(prod=> prod["menu"] == 'false');//Eliminamos los articulos que son menu
 	for (const product of products_show) {
 		let pCard = document.createElement('product-card');
@@ -47,6 +32,24 @@ function displayProducts(products) {
 		pCard.fromObject(product);
 		placeholder.shadowRoot.appendChild(pCard);
 	}
+}
+function add_menu_products(prod_add){
+	prod_add.forEach(p=>{ //Recorremos productos para añadir si son de menu
+		var categoria_ismenu = p['pos_categ_id']
+		let data_cat_prod = document.querySelector('li[pos-category-id="' + categoria_ismenu + '"]'); // Seleccionamos la categoria del producto
+		if (data_cat_prod!== null) {
+			let ismenu = data_cat_prod.getAttribute('menu')//localizamos si la categoria es menu
+			if (ismenu == "true"){ //añadimos al objeto el elmento menu
+				p.menu = "true"
+			}
+			else{
+				p.menu = "false"
+			}
+		} else {
+			p.menu = "true" // Si es null, es porque es una subcategoria y esta borrada del cuadro de categorias por lo tanto es subcategoria true
+		}	
+	})
+	return prod_add
 }
 function bus_qty_cart(id_product_bus) {
 	let prod_store = Cart.products().filter( prod => prod["id"] == id_product_bus )
@@ -88,7 +91,7 @@ function displaySubcategories(categories, categories_parent, products_cat, ismen
 					if(item_subm.seleccionable  == true){
 						tipo_menu = "S"
 					};
-					div_submenu.textContent = "-" + item_subm.name+ " Tipo: " + tipo_menu;
+					div_submenu.textContent = "-" + item_subm.name;//+ " Tipo: " + tipo_menu;
 					div_submenu.setAttribute('class', 'menu_submenu');
 					sub_menu_fragment.appendChild(div_submenu)
 					let products_submenu = products_cat.filter(pro => pro.pos_categ_id == item_subm.id); //Filtro los productos del submenu
@@ -216,14 +219,29 @@ function setBehaviour() {
 		let cartProductList = document.getElementById("cart-product-list");
 		cartProductList.clear();
 		let products = Cart.toObjects();
+		products = add_menu_products(products); // añadimos si son menu o submenu
+		
 		cartProductList.loadObjects(products);
 		const lambda = (x) => parseInt(x.getAttribute('product_uom_qty'));
 		cartProductList.displayProductCards(lambda)
-	
 		document.querySelector('#products-cart-button').style.display = "none";
 		document.querySelector('#show-cart-button').style.display = "none";
-
 		cartDialog.showModal();
+			//Quitamos los signos - de los productos de menu fijo
+			let prod_cart = document.getElementById('cart-product-list') 	
+			prod_cart = prod_cart.shadowRoot.querySelectorAll('product-card');
+			for(let i=0;i < prod_cart.length;i++){
+				var prod_store = prod_cart[i].getAttribute('product-id');
+				//alert(prod_store);
+            	var prod_menu = products.filter(prod=>prod['id']==prod_store);
+				//alert(prod_menu[0]['menu']);
+				if (prod_menu[0]['menu'] == "true"){
+					let minus = prod_cart[i].shadowRoot.querySelector('.minus')
+					minus.style.display = 'none';
+					let sum = prod_cart[i].shadowRoot.querySelector('.sum')
+					sum.style.display = 'none';
+				}		
+			}
 	});
     // Recogida o envio de comandas
 	var click_delivery = document.getElementById('recogida');
