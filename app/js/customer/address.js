@@ -1,3 +1,5 @@
+import { Cart } from '../cart/model.js';
+
 function darProvincia(cpostal){
 	let cp_provincias={
 		1:"Álava", 2:"Albacete", 3:"Alicante", 4:"Almer\u00EDa", 5:"\u00C1vila",
@@ -24,13 +26,32 @@ function delivery(home_delivery) {
 		document.getElementById(d_delivery).hidden = home_delivery;
 		document.getElementById(d_delivery).required = home_delivery;
 	});
+	//Calculamos los gastos de envio
+	if(home_delivery==false){
+      	  //Address.products_delivery = Object.entries(Address.products_delivery)
+	  	if(Address.products_delivery.product_uom_qty ==0){
+			Address.products_delivery.product_uom_qty = 1
+			Cart.add(Address.products_delivery);
+			alert('Gastos de envio Añadido');
+	  	}
+	  //Cart.add(Address.products_delivery);
+	}else{
+		if(Address.products_delivery.product_uom_qty == 1){
+			Address.products_delivery.product_uom_qty = -1
+			Cart.add(Address.products_delivery);
+			alert('Gastos de envio Quitados');
+		}
+
+		//Address.products_delivery.forEach(p => {p.product_uom_qty = 0;});
+		//Cart.update(Address.products_delivery);
+	}
 }
 
 class Address {
 	static mandatory = ["email", "name", "phone", "street", "zip", "city", "state_id"];
 	static labels = ["email", "name", "phone", "street", "zip", "city", "state_id", "comment"];
 	static delivery = ["street", "zip", "city", "state_id"];
-
+	static products_delivery;
 	static valid() {
 		let array = Address.mandatory.map((label) => {
 			let value = localStorage.getItem("lxt" + label);

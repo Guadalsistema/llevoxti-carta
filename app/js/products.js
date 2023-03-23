@@ -25,7 +25,18 @@ function displayProducts(products) {
 	var stored = Cart.products();
 	var products_show = products.filter(prod=> prod["lst_price"] > 0);
 	products_show = add_menu_products(products_show);
-	var products_show = products.filter(prod=> prod["menu"] == 'false');//Eliminamos los articulos que son menu
+	products_show = products.filter(prod=> prod["menu"] == 'false');//Eliminamos los articulos que son menu
+	Address.products_delivery = products.filter(prod=> !prod["name"].search("Entrega"));
+	if (Address.products_delivery.length>0){
+		var prod_delivery = new Object();
+		prod_delivery.id = Address.products_delivery[0].id;
+		prod_delivery.pos_categ_id = Address.products_delivery[0].pos_categ_id;
+		prod_delivery.name = Address.products_delivery[0].name;
+		prod_delivery.lst_price = Address.products_delivery[0].lst_price;
+		prod_delivery.product_uom_qty = bus_qty_cart(Address.products_delivery[0].id);
+	    Address.products_delivery = prod_delivery
+	}
+    alert(Address.products_delivery.product_uom_qty);
 	for (const product of products_show) {
 		let pCard = document.createElement('product-card');
 		product['product_uom_qty'] = bus_qty_cart(product["id"]);
