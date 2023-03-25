@@ -32,6 +32,7 @@ function delivery(home_delivery) {
 			Address.products_delivery.product_uom_qty = 1
 			Cart.add(Address.products_delivery);
 			Address.products_delivery.product_uom_qty = 1;
+			document.getElementById("delivery").innerText = 'Gastos de Envío: ' + Address.products_delivery.product_uom_qty * Address.products_delivery.lst_price + '€';
 			//alert('Gastos de envio Añadido');
 	  	}
 	}else{
@@ -39,10 +40,10 @@ function delivery(home_delivery) {
 			Address.products_delivery.product_uom_qty = -1
 			Cart.add(Address.products_delivery);
 			Address.products_delivery.product_uom_qty = 0;
+			document.getElementById("delivery").innerText = 'Gastos de Envío: ' + Address.products_delivery.product_uom_qty * Address.products_delivery.lst_price + '€';
 			//alert('Gastos de envio Quitados');
 		}
 	}
-	document.getElementById("delivery").innerText = 'Gastos de Envío: ' + Address.products_delivery.product_uom_qty * Address.products_delivery.lst_price + '€';
 	document.getElementById("deli_tot").innerText = 'Total Pedido: ' + Cart.total_price + '€';
 }
 
