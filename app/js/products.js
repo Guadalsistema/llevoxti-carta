@@ -26,14 +26,19 @@ function displayProducts(products) {
 	var products_show = products.filter(prod=> prod["lst_price"] > 0);
 	products_show = add_menu_products(products_show);
 	products_show = products.filter(prod=> prod["menu"] == 'false');//Eliminamos los articulos que son menu
-	Address.products_delivery = products.filter(prod=> !prod["name"].search("Entrega"));
+	Address.products_delivery = products.filter(prod=> !prod["name"].search("Entrega"));//Buscamos si tiene productos de envio a domicilio
 	if (Address.products_delivery.length>0){
 		var prod_delivery = new Object();
-		prod_delivery.id = Address.products_delivery[0].id;
-		prod_delivery.pos_categ_id = Address.products_delivery[0].pos_categ_id;
-		prod_delivery.name = Address.products_delivery[0].name;
-		prod_delivery.lst_price = Address.products_delivery[0].lst_price;
-		prod_delivery.product_uom_qty = bus_qty_cart(Address.products_delivery[0].id);
+		Address.products_delivery.forEach(dely=>{
+			prod_delivery = dely;
+			prod_delivery.product_uom_qty = bus_qty_cart(dely.id);
+		});
+
+		//prod_delivery.id = Address.products_delivery[0].id;
+		//prod_delivery.pos_categ_id = Address.products_delivery[0].pos_categ_id;
+		//prod_delivery.name = Address.products_delivery[0].name;
+		//prod_delivery.lst_price = Address.products_delivery[0].lst_price;
+		//prod_delivery.product_uom_qty = bus_qty_cart(Address.products_delivery[0].id);
 	    Address.products_delivery = prod_delivery
 	}
     alert(Address.products_delivery.product_uom_qty);
@@ -231,12 +236,12 @@ function setBehaviour() {
 		cartProductList.clear();
 		let products = Cart.toObjects();
 		products = add_menu_products(products); // añadimos si son menu o submenu
-		
 		cartProductList.loadObjects(products);
 		const lambda = (x) => parseInt(x.getAttribute('product_uom_qty'));
 		cartProductList.displayProductCards(lambda)
 		document.querySelector('#products-cart-button').style.display = "none";
 		document.querySelector('#show-cart-button').style.display = "none";
+		document.getElementById("t_pedido").value = Cart.total_price;
 		cartDialog.showModal();
 			//Quitamos los signos - de los productos de menu fijo
 			let prod_cart = document.getElementById('cart-product-list') 	

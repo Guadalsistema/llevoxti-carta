@@ -28,40 +28,19 @@ function delivery(home_delivery) {
 	});
 	//Calculamos los gastos de envio
 	if(home_delivery==false){
-      	  //Address.products_delivery = Object.entries(Address.products_delivery)
-	  	if(Address.products_delivery.product_uom_qty ==0){
+	  	if(Address.products_delivery.product_uom_qty ==0){//Añado producto Entrega a carrito
 			Address.products_delivery.product_uom_qty = 1
 			Cart.add(Address.products_delivery);
-			if (Address.products_delivery.id > 0){
-				var prod_delivery = new Object();
-				prod_delivery.id = Address.products_delivery.id;
-				prod_delivery.pos_categ_id = Address.products_delivery.pos_categ_id;
-				prod_delivery.name = Address.products_delivery.name;
-				prod_delivery.lst_price = Address.products_delivery.lst_price;
-				prod_delivery.product_uom_qty = 1
-				Address.products_delivery = prod_delivery
-			}
+			Address.products_delivery.product_uom_qty = 1;
 			alert('Gastos de envio Añadido');
 	  	}
-	  //Cart.add(Address.products_delivery);
 	}else{
-		if(Address.products_delivery.product_uom_qty == 1){
+		if(Address.products_delivery.product_uom_qty == 1){ //Quito producto Entrega a carrito
 			Address.products_delivery.product_uom_qty = -1
 			Cart.add(Address.products_delivery);
-			if (Address.products_delivery.id > 0){
-				var prod_delivery = new Object();
-				prod_delivery.id = Address.products_delivery.id;
-				prod_delivery.pos_categ_id = Address.products_delivery.pos_categ_id;
-				prod_delivery.name = Address.products_delivery.name;
-				prod_delivery.lst_price = Address.products_delivery.lst_price;
-				prod_delivery.product_uom_qty = 0
-				Address.products_delivery = prod_delivery
-			}
+			Address.products_delivery.product_uom_qty = 0;
 			alert('Gastos de envio Quitados');
 		}
-
-		//Address.products_delivery.forEach(p => {p.product_uom_qty = 0;});
-		//Cart.update(Address.products_delivery);
 	}
 }
 
