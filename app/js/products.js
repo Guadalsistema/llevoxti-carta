@@ -41,7 +41,7 @@ function displayProducts(products) {
 		//prod_delivery.product_uom_qty = bus_qty_cart(Address.products_delivery[0].id);
 	    Address.products_delivery = prod_delivery
 	}
-    alert(Address.products_delivery.product_uom_qty);
+    //alert(Address.products_delivery.product_uom_qty);
 	for (const product of products_show) {
 		let pCard = document.createElement('product-card');
 		product['product_uom_qty'] = bus_qty_cart(product["id"]);
@@ -332,7 +332,6 @@ function fetchContent() {
 
 	let cartCounter = document.querySelector('.products-cart-button > span');
 	cartCounter.textContent = Cart.number_of_products();
-
 	document.getElementById("t_pedido").value = Cart.total_price;
 }
 

@@ -32,16 +32,18 @@ function delivery(home_delivery) {
 			Address.products_delivery.product_uom_qty = 1
 			Cart.add(Address.products_delivery);
 			Address.products_delivery.product_uom_qty = 1;
-			alert('Gastos de envio Añadido');
+			//alert('Gastos de envio Añadido');
 	  	}
 	}else{
 		if(Address.products_delivery.product_uom_qty == 1){ //Quito producto Entrega a carrito
 			Address.products_delivery.product_uom_qty = -1
 			Cart.add(Address.products_delivery);
 			Address.products_delivery.product_uom_qty = 0;
-			alert('Gastos de envio Quitados');
+			//alert('Gastos de envio Quitados');
 		}
 	}
+	document.getElementById("delivery").innerText = 'Gastos de Envío: ' + Address.products_delivery.product_uom_qty * Address.products_delivery.lst_price + '€';
+	document.getElementById("deli_tot").innerText = 'Total Pedido: ' + Cart.total_price + '€';
 }
 
 class Address {
