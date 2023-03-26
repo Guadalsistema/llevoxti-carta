@@ -33,15 +33,8 @@ function displayProducts(products) {
 			prod_delivery = dely;
 			prod_delivery.product_uom_qty = bus_qty_cart(dely.id);
 		});
-
-		//prod_delivery.id = Address.products_delivery[0].id;
-		//prod_delivery.pos_categ_id = Address.products_delivery[0].pos_categ_id;
-		//prod_delivery.name = Address.products_delivery[0].name;
-		//prod_delivery.lst_price = Address.products_delivery[0].lst_price;
-		//prod_delivery.product_uom_qty = bus_qty_cart(Address.products_delivery[0].id);
 	    Address.products_delivery = prod_delivery
 	}
-    //alert(Address.products_delivery.product_uom_qty);
 	for (const product of products_show) {
 		let pCard = document.createElement('product-card');
 		product['product_uom_qty'] = bus_qty_cart(product["id"]);
@@ -262,12 +255,21 @@ function setBehaviour() {
     // Recogida o envio de comandas
 	var click_delivery = document.getElementById('recogida');
 	click_delivery.onclick= function(){
-		delivery(click_delivery.checked)
+		 delivery(click_delivery.checked)
 	};
-	var inputCP = document.getElementById('zip');
-	inputCP.onkeyup = function(){
-		document.getElementById('state_id').value = darProvincia(inputCP.value);
-	}
+	// Codigos postales
+	const $click_zip = document.getElementById('zip')
+		let zip_store = config["zip"].split(',')
+		zip_store.forEach(z=>{
+			const option = document.createElement('option');
+			option.value = z;
+			option.text = z;
+			$click_zip.appendChild(option);
+		})
+	//var inputCP = document.getElementById('zip');
+	//inputCP.onkeyup = function(){
+	//	document.getElementById('state_id').value = darProvincia(inputCP.value);
+	//}
 	let dialog_form = document.getElementById("address_dialog");
 
 	dialog_form.addEventListener('close', () => document.querySelector('#products-cart-button').style.display = "flex");
