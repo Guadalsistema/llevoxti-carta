@@ -259,13 +259,18 @@ function setBehaviour() {
 	};
 	// Codigos postales
 	const $click_zip = document.getElementById('zip')
-		let zip_store = config["zip"].split(',')
-		zip_store.forEach(z=>{
+		if($click_zip-length >= 0){
+			let zip_store = config["zip"].split(',')
+			zip_store.forEach(z=>{
+				const option = document.createElement('option');
+				option.value = z;
+				option.text = z;
+				$click_zip.appendChild(option);
+			})
+		}else{
 			const option = document.createElement('option');
-			option.value = z;
-			option.text = z;
 			$click_zip.appendChild(option);
-		})
+		};
 	//var inputCP = document.getElementById('zip');
 	//inputCP.onkeyup = function(){
 	//	document.getElementById('state_id').value = darProvincia(inputCP.value);
