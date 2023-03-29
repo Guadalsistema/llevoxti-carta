@@ -57,6 +57,18 @@
 	padding-left: 10px;
 	margin-bottom: 0px;
 }
+#address_dialog select {
+	background-color: #fbfbfb;
+	width: 20vw;
+	height: 40px;
+	border-radius: 5px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: var(--oro);
+	margin-top: 0px;
+	padding-left: 10px;
+	margin-bottom: 0px;
+}
 
 
 #address_dialog textarea {

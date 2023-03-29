@@ -1,3 +1,5 @@
+import { Cart } from '../cart/model.js';
+
 function darProvincia(cpostal){
 	let cp_provincias={
 		1:"Álava", 2:"Albacete", 3:"Alicante", 4:"Almer\u00EDa", 5:"\u00C1vila",
@@ -19,11 +21,38 @@ function darProvincia(cpostal){
 		return"---";
 	}
 }
+function delivery(home_delivery) {
+	Address.delivery.forEach((d_delivery) => {
+		document.getElementById(d_delivery).hidden = home_delivery;
+		document.getElementById(d_delivery).required = home_delivery;
+	});
+	//Calculamos los gastos de envio
+	if(home_delivery==false){
+	  	if(Address.products_delivery.product_uom_qty ==0){//Añado producto Entrega a carrito
+			Address.products_delivery.product_uom_qty = 1
+			Cart.add(Address.products_delivery);
+			Address.products_delivery.product_uom_qty = 1;
+			//alert('Gastos de envio Añadido');
+	  	}
+	}else{
+		if(Address.products_delivery.product_uom_qty == 1){ //Quito producto Entrega a carrito
+			Address.products_delivery.product_uom_qty = -1
+			Cart.add(Address.products_delivery);
+			Address.products_delivery.product_uom_qty = 0;
+			//alert('Gastos de envio Quitados');
+		}
+	}
+	if(Address.products_delivery.lst_price >0){
+		document.getElementById("delivery").innerText = 'Gastos de Envío: ' + Address.products_delivery.product_uom_qty * Address.products_delivery.lst_price + '€';
+	}	
+	document.getElementById("deli_tot").innerText = 'Total Pedido: ' + Cart.total_price + '€';
+}
 
 class Address {
 	static mandatory = ["email", "name", "phone", "street", "zip", "city", "state_id"];
 	static labels = ["email", "name", "phone", "street", "zip", "city", "state_id", "comment"];
-
+	static delivery = ["street", "zip", "city", "state_id"];
+	static products_delivery;
 	static valid() {
 		let array = Address.mandatory.map((label) => {
 			let value = localStorage.getItem("lxt" + label);
@@ -47,4 +76,4 @@ class Address {
 	}
 }
 
-export { Address, darProvincia };
+export { Address, darProvincia, delivery };

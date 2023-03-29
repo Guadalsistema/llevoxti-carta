@@ -47,7 +47,7 @@
 							<input type="tel" name="introducir_telefono" id="phone" required="1" placeholder="Escribe tu teléfono">
 					</p>
 					<p style="font-weight: bold;padding-left: 10vw;">
-						<input type="checkbox" style="width: 5vw;height: 3vh;vertical-align: middle;" id="recogica" name="recogida">
+						<input type="checkbox" style="width: 5vw;height: 3vh;vertical-align: middle;" id="recogida" name="recogida">
 						   Recogida en establecimiento
 						</input>
 					</p>
@@ -57,12 +57,23 @@
 						</label>
 							<input type="text" name="introducir_direccion" id="street" required="1" placeholder="Escribe tu dirección de envío">
 					</p>
-					<p>
+					<!-- <p>
 						<label for="zip" class="colocar_c_postal">Código postal de envío
 						<span class="obligatorio">*</span>
 						</label>
 							<input type="text" name="introducir_c_postal" id="zip" required="1" placeholder="Escribe tu código postal de envío">
+					</p> -->
+					<p>
+						
+						<label for="zip" class="colocar_c_postal">Código postal de envío
+							<span class="obligatorio">*</span>
+						
+							<select name="Código Postal" id="zip" required="1">
+								<!--<option value="29004">29004</option>-->
+							</select>
+						</label>
 					</p>
+
 					<p>
 						<label for="city" class="colocar_poblacion">Población de envío
 						<span class="obligatorio">*</span>
@@ -80,15 +91,15 @@
 						</label>
 							<textarea name="introducir_mensaje" class="texto_mensaje" id="comment" placeholder="Deja aquí tu comentario..."></textarea>
 					</p>
-					<p class="aviso">
-						<span class="obligatorio"> * </span>los campos son obligatorios.
-					</p>
-				</form>
+					<p class="aviso"><span class="obligatorio"> * </span>los campos son obligatorios.</p>
+					<p class="aviso"><span id="delivery">Gastos de Envío: </span></p>
+					<p class="aviso"><span id="deli_tot">Total Pedido: </span></p>	
 		
-				<nav class="pie-app">
-					<button type="button" class="products-cart-button" id="dialog-address-cancel">Volver</button>
-					<button type="button" class="products-cart-button" id="dialog-address-send">Enviar</button>
-				</nav>
+					<nav class="pie-app">
+						<button type="button" class="products-cart-button" id="dialog-address-cancel">Volver</button>
+						<button type="submit" class="products-cart-button" id="dialog-address-send">Enviar</button>
+					</nav>
+				</form	>
 	   </dialog>
 	   <dialog id="menufijo">
 		     <div id="name_menu"></div>
