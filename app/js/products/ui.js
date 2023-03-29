@@ -162,6 +162,7 @@ class ProductCard extends ModelHTMLElement {
 		 let tipo_submenu = submenu.slice(pos+6,pos+7);
         return(tipo_submenu);
 	}
+
 	tipo_submenu_product_menu(id_cat){ //Localizamos si es el producto cabecera para modificar los menus fijos
         var data_cat_prod_qty = document.querySelector('li[pos-category-id="' + id_cat + '"]'); // Seleccionamos la categoria del producto
 		var tipo_submenu ;
@@ -178,6 +179,7 @@ class ProductCard extends ModelHTMLElement {
 		}
 		return tipo_submenu, product_menu 
 	}
+
 	display_qty_producs_submenu(sum_minus) {
 		let newCant = this.getAttribute('product_uom_qty'); // unidades
 		let cat_prod_qty = this.getAttribute("category-id"); // categoria del producto seleccionado

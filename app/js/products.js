@@ -42,6 +42,7 @@ function displayProducts(products) {
 		placeholder.shadowRoot.appendChild(pCard);
 	}
 }
+
 function add_menu_products(prod_add){
 	prod_add.forEach(p=>{ //Recorremos productos para añadir si son de menu
 		var categoria_ismenu = p['pos_categ_id']
@@ -60,6 +61,7 @@ function add_menu_products(prod_add){
 	})
 	return prod_add
 }
+
 function bus_qty_cart(id_product_bus) {
 	let prod_store = Cart.products().filter( prod => prod["id"] == id_product_bus )
 	let product_store_qty
