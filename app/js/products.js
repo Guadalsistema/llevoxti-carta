@@ -142,7 +142,6 @@ function displayCategories(categories) {
 	categories = categories.filter( x => !x.parent_id);
 	placeholder.loadObjects(categories);
 	placeholder.addEventListener('click', (ev) => {
-		const pList = document.getElementById('full-product-list');
 		if(ev.target.parentElement.getAttribute('menu')){  //Si la categoria es menú abrimos dialog
 			var url_products = config["url"] + "/menu";
 			let ismenu_pos_id = ev.target.parentElement.getAttribute('pos-category-id');
@@ -151,9 +150,18 @@ function displayCategories(categories) {
 			.then(res => res.json())
 			.then(products_cat => {displaySubcategories(categories, categories_parent, products_cat, ismenu_pos_id, menu_display_name);});
 		}
-		let show = pList.shadowRoot.querySelector('product-card[category-id*="' + ev.target.parentElement.getAttribute("pos-category-id") + '"]');
-		if(show) {
+		const pList = document.getElementById('full-product-list');
+		var id_cat = ev.target.parentNode.getAttribute("pos-category-id");
+		if (id_cat == null){
+			id_cat = ev.target.getAttribute("pos-category-id")
+		}
+		//alert(id_cat);
+		
+		let show = pList.shadowRoot.querySelector('product-card[category-id="' + id_cat + '"]');
+		
+		if(show !== null) {
 			show.scrollIntoView();
+			//alert('encontrado')
 		}
 	});
 	return Promise.resolve(categories)
@@ -259,7 +267,9 @@ function setBehaviour() {
 	};
 	// Codigos postales
 	const $click_zip = document.getElementById('zip')
-		if($click_zip-length >= 0){
+		const option = document.createElement('option');
+		$click_zip.appendChild(option);
+		if($click_zip.length >= 0){
 			let zip_store = config["zip"].split(',')
 			zip_store.forEach(z=>{
 				const option = document.createElement('option');
@@ -267,10 +277,7 @@ function setBehaviour() {
 				option.text = z;
 				$click_zip.appendChild(option);
 			})
-		}else{
-			const option = document.createElement('option');
-			$click_zip.appendChild(option);
-		};
+		}
 	//var inputCP = document.getElementById('zip');
 	//inputCP.onkeyup = function(){
 	//	document.getElementById('state_id').value = darProvincia(inputCP.value);

@@ -42,7 +42,7 @@ function delivery(home_delivery) {
 			//alert('Gastos de envio Quitados');
 		}
 	}
-	if(Address.products_delivery.id !=0){
+	if(Address.products_delivery.lst_price >0){
 		document.getElementById("delivery").innerText = 'Gastos de Envío: ' + Address.products_delivery.product_uom_qty * Address.products_delivery.lst_price + '€';
 	}	
 	document.getElementById("deli_tot").innerText = 'Total Pedido: ' + Cart.total_price + '€';
