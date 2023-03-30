@@ -21,7 +21,7 @@ function displayRestaurantName() {
 
 function displayProducts(products) {
 	var placeholder = document.getElementById('full-product-list');
-	products.sort((left, right) => { return left.category_id - right.category_id; });
+	products.sort((left, right) => { return parseInt(left.pos_categ_id) > parseInt(right.pos_categ_id); });
 	var stored = Cart.products();
 	var products_show = products.filter(prod=> prod["lst_price"] > 0);
 	products_show = add_menu_products(products_show);
