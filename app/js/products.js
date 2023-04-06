@@ -280,10 +280,14 @@ function setBehaviour() {
 				$click_zip.appendChild(option);
 			})
 		}
-	//var inputCP = document.getElementById('zip');
-	//inputCP.onkeyup = function(){
-	//	document.getElementById('state_id').value = darProvincia(inputCP.value);
-	//}
+	document.getElementById('zip').addEventListener('change', event => {
+		if (parseInt(event.target.value) > 0) { 
+			document.getElementById('state_id').value = darProvincia(event.target.value);
+			document.getElementById("dialog-address-send").hidden = ""
+		}else{
+			document.getElementById("dialog-address-send").hidden = "true"
+		}
+	  });
 	let dialog_form = document.getElementById("address_dialog");
 
 	dialog_form.addEventListener('close', () => document.querySelector('#products-cart-button').style.display = "flex");
