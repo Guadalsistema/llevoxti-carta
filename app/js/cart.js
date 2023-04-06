@@ -1,5 +1,6 @@
 import { Cart } from './cart/model.js';
 import { config } from './config.js';
+import { Address } from './customer/address.js';
 import { ProductCard, ProductList } from  './products/ui.js';
 
 function loadProducts(products) {

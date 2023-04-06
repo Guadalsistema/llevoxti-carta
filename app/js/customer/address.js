@@ -1,4 +1,5 @@
 import { Cart } from '../cart/model.js';
+import { config } from '../config.js';
 
 function darProvincia(cpostal){
 	let cp_provincias={
@@ -22,6 +23,7 @@ function darProvincia(cpostal){
 	}
 }
 function delivery(home_delivery) {
+	Address.mini_order =  parseFloat(config['mini']); // Pedido minimo
 	Address.delivery.forEach((d_delivery) => {
 		document.getElementById(d_delivery).hidden = home_delivery;
 		document.getElementById(d_delivery).required = home_delivery;
@@ -44,8 +46,20 @@ function delivery(home_delivery) {
 	}
 	if(Address.products_delivery.lst_price >0){
 		document.getElementById("delivery").innerText = 'Gastos de Envío: ' + Address.products_delivery.product_uom_qty * Address.products_delivery.lst_price + '€';
-	}	
+	}else{
+		document.getElementById("delivery").hidden = "true"
+	};	
 	document.getElementById("deli_tot").innerText = 'Total Pedido: ' + Cart.total_price + '€';
+	if(Address.mini_order > 0){ // Existe pedido minimo
+		document.getElementById("deli_min").innerText = 'Pedido Mínimo: ' + Address.mini_order + '€';
+		if (Address.mini_order >=  parseFloat(Cart.total_price)){ // si el no llegamos a pedido minimo
+			document.getElementById("dialog-address-send").hidden = "true"
+		}else{
+			document.getElementById("dialog-address-send").hidden = ""
+		}
+	}else{
+		document.getElementById("deli_min").hidden = "true"
+	}
 }
 
 class Address {
@@ -53,6 +67,7 @@ class Address {
 	static labels = ["email", "name", "phone", "street", "zip", "city", "state_id", "comment"];
 	static delivery = ["street", "zip", "city", "state_id"];
 	static products_delivery;
+	static mini_order;
 	static valid() {
 		let array = Address.mandatory.map((label) => {
 			let value = localStorage.getItem("lxt" + label);
