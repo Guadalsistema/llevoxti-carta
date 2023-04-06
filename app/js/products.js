@@ -284,7 +284,7 @@ function setBehaviour() {
 		if (parseInt(event.target.value) > 0) { 
 			document.getElementById('state_id').value = darProvincia(event.target.value);
 			document.getElementById("dialog-address-send").hidden = ""
-			delivery()
+			delivery();
 		}else{
 			document.getElementById("dialog-address-send").hidden = "true"
 		}
