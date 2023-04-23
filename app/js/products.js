@@ -296,11 +296,13 @@ function setBehaviour() {
 		if (parseInt(event.target.value) > 0) { 
 			document.getElementById('state_id').value = darProvincia(event.target.value);
 			document.getElementById("dialog-address-send").hidden = ""
+
 			delivery();
+
 		}else{
 			document.getElementById("dialog-address-send").hidden = "true"
 		}
-	  });
+
 	let dialog_form_cart = document.getElementById("cart-dialog"); // Volver del carrito
 	let dialog_cancel_cart = document.getElementById("dialog-cart-cancel");
 	dialog_cancel_cart.addEventListener('click', (ev) => {
@@ -312,6 +314,7 @@ function setBehaviour() {
 		dialog_form_cart.close()
 	})
 	
+
 	let dialog_form = document.getElementById("address_dialog");
 	dialog_form.addEventListener('close', () => document.querySelector('#products-cart-button').style.display = "flex");
 	dialog_form.addEventListener('close', () => document.querySelector('#show-cart-button').style.display = "flex");
