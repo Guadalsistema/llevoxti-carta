@@ -225,7 +225,15 @@ function show_address_dialog() {
 	document.querySelector('#show-cart-button').style.display = "none";
 	document.getElementById("address_dialog").showModal();
 }
-
+function check_order(){
+	if(Cart.length > 0) {
+		if (is_app_order()) {
+			show_address_dialog();
+		} else {
+			send_order();
+		}
+	}
+}
 function setBehaviour() {
 	// Show Cart dialog
 	let showCartButton = document.getElementById("show-cart-button");
@@ -235,32 +243,36 @@ function setBehaviour() {
 	cartDialog.addEventListener('close', () => document.querySelector('#show-cart-button').style.display = "flex");
 	
 	showCartButton.addEventListener('click', () => {
-		let cartProductList = document.getElementById("cart-product-list");
-		cartProductList.clear();
-		let products = Cart.toObjects();
-		products = add_menu_products(products); // añadimos si son menu o submenu
-		cartProductList.loadObjects(products);
-		const lambda = (x) => parseInt(x.getAttribute('product_uom_qty'));
-		cartProductList.displayProductCards(lambda)
-		document.querySelector('#products-cart-button').style.display = "none";
-		document.querySelector('#show-cart-button').style.display = "none";
-		document.getElementById("t_pedido").value = Cart.total_price;
-		cartDialog.showModal();
-			//Quitamos los signos - de los productos de menu fijo
-			let prod_cart = document.getElementById('cart-product-list') 	
-			prod_cart = prod_cart.shadowRoot.querySelectorAll('product-card');
-			for(let i=0;i < prod_cart.length;i++){
-				var prod_store = prod_cart[i].getAttribute('product-id');
-				//alert(prod_store);
-            	var prod_menu = products.filter(prod=>prod['id']==prod_store);
-				//alert(prod_menu[0]['menu']);
-				if (prod_menu[0]['menu'] == "true"){
-					let minus = prod_cart[i].shadowRoot.querySelector('.minus')
-					minus.style.display = 'none';
-					let sum = prod_cart[i].shadowRoot.querySelector('.sum')
-					sum.style.display = 'none';
-				}		
-			}
+		if(Cart.length > 0) {
+			let fileCss = 'css/product-card-cart.css'; // CREAMOS LA VARIABLE DE css que se ejecuta ojo tiene que existir el archivo
+			let cartProductList =new ProductList(fileCss);
+			cartProductList = document.getElementById("cart-product-list");
+			cartProductList.clear();
+			let products = Cart.toObjects();
+			products = add_menu_products(products); // añadimos si son menu o submenu
+			cartProductList.loadObjects(products, fileCss);
+			const lambda = (x) => parseInt(x.getAttribute('product_uom_qty'));
+			cartProductList.displayProductCards(lambda)
+			document.querySelector('#products-cart-button').style.display = "none";
+			document.querySelector('#show-cart-button').style.display = "none";
+			document.getElementById("t_pedido").value = Cart.total_price;
+			cartDialog.showModal();
+				//Quitamos los signos - de los productos de menu fijo
+				let prod_cart = document.getElementById('cart-product-list') 	
+				prod_cart = prod_cart.shadowRoot.querySelectorAll('product-card');
+				for(let i=0;i < prod_cart.length;i++){
+					var prod_store = prod_cart[i].getAttribute('product-id');
+					//alert(prod_store);
+            		var prod_menu = products.filter(prod=>prod['id']==prod_store);
+					//alert(prod_menu[0]['menu']);
+					if (prod_menu[0]['menu'] == "true"){
+						let minus = prod_cart[i].shadowRoot.querySelector('.minus')
+						minus.style.display = 'none';
+						let sum = prod_cart[i].shadowRoot.querySelector('.sum')
+						sum.style.display = 'none';
+					}		
+				}	
+		}
 	});
     // Recogida o envio de comandas
 	var click_delivery = document.getElementById('recogida');
@@ -284,12 +296,26 @@ function setBehaviour() {
 		if (parseInt(event.target.value) > 0) { 
 			document.getElementById('state_id').value = darProvincia(event.target.value);
 			document.getElementById("dialog-address-send").hidden = ""
+
+			delivery();
+
 		}else{
 			document.getElementById("dialog-address-send").hidden = "true"
 		}
-	  });
-	let dialog_form = document.getElementById("address_dialog");
 
+	let dialog_form_cart = document.getElementById("cart-dialog"); // Volver del carrito
+	let dialog_cancel_cart = document.getElementById("dialog-cart-cancel");
+	dialog_cancel_cart.addEventListener('click', (ev) => {
+		dialog_form_cart.close()
+	})
+	let dialog_send_cart = document.getElementById("dialog-cart-send");//Enviar desde carrito
+	dialog_send_cart.addEventListener('click', (ev) => {
+		check_order();
+		dialog_form_cart.close()
+	})
+	
+
+	let dialog_form = document.getElementById("address_dialog");
 	dialog_form.addEventListener('close', () => document.querySelector('#products-cart-button').style.display = "flex");
 	dialog_form.addEventListener('close', () => document.querySelector('#show-cart-button').style.display = "flex");
 
@@ -326,13 +352,7 @@ function setBehaviour() {
 	});
 	let cartButton = document.querySelector("#products-cart-button");
 	cartButton.addEventListener('click',() => {
-		if(Cart.length > 0) {
-			if (is_app_order()) {
-				show_address_dialog();
-			} else {
-				send_order();
-			}
-		}
+		check_order();
 	});
 }
 

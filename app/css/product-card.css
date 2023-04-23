@@ -14,6 +14,7 @@
      font-size: 8vw;
      display: inherit;
      height: auto;
+     width: 80vw;
  }
  .product__imagen {
   width: 35vw;
@@ -26,6 +27,10 @@
      font-size: 8vw;
      margin-top: 10vw;
      margin-left: 5vh;
+}
+.product__prize >h3{
+  display: inline;
+  vertical-align: top;
 }
 .product__amount {
   display:flex;
@@ -119,15 +124,15 @@ transform: rotate(90deg);
    }
    @media screen and (min-width: 600px) and (max-width: 900px){
      .product__name {
-         font-size: 5vh;
-         line-height: 5vh;
+         font-size: 3vh;
+         line-height: 4vh;
      }
      .product__prize {
-      font-size:7vh;
+      font-size:5vh;
     }
     .product__number {
       width: 6vw;
-      font-size:10vh;
+      font-size:7vh;
      }
      .product__button {
       border: 0.5vh solid var(--oro);
@@ -155,8 +160,8 @@ transform: rotate(90deg);
    }
    @media screen and (min-width: 1600px) and (max-width: 2600px){
      .product__name {
-         font-size: 4vh;
-         line-height: 1vh;
+         font-size: 3vh;
+         line-height: 4vh;
      }
      .product__prize {
       font-size:5vh;
@@ -174,7 +179,7 @@ transform: rotate(90deg);
    @media screen and (min-width: 2600px) and (max-width: 8000px){
      .product__name {
          font-size: 2vh;
-         line-height: 1vh;
+         line-height: 3vh;
      }
      .product__prize {
       font-size: 2vh;
