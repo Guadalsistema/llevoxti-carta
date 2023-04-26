@@ -270,7 +270,18 @@ function setBehaviour() {
 						minus.style.display = 'none';
 						let sum = prod_cart[i].shadowRoot.querySelector('.sum')
 						sum.style.display = 'none';
-					}		
+					}
+					let productNote = document.createElement('div');
+					productNote.setAttribute('class', 'product__note');
+					productNote.setAttribute('id', 'product__note');
+					const note = document.createElement("textarea"); // Añadimos notas del cliente a los productos del pedido
+					note.name = "note";
+					note.id = "note";
+					note.setAttribute('placeholder', 'Deja aquí tu comentario...');
+					note.rows = "4";
+					note.cols = 100;
+					productNote.appendChild(note)
+					prod_cart[i].shadowRoot.appendChild(productNote);
 				}	
 		}
 	});
@@ -296,13 +307,11 @@ function setBehaviour() {
 		if (parseInt(event.target.value) > 0) { 
 			document.getElementById('state_id').value = darProvincia(event.target.value);
 			document.getElementById("dialog-address-send").hidden = ""
-
 			delivery();
 		}else{
 			document.getElementById("dialog-address-send").hidden = "true"
 		}
 	  });
-
 	let dialog_form_cart = document.getElementById("cart-dialog"); // Volver del carrito
 	let dialog_cancel_cart = document.getElementById("dialog-cart-cancel");
 	dialog_cancel_cart.addEventListener('click', (ev) => {
