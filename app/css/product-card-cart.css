@@ -64,6 +64,7 @@
 transform: rotate(90deg);
 }
 
+
 .product__note > textarea{
 	background-color: #fbfbfb;
   margin-left: 1%;
@@ -85,7 +86,6 @@ transform: rotate(90deg);
   resize: none;
   overflow: hidden;
 }
-
 
  @media screen and (min-width: 1px) and (max-width: 200px){
      .product__name {
