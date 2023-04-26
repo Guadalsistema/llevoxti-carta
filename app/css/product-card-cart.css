@@ -2,7 +2,6 @@
     display: table-cell;
     width: 100vw;
     background-color: var(--blanco);
-    border-bottom: 1px solid gray;
  }
  .product__box >img{
   float: left;
@@ -64,6 +63,29 @@
 .product__button > div:nth-last-of-type(2) {
 transform: rotate(90deg);
 }
+
+.product__note > textarea{
+	background-color: #fbfbfb;
+  margin-left: 1%;
+	width: 98%;
+  margin-right: 1%;
+	height: 4vh;
+	border-radius: 5px;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #ab4493;
+	margin-top: 1px;
+	padding-left: 10px;
+	margin-bottom: 0px;
+	padding-top: 15px;
+  font-family: 'Arima Madurai', cursive;
+  color: var(--negro);
+  font-size: 2vh;
+  line-height: 3vh; 
+  resize: none;
+  overflow: hidden;
+}
+
 
  @media screen and (min-width: 1px) and (max-width: 200px){
      .product__name {

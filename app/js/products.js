@@ -270,7 +270,18 @@ function setBehaviour() {
 						minus.style.display = 'none';
 						let sum = prod_cart[i].shadowRoot.querySelector('.sum')
 						sum.style.display = 'none';
-					}		
+					}
+					let productNote = document.createElement('div');
+					productNote.setAttribute('class', 'product__note');
+					productNote.setAttribute('id', 'product__note');
+					const note = document.createElement("textarea"); // Añadimos notas del cliente a los productos del pedido
+					note.name = "note";
+					note.id = "note";
+					note.setAttribute('placeholder', 'Deja aquí tu comentario...');
+					note.rows = "4";
+					note.cols = 100;
+					productNote.appendChild(note)
+					prod_cart[i].shadowRoot.appendChild(productNote);
 				}	
 		}
 	});
