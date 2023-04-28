@@ -30,11 +30,12 @@ class ProductCard extends ModelHTMLElement {
 			'name': 'name',
 			'lst_price': 'price',
 			'product_uom_qty': 'product_uom_qty',
+			'note': 'note',
 		};
 	}
 
 	static get observedAttributes() {
-		return ['name', 'price', "product_uom_qty", 'product-id', 'show-image'];
+		return ['name', 'price', "product_uom_qty", 'product-id', 'show-image','note'];
 	}
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
@@ -66,6 +67,10 @@ class ProductCard extends ModelHTMLElement {
 			} else {
 				img.style.display = 'block';
 			}
+			return;
+		}
+		if(attrName == "note") {
+			//alert('note');
 			return;
 		}
 		if(attrName == "product_uom_qty") {
