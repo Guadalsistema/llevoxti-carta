@@ -4,6 +4,12 @@ import { ModelHTMLElement } from '../model.js';
 import { Cart } from '../cart/model.js'
 import { isEmpty } from '../utils.js';
 
+/**
+ * Product card
+ * Display the foto, qty and name of a product
+ * 
+ * @param {*} func Recive a function to hide products if true
+ */
 class ProductCard extends ModelHTMLElement {
 	__minQty = 0;
 
@@ -18,24 +24,27 @@ class ProductCard extends ModelHTMLElement {
 			this.setAttribute('product_uom_qty', val);
 		}
 	}
+
 	get optionalFields() {
 		return {
 			'show_image': 'show-image',
+			'display_textarea': 'display-textarea',
+			'note': 'note'
 		};
 	}
+
 	get fields() {
 		return {
 			'id': 'product-id',
 			'pos_categ_id': 'category-id',
 			'name': 'name',
 			'lst_price': 'price',
-			'product_uom_qty': 'product_uom_qty',
-			'note': 'note',
+			'product_uom_qty': 'product_uom_qty'
 		};
 	}
 
 	static get observedAttributes() {
-		return ['name', 'price', "product_uom_qty", 'product-id', 'show-image','note'];
+		return ['name', 'price', "product_uom_qty", 'product-id', 'show-image', 'note', 'display-textarea'];
 	}
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
@@ -69,10 +78,22 @@ class ProductCard extends ModelHTMLElement {
 			}
 			return;
 		}
+
 		if(attrName == "note") {
 			//alert('note');
 			return;
 		}
+
+		if(attrName == "display-textarea") {
+			let textarea = this.shadowRoot.querySelector('textarea');
+			if(newVal=='false'){
+				textarea.style.display = 'none';
+			} else {
+				textarea.style.display = 'block';
+			}
+			return;
+		}
+
 		if(attrName == "product_uom_qty") {
 			if(parseInt(newVal) < this.minQty) {
 				this.setAttribute("product_uom_qty", this.minQty);
@@ -197,19 +218,11 @@ class ProductCard extends ModelHTMLElement {
 					if(tipo_submenu == "F"){ // Ponemos todos los productos Fijos igual que articulo menu cabecera
 						p.childNodes[0].setProductsQty(newCant); //importante
 					};
-					if(tipo_submenu == "S"){
-						//p.childNodes[0].setProductsQty(newCant); //importante
-						let  cat_prod_submenu_qt = p.attributes.name.value // Categoría Sumenu
-						let by_count_submenu = this.count_qty_submenu(cat_prod_submenu_qt);//Contador de unidades de produto del submenu
-						//alert("aqui")
-					};
 			});
-		}	else { // Si no es producto cabecera
-			let cat_prod_qty = this.getAttribute("category-id"); // categoria del producto seleccionado
-			let by_count_submenu = this.count_qty_submenu(cat_prod_qty);//Contador de unidades de produto del submenu
 		}
 		return;
 	}
+
 	constructor(fileCss, tipo_menu, ...args){
 		super(...args);
 		if (typeof fileCss == 'undefined'){
@@ -269,6 +282,24 @@ class ProductCard extends ModelHTMLElement {
 				htres.textContent = roundTo(this.getAttribute('price'), 2) + '€';
 				productPrize.appendChild(htres);
 
+			let productNoteDiv = document.createElement('div');
+			productNoteDiv.setAttribute('class', 'product__note');
+			productNoteDiv.setAttribute('id', 'product__note');
+
+				let textArea = document.createElement("textarea");
+				textArea.name = "OrderLineNote";
+				textArea.id = "note";
+				textArea.setAttribute('placeholder', 'Deja aquí tu comentario...');
+				textArea.rows = "4";
+				textArea.cols = 100;
+				textArea.addEventListener('input', (ev) => {
+					this.setAttribute('note', ev.target.value);
+					Cart.update(this.toObject());
+				});
+				productNoteDiv.appendChild(textArea);
+
+			productbox.appendChild(productNoteDiv);
+
 		const linkElem = document.createElement('link');
 		linkElem.setAttribute('rel', 'stylesheet');
 		linkElem.setAttribute('href', fileCss);
@@ -277,6 +308,8 @@ class ProductCard extends ModelHTMLElement {
 		shadow.appendChild(productbox);
 	}
 }
+
+
 class ProductList extends ModelHTMLElement {
 
 	static get observedAttributes() {
@@ -352,10 +385,6 @@ class ProductList extends ModelHTMLElement {
 	 * @param {object} use the properties of object for filter, if key doesn't exist discard it
 	 * 
 	 * @return Array of elements
-	 * 
-	 * TODO:
-	 * - return NodeList
-	 * - Use all childs not only product-card
 	 */
 	findAll(obj) {
 		let arr = Array.from(this.shadowRoot.querySelectorAll("product-card"));

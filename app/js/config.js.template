@@ -1,6 +1,8 @@
 const config = {
 	"name": ":restaurant:",
-	"url": "https://example.com"
+	"url": "https://example.com",
+	"zip": "",
+	"mini": ""
 }
 
 export {config};

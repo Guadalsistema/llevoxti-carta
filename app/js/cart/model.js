@@ -14,15 +14,20 @@ class Cart {
     static add(newProduct) {
 		let cart = this.toObjects();
         let found = false;
-        for(let i = 0; !found && i < cart.length; i++) {
+        let i = 0;
+        while(!found && i < cart.length) {
             if(newProduct.id == cart[i].id) {
                 cart[i].product_uom_qty = parseInt(cart[i].product_uom_qty) + parseInt(newProduct.product_uom_qty);
                 found = true;
             }
+            i++;
         }
 
         if(!found) { cart.push(newProduct); }
 
+        if(cart[i].note != newProduct.note) {
+            cart[i].note = newProduct.note;
+        }
         sessionStorage.setItem('order', JSON.stringify(cart));
         this.change_qty.emit(this.length);
         this.product_updated.emit(newProduct);
@@ -32,16 +37,21 @@ class Cart {
 		let cart = this.toObjects();
 
         let found = false;
-        for(let i = 0; !found && i < cart.length; i++) {
+        let i = 0;
+        while(!found && i < cart.length) {
             if(newProduct.id == cart[i].id) {
                 cart[i].product_uom_qty = parseInt(newProduct.product_uom_qty);
                 found = true;
                 break;
             }
+            i++;
         }
 
         if(!found) { cart.push(newProduct); }
 
+        if(cart[i].note != newProduct.note) {
+            cart[i].note = newProduct.note;
+        }
         sessionStorage.setItem('order', JSON.stringify(cart));
         this.change_qty.emit(this.length);
         this.product_updated.emit(newProduct);
