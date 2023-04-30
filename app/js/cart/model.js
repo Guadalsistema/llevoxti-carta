@@ -41,6 +41,12 @@ class Cart {
         while(!found && i < cart.length) {
             if(newProduct.id == cart[i].id) {
                 cart[i].product_uom_qty = parseInt(newProduct.product_uom_qty);
+               // if(cart[i].note !== null){
+                if(newProduct.note!==null){
+                    //newProduct.note = cart[i].note;
+                    cart[i].note = newProduct.note
+                };
+               
                 found = true;
                 break;
             }
@@ -50,7 +56,11 @@ class Cart {
         if(!found) { cart.push(newProduct); }
 
         if(cart[i].note != newProduct.note) {
+<<<<<<< HEAD
             cart[i].note = newProduct.note;
+=======
+          //  cart[i].note = newProduct.note;
+>>>>>>> tmp
         }
         sessionStorage.setItem('order', JSON.stringify(cart));
         this.change_qty.emit(this.length);

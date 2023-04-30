@@ -28,8 +28,7 @@ class ProductCard extends ModelHTMLElement {
 	get optionalFields() {
 		return {
 			'show_image': 'show-image',
-			'display_textarea': 'display-textarea',
-			'note': 'note'
+			'display_textarea': 'display-textarea'
 		};
 	}
 
@@ -39,7 +38,8 @@ class ProductCard extends ModelHTMLElement {
 			'pos_categ_id': 'category-id',
 			'name': 'name',
 			'lst_price': 'price',
-			'product_uom_qty': 'product_uom_qty'
+			'product_uom_qty': 'product_uom_qty',
+			'note': 'note'
 		};
 	}
 
@@ -80,7 +80,8 @@ class ProductCard extends ModelHTMLElement {
 		}
 
 		if(attrName == "note") {
-			//alert('note');
+			let nota = this.shadowRoot.querySelector('textarea');
+			nota.value = newVal;
 			return;
 		}
 
