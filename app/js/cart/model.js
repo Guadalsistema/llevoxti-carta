@@ -25,9 +25,9 @@ class Cart {
 
         if(!found) { cart.push(newProduct); }
 
-        if(cart[i].note != newProduct.note) {
+        //if(cart[i].note != newProduct.note) {
             //cart[i].note = newProduct.note;
-        }
+        //}
         sessionStorage.setItem('order', JSON.stringify(cart));
         this.change_qty.emit(this.length);
         this.product_updated.emit(newProduct);

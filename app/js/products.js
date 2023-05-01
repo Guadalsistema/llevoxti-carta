@@ -31,6 +31,7 @@ function displayProducts(products) {
 		Address.products_delivery.forEach(dely=>{
 			prod_delivery = dely;
 			prod_delivery.product_uom_qty = bus_qty_cart(dely.id);
+			prod_delivery.note = "";
 		});
 	    Address.products_delivery = prod_delivery
 	}
