@@ -13,7 +13,7 @@
      font-size: 8vw;
      display: inherit;
      height: auto;
-     width: 52vw;
+     width: 53vw;
  }
  .product__imagen {
   width: 20vw;
@@ -63,7 +63,6 @@
 .product__button > div:nth-last-of-type(2) {
 transform: rotate(90deg);
 }
-
 
 .product__note > textarea{
 	background-color: #fbfbfb;
@@ -127,6 +126,10 @@ transform: rotate(90deg);
     .product__name {
         font-size: 1vh;
         line-height: 2vh;
+    }
+    .product__note > textarea{
+      font-size: 1vh;
+      line-height: 2vh;
     }
     .product__prize {
      font-size:2vh;

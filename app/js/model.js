@@ -14,6 +14,10 @@ class ModelHTMLElement extends HTMLElement {
 			if(!key in obj) {
 				throw InvalidArgumentException;
 			}
+			if (obj[key] == null){// si el campo es nulo lo ponemos vacio para que aparezca undefined
+				//alert("nulo")
+				obj[key] = ""; 
+			}
 			this.setAttribute(this.fields[key], obj[key]);
 		}
 		for(const key in this.optionalFields) {
