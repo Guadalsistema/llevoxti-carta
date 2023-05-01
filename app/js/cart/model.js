@@ -26,7 +26,7 @@ class Cart {
         if(!found) { cart.push(newProduct); }
 
         if(cart[i].note != newProduct.note) {
-            cart[i].note = newProduct.note;
+            //cart[i].note = newProduct.note;
         }
         sessionStorage.setItem('order', JSON.stringify(cart));
         this.change_qty.emit(this.length);
@@ -56,11 +56,7 @@ class Cart {
         if(!found) { cart.push(newProduct); }
 
         if(cart[i].note != newProduct.note) {
-<<<<<<< HEAD
-            cart[i].note = newProduct.note;
-=======
           //  cart[i].note = newProduct.note;
->>>>>>> tmp
         }
         sessionStorage.setItem('order', JSON.stringify(cart));
         this.change_qty.emit(this.length);
