@@ -303,17 +303,6 @@ function setBehaviour() {
 			document.getElementById("dialog-address-send").hidden = "true"
 		}
 	  });
-	let dialog_form_cart = document.getElementById("cart-dialog"); // Volver del carrito
-	let dialog_cancel_cart = document.getElementById("dialog-cart-cancel");
-	dialog_cancel_cart.addEventListener('click', (ev) => {
-		dialog_form_cart.close()
-	})
-	let dialog_send_cart = document.getElementById("dialog-cart-send");//Enviar desde carrito
-	dialog_send_cart.addEventListener('click', (ev) => {
-		check_order();
-		dialog_form_cart.close()
-	})
-	
 	let dialog_form = document.getElementById("address_dialog");
 	dialog_form.addEventListener('close', () => document.querySelector('#products-cart-button').style.display = "flex");
 	dialog_form.addEventListener('close', () => document.querySelector('#show-cart-button').style.display = "flex");
