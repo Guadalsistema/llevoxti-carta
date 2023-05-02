@@ -42,7 +42,7 @@
 	padding-top: 0px;
 	padding-bottom: 20px;
 	background-color: var(--blanco);
-	padding-left: 4vh;
+	padding-left: 0vh;
 }
 
 #address_dialog input {
@@ -96,13 +96,13 @@ p.pie_dialog{
 	border-style: solid;
 	border-color: var(--rosa);
 	background-color: var(--blanco);
-	font-size: 3vh;
+	font-size: 2vh;
     text-align: left;
 	padding-top: 0.5vh;
 	font-weight: bold;
 }
 p.pie_dialog input{
-	font-size: 3vh;
+	font-size: 2vh;
     width: 25vw;
     height: 3vh;
     border: 0;

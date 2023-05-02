@@ -5,7 +5,6 @@ import { ProductCard, ProductList } from  './products/ui.js';
 import { PosCategoryUl, PosCategoryLi } from  './categories/ui.js';
 import { InvalidRequestException } from './exception.js';
 import { CartButton } from './cart/ui.js';
-import { isEmpty } from './utils.js';
 
 customElements.define('cart-button', CartButton, { extends: "button" });
 customElements.define('category-card', PosCategoryLi, { extends: "li" });
@@ -32,6 +31,7 @@ function displayProducts(products) {
 		Address.products_delivery.forEach(dely=>{
 			prod_delivery = dely;
 			prod_delivery.product_uom_qty = bus_qty_cart(dely.id);
+			prod_delivery.note = "";
 		});
 	    Address.products_delivery = prod_delivery
 	}
@@ -39,6 +39,7 @@ function displayProducts(products) {
 		let pCard = document.createElement('product-card');
 		product['product_uom_qty'] = bus_qty_cart(product["id"]);
 		pCard.fromObject(product);
+		pCard.setAttribute('display-textarea', 'false');
 		placeholder.shadowRoot.appendChild(pCard);
 	}
 }
@@ -73,6 +74,7 @@ function bus_qty_cart(id_product_bus) {
 	 }
 	return product_store_qty;
 }
+
 function displaySubcategories(categories, categories_parent, products_cat, ismenu_pos_id, menu_display_name){
 	let dialog_menu_fijo = document.getElementById("menufijo");
 	document.getElementById('name_menu').innerHTML = menu_display_name;
@@ -86,39 +88,40 @@ function displaySubcategories(categories, categories_parent, products_cat, ismen
 	products_ismenu.forEach(p => {
 			p.show_image = false;
 			p.product_uom_qty = bus_qty_cart(p.id);
-			});
-			var tipo_menu = "M"
+	});
+	
+	var tipo_menu = "M"
 	lista_productos_modal.loadObjects(products_ismenu,fileCss, tipo_menu);
 	menu_cab.appendChild(lista_productos_modal);	
 				// BUCLE DE SUBCATEGORIAS
 	var sub_menu  = document.getElementById('menu_submenu');
 	var sub_menu_fragment = document.createDocumentFragment()
-				categories_submenu.forEach(item_subm =>{
-					const dialog_menu_fijo = document.getElementById("sub_menu");
-					const div_submenu = document.createElement('div')
-					if(item_subm.menu == true){
-						tipo_menu = "F"
-					};
-					if(item_subm.seleccionable  == true){
-						tipo_menu = "S"
-					};
-					div_submenu.textContent = "-" + item_subm.name;//+ " Tipo: " + tipo_menu;
-					div_submenu.setAttribute('class', 'menu_submenu');
-					sub_menu_fragment.appendChild(div_submenu)
-					let products_submenu = products_cat.filter(pro => pro.pos_categ_id == item_subm.id); //Filtro los productos del submenu
-					products_submenu.forEach(p => {
-						p.show_image = false;
-						p.product_uom_qty = bus_qty_cart(p.id);
-					});
-					let lista_productos_modal=new ProductList(fileCss);
-					let listProductMenu = document.createElement('div');
-		            listProductMenu.setAttribute('id', 'listProductMenu');
-					listProductMenu.setAttribute('name', item_subm.id);
-					listProductMenu.setAttribute('title', 'Menu Fijo: ' + tipo_menu + ' Nombre Menú: ' + item_subm.name);
-					lista_productos_modal.loadObjects(products_submenu, fileCss, tipo_menu);
-                    listProductMenu.appendChild(lista_productos_modal);
-					sub_menu_fragment.appendChild(listProductMenu);
-				});	
+	categories_submenu.forEach(item_subm =>{
+		const dialog_menu_fijo = document.getElementById("sub_menu");
+		const div_submenu = document.createElement('div')
+		if(item_subm.menu == true){
+			tipo_menu = "F"
+		};
+		if(item_subm.seleccionable  == true){
+			tipo_menu = "S"
+		};
+		div_submenu.textContent = "-" + item_subm.name;//+ " Tipo: " + tipo_menu;
+		div_submenu.setAttribute('class', 'menu_submenu');
+		sub_menu_fragment.appendChild(div_submenu)
+		let products_submenu = products_cat.filter(pro => pro.pos_categ_id == item_subm.id); //Filtro los productos del submenu
+		products_submenu.forEach(p => {
+			p.show_image = false;
+			p.product_uom_qty = bus_qty_cart(p.id);
+		});
+		let lista_productos_modal=new ProductList(fileCss);
+		let listProductMenu = document.createElement('div');
+		listProductMenu.setAttribute('id', 'listProductMenu');
+		listProductMenu.setAttribute('name', item_subm.id);
+		listProductMenu.setAttribute('title', 'Menu Fijo: ' + tipo_menu + ' Nombre Menú: ' + item_subm.name);
+		lista_productos_modal.loadObjects(products_submenu, fileCss, tipo_menu);
+		listProductMenu.appendChild(lista_productos_modal);
+		sub_menu_fragment.appendChild(listProductMenu);
+	});	
 	sub_menu.appendChild(sub_menu_fragment);	
 	dialog_menu_fijo.showModal();
 	//Quitamos los signos - de los productos de menu fijo
@@ -135,6 +138,7 @@ function displaySubcategories(categories, categories_parent, products_cat, ismen
 		});	
 	});
 };
+
 function displayCategories(categories) {
 
 	let placeholder = document.querySelector('ul.main-menu');
@@ -157,13 +161,11 @@ function displayCategories(categories) {
 		if (id_cat == null){
 			id_cat = ev.target.getAttribute("pos-category-id")
 		}
-		//alert(id_cat);
 		
 		let show = pList.shadowRoot.querySelector('product-card[category-id="' + id_cat + '"]');
 		
 		if(show !== null) {
 			show.scrollIntoView();
-			//alert('encontrado')
 		}
 	});
 	return Promise.resolve(categories)
@@ -226,6 +228,16 @@ function show_address_dialog() {
 	document.getElementById("address_dialog").showModal();
 }
 
+function check_order(){
+	if(Cart.length > 0) {
+		if (is_app_order()) {
+			show_address_dialog();
+		} else {
+			send_order();
+		}
+	}
+}
+
 function setBehaviour() {
 	// Show Cart dialog
 	let showCartButton = document.getElementById("show-cart-button");
@@ -235,32 +247,34 @@ function setBehaviour() {
 	cartDialog.addEventListener('close', () => document.querySelector('#show-cart-button').style.display = "flex");
 	
 	showCartButton.addEventListener('click', () => {
-		let cartProductList = document.getElementById("cart-product-list");
-		cartProductList.clear();
-		let products = Cart.toObjects();
-		products = add_menu_products(products); // añadimos si son menu o submenu
-		cartProductList.loadObjects(products);
-		const lambda = (x) => parseInt(x.getAttribute('product_uom_qty'));
-		cartProductList.displayProductCards(lambda)
-		document.querySelector('#products-cart-button').style.display = "none";
-		document.querySelector('#show-cart-button').style.display = "none";
-		document.getElementById("t_pedido").value = Cart.total_price;
-		cartDialog.showModal();
-			//Quitamos los signos - de los productos de menu fijo
-			let prod_cart = document.getElementById('cart-product-list') 	
-			prod_cart = prod_cart.shadowRoot.querySelectorAll('product-card');
-			for(let i=0;i < prod_cart.length;i++){
-				var prod_store = prod_cart[i].getAttribute('product-id');
-				//alert(prod_store);
-            	var prod_menu = products.filter(prod=>prod['id']==prod_store);
-				//alert(prod_menu[0]['menu']);
-				if (prod_menu[0]['menu'] == "true"){
-					let minus = prod_cart[i].shadowRoot.querySelector('.minus')
-					minus.style.display = 'none';
-					let sum = prod_cart[i].shadowRoot.querySelector('.sum')
-					sum.style.display = 'none';
-				}		
-			}
+		if(Cart.length > 0) {
+			let fileCss = 'css/product-card-cart.css'; // CREAMOS LA VARIABLE DE css que se ejecuta ojo tiene que existir el archivo
+			let cartProductList =new ProductList(fileCss);
+			cartProductList = document.getElementById("cart-product-list");
+			cartProductList.clear();
+			let products = Cart.toObjects();
+			products = add_menu_products(products); // añadimos si son menu o submenu
+			cartProductList.loadObjects(products, fileCss);
+			const lambda = (x) => parseInt(x.getAttribute('product_uom_qty'));
+			cartProductList.displayProductCards(lambda)
+			document.querySelector('#products-cart-button').style.display = "none";
+			document.querySelector('#show-cart-button').style.display = "none";
+			document.getElementById("t_pedido").value = Cart.total_price;
+			cartDialog.showModal();
+				//Quitamos los signos - de los productos de menu fijo
+				let prod_cart = document.getElementById('cart-product-list') 	
+				prod_cart = prod_cart.shadowRoot.querySelectorAll('product-card');
+				for(let i=0;i < prod_cart.length;i++){
+					var prod_store = prod_cart[i].getAttribute('product-id');
+          var prod_menu = products.filter(prod=>prod['id']==prod_store);
+					if (prod_menu[0]['menu'] == "true"){
+						let minus = prod_cart[i].shadowRoot.querySelector('.minus')
+						minus.style.display = 'none';
+						let sum = prod_cart[i].shadowRoot.querySelector('.sum')
+						sum.style.display = 'none';
+					}
+				}	
+		}
 	});
     // Recogida o envio de comandas
 	var click_delivery = document.getElementById('recogida');
@@ -290,7 +304,6 @@ function setBehaviour() {
 		}
 	  });
 	let dialog_form = document.getElementById("address_dialog");
-
 	dialog_form.addEventListener('close', () => document.querySelector('#products-cart-button').style.display = "flex");
 	dialog_form.addEventListener('close', () => document.querySelector('#show-cart-button').style.display = "flex");
 
@@ -327,13 +340,7 @@ function setBehaviour() {
 	});
 	let cartButton = document.querySelector("#products-cart-button");
 	cartButton.addEventListener('click',() => {
-		if(Cart.length > 0) {
-			if (is_app_order()) {
-				show_address_dialog();
-			} else {
-				send_order();
-			}
-		}
+		check_order();
 	});
 }
 

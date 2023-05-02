@@ -13,10 +13,13 @@
    </head>
 	<body>
 		<dialog id="cart-dialog">
-		    <product-list id="cart-product-list"></product-list>
-			<form method="dialog" class="pie-app">
-				<button class="products-cart-button">Volver</button>
-			</form>
+		    <product-list id="cart-product-list">
+			</product-list>
+			<nav class="pie-app">
+				<button type="submit" class="products-cart-button" id="dialog-cart-cancel">Volver</button>
+				<button type="submit" class="products-cart-button" id="dialog-cart-send">Enviar</button>
+				<!--<button id="products-cart-button" class="products-cart-button" is="cart-button"></button>-->
+			</nav>
 			<p class="pie_dialog" style = "font-family: 'Arima Madurai', cursive;">
 				<label for="t_pedido" class="Total_pedido">
 					Total pedido:
@@ -26,13 +29,13 @@
 	  </dialog>
 	  <dialog id="address_dialog">
 			<h1>Formulario de envío</h1>
-				<h3>En breve enviaremos su pedido</h3>
+				<!--<h3>En breve enviaremos su pedido</h3>-->
 				<form id="form_envio" method="dialog">
 					<p>
 						<label for="email" class="colocar_email">Email
 							<span class="obligatorio">*</span>
 						</label>
-							<input type="email" name="introducir_email" id="email" required="1" placeholder="Escribe tu Email")>
+							<input type="email" name="introducir_email" id="email" required="1" placeholder="Escribe tu Email">
 					</p>
 					<p>
 						<label for="name" class="colocar_nombre">Nombre
@@ -67,8 +70,7 @@
 						
 						<label for="zip" class="colocar_c_postal">Código postal de envío
 							<span class="obligatorio">*</span>
-						
-							<select name="Código Postal" id="zip" required="1">
+								<select name="Código Postal" id="zip" required="1">
 								<!--<option value="29004">29004</option>-->
 							</select>
 						</label>
