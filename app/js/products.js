@@ -313,11 +313,9 @@ function setBehaviour() {
 		check_order();
 		dialog_form_cart.close()
 	})
-	
 	let dialog_form = document.getElementById("address_dialog");
 	dialog_form.addEventListener('close', () => document.querySelector('#products-cart-button').style.display = "flex");
 	dialog_form.addEventListener('close', () => document.querySelector('#show-cart-button').style.display = "flex");
-
 	let dialog_send = document.getElementById("dialog-address-send");
 	dialog_send.addEventListener('click', (ev) => {
 		ev.preventDefault();
