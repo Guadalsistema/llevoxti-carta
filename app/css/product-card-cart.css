@@ -129,8 +129,8 @@ transform: rotate(90deg);
         line-height: 2vh;
     }
     .product__note > textarea{
-      font-size: 1vh;
-      line-height: 2vh;
+      font-size: 2vh;
+      line-height: 2.1vh;
     }
     .product__prize {
      font-size:2vh;
@@ -150,6 +150,10 @@ transform: rotate(90deg);
          font-size:1.2vh;
          line-height: 2vh;
      }
+     .product__note > textarea{
+      font-size: 2vh;
+      line-height: 2.1vh;
+    }
      .product__prize {
       font-size:2vh;
     }
@@ -168,6 +172,10 @@ transform: rotate(90deg);
          font-size: 3vh;
          line-height: 4vh;
      }
+     .product__note > textarea{
+      font-size: 4vh;
+      line-height: 4.1vh;
+     }
      .product__prize {
       font-size:4vh;
     }
@@ -183,15 +191,19 @@ transform: rotate(90deg);
    }
    @media screen and (min-width: 800px) and (max-width: 900px){
     .product__name {
-        font-size: 1.7vh;
-        line-height: 2vh;
+        font-size: 3vw;
+        line-height: 3.5vw;
     }
+    .product__note > textarea{
+      font-size: 4vh;
+      line-height: 4.1vh;
+     }
     .product__prize {
      font-size:4vh;
    }
    .product__number {
      width: 6vw;
-     font-size:5vh;
+     font-size:6vw;
     }
     .product__button {
      border: 0.5vh solid var(--oro);
@@ -201,8 +213,12 @@ transform: rotate(90deg);
   }
    @media screen and (min-width: 900px) and (max-width: 1600px){
      .product__name {
-         font-size: 2vh;
-         line-height: 3vh;
+         font-size: 3vw;
+         line-height: 3.5vw;
+     }
+     .product__note > textarea{
+      font-size: 3vw;
+      line-height: 3.1vw;
      }
      .product__prize {
       font-size: 4vh;
@@ -219,8 +235,8 @@ transform: rotate(90deg);
    }
    @media screen and (min-width: 1600px) and (max-width: 2600px){
      .product__name {
-         font-size: 2vh;
-         line-height: 3vh;
+         font-size: 2vw;
+         line-height: 2.5vw;
      }
      .product__prize {
       font-size: 4vh;
