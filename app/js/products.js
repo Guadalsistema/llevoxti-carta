@@ -266,7 +266,9 @@ function setBehaviour() {
 				prod_cart = prod_cart.shadowRoot.querySelectorAll('product-card');
 				for(let i=0;i < prod_cart.length;i++){
 					var prod_store = prod_cart[i].getAttribute('product-id');
+
             		var prod_menu = products.filter(prod=>prod['id']==prod_store);
+
 					if (prod_menu[0]['menu'] == "true"){
 						let minus = prod_cart[i].shadowRoot.querySelector('.minus')
 						minus.style.display = 'none';
@@ -303,6 +305,7 @@ function setBehaviour() {
 			document.getElementById("dialog-address-send").hidden = "true"
 		}
 	  });
+
 	let dialog_form_cart = document.getElementById("cart-dialog"); // Volver del carrito
 	let dialog_cancel_cart = document.getElementById("dialog-cart-cancel");
 	dialog_cancel_cart.addEventListener('click', (ev) => {
@@ -313,6 +316,7 @@ function setBehaviour() {
 		check_order();
 		dialog_form_cart.close()
 	})
+
 	let dialog_form = document.getElementById("address_dialog");
 	dialog_form.addEventListener('close', () => document.querySelector('#products-cart-button').style.display = "flex");
 	dialog_form.addEventListener('close', () => document.querySelector('#show-cart-button').style.display = "flex");
