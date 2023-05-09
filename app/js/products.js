@@ -267,7 +267,6 @@ function setBehaviour() {
 				for(let i=0;i < prod_cart.length;i++){
 					var prod_store = prod_cart[i].getAttribute('product-id');
             		var prod_menu = products.filter(prod=>prod['id']==prod_store);
-
 					if (prod_menu[0]['menu'] == "true"){
 						let minus = prod_cart[i].shadowRoot.querySelector('.minus')
 						minus.style.display = 'none';
