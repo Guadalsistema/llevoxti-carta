@@ -129,8 +129,8 @@ transform: rotate(90deg);
         line-height: 2vh;
     }
     .product__note > textarea{
-      font-size: 2vh;
-      line-height: 2.1vh;
+      font-size: 1vh;
+      line-height: 2vh;
     }
     .product__prize {
      font-size:2vh;
