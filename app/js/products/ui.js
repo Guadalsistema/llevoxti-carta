@@ -220,7 +220,6 @@ class ProductCard extends ModelHTMLElement {
 						p.childNodes[0].setProductsQty(newCant); //importante
 					};
 					if(tipo_submenu == "S"){
-						//p.childNodes[0].setProductsQty(newCant); //importante
 						let  cat_prod_submenu_qt = p.attributes.name.value // Categoría Sumenu
 						let by_count_submenu = this.count_qty_submenu(cat_prod_submenu_qt);//Contador de unidades de produto del submenu
 						//alert("aqui")
