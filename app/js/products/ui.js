@@ -219,6 +219,12 @@ class ProductCard extends ModelHTMLElement {
 					if(tipo_submenu == "F"){ // Ponemos todos los productos Fijos igual que articulo menu cabecera
 						p.childNodes[0].setProductsQty(newCant); //importante
 					};
+					if(tipo_submenu == "S"){
+						let  cat_prod_submenu_qt = p.attributes.name.value // Categoría Sumenu
+						let by_count_submenu = this.count_qty_submenu(cat_prod_submenu_qt);//Contador de unidades de produto del submenu
+						//alert("aqui")
+					};
+
 			});
 		}
 		return;
