@@ -86,6 +86,7 @@ transform: rotate(90deg);
   overflow: hidden;
 }
 
+
  @media screen and (min-width: 1px) and (max-width: 200px){
      .product__name {
          font-size: 1.3vh;
