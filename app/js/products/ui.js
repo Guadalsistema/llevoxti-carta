@@ -224,7 +224,9 @@ class ProductCard extends ModelHTMLElement {
 						let by_count_submenu = this.count_qty_submenu(cat_prod_submenu_qt);//Contador de unidades de produto del submenu
 						//alert("aqui")
 					};
+
 			});
+
 		}	else { 
 			// Si no es producto cabecera
 			let cat_prod_qty = this.getAttribute("category-id"); // categoria del producto seleccionado

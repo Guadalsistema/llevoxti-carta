@@ -47,6 +47,7 @@ class Cart {
                     cart[i].note = newProduct.note
                 };
                
+
                 found = true;
                 break;
             }
