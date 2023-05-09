@@ -88,6 +88,8 @@ function displaySubcategories(categories, categories_parent, products_cat, ismen
 	products_ismenu.forEach(p => {
 			p.show_image = false;
 			p.product_uom_qty = bus_qty_cart(p.id);
+			p.display_textarea = false;
+			
 	});
 	
 	var tipo_menu = "M"
@@ -112,6 +114,7 @@ function displaySubcategories(categories, categories_parent, products_cat, ismen
 		products_submenu.forEach(p => {
 			p.show_image = false;
 			p.product_uom_qty = bus_qty_cart(p.id);
+			p.display_textarea = false;
 		});
 		let lista_productos_modal=new ProductList(fileCss);
 		let listProductMenu = document.createElement('div');
